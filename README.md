@@ -12,11 +12,9 @@ Google Directions API SDK for iOS and Mac OS, entirely written in Swift.
 (TODO)
 
 ## Usage
-Quick-start in four lines of Swift code:
- 1. `let directionsAPI = RLGoogleDirections(apiKey: "<insert your Google API key here>")`
- 2. `directionsAPI.from = RLLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762))`
- 3. `directionsAPI.to = RLLocation.NamedLocation("Googleplex", "Mountain View", "United States")`
- 4. `directionsAPI.calculateDirections { (response) -> Void in { // Do your work here }`
+Quick-start in two lines of Swift code:
+ 1. `let directionsAPI = RLGoogleDirections(apiKey: "<insert your Google API key here>", from: RLLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)), to: RLLocation.NamedLocation("Googleplex", "Mountain View", "United States")`
+ 2. `directionsAPI.calculateDirections { (response) -> Void in { // Do your work here }`
 
 See "Documentation" below for more information on the available properties and response data.
 
