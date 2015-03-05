@@ -53,7 +53,7 @@ More information here: https://developers.google.com/maps/documentation/ios/
 (TODO)
 
 ## License
-The RLGoogleDirections SDK is licensed under the New BSD license.
+The RLGoogleDirections SDK is licensed under the New BSD license. (see LICENSE for more information.)
 
 ## Contact
 Don't hesitate to drop me a line on Github, Twitter, Stack Overflow, or by email:
