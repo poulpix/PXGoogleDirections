@@ -43,9 +43,21 @@ Quick-start in two lines of Swift code:
 
 See "Documentation" below for more information on the available properties and response data.
 
-## Dependencies
-The SDK depends on the Google Maps SDK for iOS (from Google).
+## Requirements
+This SDK requires iOS 8 at least, or above.
+
+It also depends on the Google Maps SDK for iOS (from Google).
 More information here: https://developers.google.com/maps/documentation/ios/
 
 ## Documentation
 (TODO)
+
+## License
+The RLGoogleDirections SDK is licensed under the New BSD license.
+
+## Contact
+Don't hesitate to drop me a line on Github, Twitter, Stack Overflow, or by email:
+ - https://github.com/poulpix
+ - https://twitter.com/_RomainL
+ - http://stackoverflow.com/users/145997/romain
+ - dev (dot) romain (at) me.com
