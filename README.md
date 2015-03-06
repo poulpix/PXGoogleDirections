@@ -1,5 +1,8 @@
 # RLGoogleDirections
 Google Directions API SDK for iOS and Mac OS, entirely written in Swift.
+[![Cocoapods](https://img.shields.io/cocoapods/v/RLGoogleDirections.svg)](https://img.shields.io/cocoapods/v/RLGoogleDirections.svg)
+[![Cocoapods](https://img.shields.io/cocoapods/p/RLGoogleDirections.svg)](https://img.shields.io/cocoapods/p/RLGoogleDirections.svg)
+[![Cocoapods](https://img.shields.io/cocoapods/l/RLGoogleDirections.svg)](https://img.shields.io/cocoapods/l/RLGoogleDirections.svg)
 
 ## Features
 - Supports all features from the Google Directions API as of March 2015 (see here for a full list: https://developers.google.com/maps/documentation/directions)
