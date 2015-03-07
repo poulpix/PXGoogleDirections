@@ -12,6 +12,7 @@
 		7A2CF2991AAA6B8E00A45852 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A2CF2971AAA6B8E00A45852 /* Main.storyboard */; };
 		7A2CF29B1AAA6B8E00A45852 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A2CF29A1AAA6B8E00A45852 /* Images.xcassets */; };
 		7A2CF29E1AAA6B8E00A45852 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2CF29C1AAA6B8E00A45852 /* LaunchScreen.xib */; };
+		7A8487EF1AABBAC600A6844B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7A8487EE1AABBAC600A6844B /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7A2CF2981AAA6B8E00A45852 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A2CF29A1AAA6B8E00A45852 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A2CF29D1AAA6B8E00A45852 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		7A8487EE1AABBAC600A6844B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		7A2CF2911AAA6B8E00A45852 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7A8487EE1AABBAC600A6844B /* Podfile */,
 				7A2CF2921AAA6B8E00A45852 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -131,6 +134,7 @@
 			files = (
 				7A2CF2991AAA6B8E00A45852 /* Main.storyboard in Resources */,
 				7A2CF29E1AAA6B8E00A45852 /* LaunchScreen.xib in Resources */,
+				7A8487EF1AABBAC600A6844B /* Podfile in Resources */,
 				7A2CF29B1AAA6B8E00A45852 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = RLGoogleDirectionsSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -264,6 +269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = RLGoogleDirectionsSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,6 +295,7 @@
 				7A2CF2AF1AAA6B8E00A45852 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
