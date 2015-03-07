@@ -25,7 +25,6 @@
 		7A6713611AA3831800787B92 /* RLGoogleDirectionsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6713601AA3831800787B92 /* RLGoogleDirectionsEnums.swift */; };
 		7A6713631AA5169D00787B92 /* RLTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6713621AA5169D00787B92 /* RLTime.swift */; };
 		7A8814E61AA366330040075F /* RLGoogleDirectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814E51AA366330040075F /* RLGoogleDirectionsTests.swift */; };
-		7A8814F01AA3666E0040075F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8814EF1AA3666E0040075F /* GoogleMaps.framework */; };
 		7A8814F31AA3669D0040075F /* RLGoogleDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814F21AA3669D0040075F /* RLGoogleDirections.swift */; };
 		7A8815031AA367FB0040075F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8814F71AA367FB0040075F /* AVFoundation.framework */; };
 		7A8815041AA367FB0040075F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8814F81AA367FB0040075F /* CoreData.framework */; };
@@ -41,6 +40,7 @@
 		7A88150E1AA367FB0040075F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8815021AA367FB0040075F /* SystemConfiguration.framework */; };
 		7A8815101AA3703F0040075F /* RLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88150F1AA3703F0040075F /* RLLocation.swift */; };
 		7A8815121AA3765E0040075F /* RLGoogleDirectionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8815111AA3765E0040075F /* RLGoogleDirectionsResponse.swift */; };
+		DD284C646726835FFACB886D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F3BB58A3080C50986B16FF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20F3BB58A3080C50986B16FF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4869B2AD0F0A2B1C7DF9A3FF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		49DA4E1F06AF213B837A313E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A21B2201AA77D35008618E7 /* RLGoogleDirectionsRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsRoute.swift; sourceTree = "<group>"; };
 		7A21B2221AA77FFE008618E7 /* RLGoogleDirectionsRouteFare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsRouteFare.swift; sourceTree = "<group>"; };
 		7A21B2241AA7844F008618E7 /* RLGoogleDirectionsRouteLeg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsRouteLeg.swift; sourceTree = "<group>"; };
@@ -76,7 +79,6 @@
 		7A8814DF1AA366330040075F /* RLGoogleDirectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RLGoogleDirectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A8814E41AA366330040075F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A8814E51AA366330040075F /* RLGoogleDirectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTests.swift; sourceTree = "<group>"; };
-		7A8814EF1AA3666E0040075F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		7A8814F21AA3669D0040075F /* RLGoogleDirections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirections.swift; sourceTree = "<group>"; };
 		7A8814F41AA366C80040075F /* RLGoogleDirections-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RLGoogleDirections-Bridging-Header.h"; path = "RLGoogleDirections/RLGoogleDirections-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		7A8814F51AA3675D0040075F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,7 +115,7 @@
 				7A88150C1AA367FB0040075F /* OpenGLES.framework in Frameworks */,
 				7A88150D1AA367FB0040075F /* QuartzCore.framework in Frameworks */,
 				7A88150E1AA367FB0040075F /* SystemConfiguration.framework in Frameworks */,
-				7A8814F01AA3666E0040075F /* GoogleMaps.framework in Frameworks */,
+				DD284C646726835FFACB886D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +136,7 @@
 				7A8814E21AA366330040075F /* RLGoogleDirectionsTests */,
 				7A8814F11AA3667E0040075F /* Frameworks */,
 				7A8814CB1AA366330040075F /* Products */,
+				B5406B8563B9A3032E9C2A44 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,9 +219,18 @@
 				7A8815011AA367FB0040075F /* QuartzCore.framework */,
 				7A8815021AA367FB0040075F /* SystemConfiguration.framework */,
 				7A8814F51AA3675D0040075F /* CoreGraphics.framework */,
-				7A8814EF1AA3666E0040075F /* GoogleMaps.framework */,
+				20F3BB58A3080C50986B16FF /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5406B8563B9A3032E9C2A44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4869B2AD0F0A2B1C7DF9A3FF /* Pods.debug.xcconfig */,
+				49DA4E1F06AF213B837A313E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +240,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A8814E91AA366330040075F /* Build configuration list for PBXNativeTarget "RLGoogleDirections" */;
 			buildPhases = (
+				DC32D6E06A20528C80E78FDD /* Check Pods Manifest.lock */,
 				7A8814C61AA366330040075F /* Sources */,
 				7A8814C71AA366330040075F /* Frameworks */,
 				7A8814C81AA366330040075F /* Resources */,
+				DEC682293A84EC38AF6616C4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -313,6 +327,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DC32D6E06A20528C80E78FDD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DEC682293A84EC38AF6616C4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7A8814C61AA366330040075F /* Sources */ = {
@@ -443,6 +490,7 @@
 		};
 		7A8814EA1AA366330040075F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4869B2AD0F0A2B1C7DF9A3FF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -463,6 +511,7 @@
 		};
 		7A8814EB1AA366330040075F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49DA4E1F06AF213B837A313E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
