@@ -14,5 +14,5 @@ s.author                = { 'Romain L' => 'dev.romain@me.com' }
 s.social_media_url      = "https://twitter.com/_RomainL"
 s.homepage              = "https://github.com/poulpix/RLGoogleDirections"
 s.xcconfig              = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/Google-Maps-iOS-SDK' }
-s.dependency              'Google-Maps-iOS-SDK'
+#s.dependency              'Google-Maps-iOS-SDK'
 end
