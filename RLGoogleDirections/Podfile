@@ -1,7 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-#xcodeproj 'RLGoogleDirectionsSample.xcodeproj'
+platform :ios, '8.0'
 xcodeproj 'RLGoogleDirections.xcodeproj'
 
-#pod 'RLGoogleDirections'
 pod 'Google-Maps-iOS-SDK'
+
+use_frameworks!

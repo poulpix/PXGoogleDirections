@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BD2621C9D168FA58FB975F7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB9EF998853EFB1D09BB11C /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7A21B2211AA77D35008618E7 /* RLGoogleDirectionsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21B2201AA77D35008618E7 /* RLGoogleDirectionsRoute.swift */; };
 		7A21B2231AA77FFE008618E7 /* RLGoogleDirectionsRouteFare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21B2221AA77FFE008618E7 /* RLGoogleDirectionsRouteFare.swift */; };
 		7A21B2251AA7844F008618E7 /* RLGoogleDirectionsRouteLeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21B2241AA7844F008618E7 /* RLGoogleDirectionsRouteLeg.swift */; };
@@ -40,7 +41,6 @@
 		7A88150E1AA367FB0040075F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8815021AA367FB0040075F /* SystemConfiguration.framework */; };
 		7A8815101AA3703F0040075F /* RLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88150F1AA3703F0040075F /* RLLocation.swift */; };
 		7A8815121AA3765E0040075F /* RLGoogleDirectionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8815111AA3765E0040075F /* RLGoogleDirectionsResponse.swift */; };
-		DD284C646726835FFACB886D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F3BB58A3080C50986B16FF /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20F3BB58A3080C50986B16FF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EB9EF998853EFB1D09BB11C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4869B2AD0F0A2B1C7DF9A3FF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		49DA4E1F06AF213B837A313E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A21B2201AA77D35008618E7 /* RLGoogleDirectionsRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsRoute.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		7A21B2301AA8FCED008618E7 /* RLGoogleDirectionsTransitLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitLine.swift; sourceTree = "<group>"; };
 		7A2CF2461AA8FF1E00A45852 /* RLGoogleDirectionsTransitLineVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitLineVehicle.swift; sourceTree = "<group>"; };
 		7A2CF2481AA9017200A45852 /* RLGoogleDirectionsTransitAgency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitAgency.swift; sourceTree = "<group>"; };
-		7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RLGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
+		7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RLGoogleDirections.podspec; path = ../RLGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
 		7A2CF24C1AAA093500A45852 /* RLGoogleDirectionsTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTime.swift; sourceTree = "<group>"; };
 		7A2CF24E1AAA170300A45852 /* RLUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLUtils.swift; sourceTree = "<group>"; };
 		7A5CEC7E1AAA7FD1005A81AF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				7A88150C1AA367FB0040075F /* OpenGLES.framework in Frameworks */,
 				7A88150D1AA367FB0040075F /* QuartzCore.framework in Frameworks */,
 				7A88150E1AA367FB0040075F /* SystemConfiguration.framework in Frameworks */,
-				DD284C646726835FFACB886D /* libPods.a in Frameworks */,
+				0BD2621C9D168FA58FB975F7 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +219,7 @@
 				7A8815011AA367FB0040075F /* QuartzCore.framework */,
 				7A8815021AA367FB0040075F /* SystemConfiguration.framework */,
 				7A8814F51AA3675D0040075F /* CoreGraphics.framework */,
-				20F3BB58A3080C50986B16FF /* libPods.a */,
+				0EB9EF998853EFB1D09BB11C /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -245,6 +245,7 @@
 				7A8814C71AA366330040075F /* Frameworks */,
 				7A8814C81AA366330040075F /* Resources */,
 				DEC682293A84EC38AF6616C4 /* Copy Pods Resources */,
+				CCF196FB0F2AB1823B3F4D4C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -329,6 +330,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CCF196FB0F2AB1823B3F4D4C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DC32D6E06A20528C80E78FDD /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
