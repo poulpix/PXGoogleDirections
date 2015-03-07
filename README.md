@@ -5,7 +5,7 @@ Google Directions API SDK for iOS and Mac OS, entirely written in Swift.
 [![Cocoapods](https://img.shields.io/cocoapods/p/RLGoogleDirections.svg)](https://img.shields.io/cocoapods/p/RLGoogleDirections.svg)
 [![Cocoapods](https://img.shields.io/cocoapods/l/RLGoogleDirections.svg)](https://img.shields.io/cocoapods/l/RLGoogleDirections.svg)
 
-> Please note that `RLGoogleDirections` is not yet ready, as I'm still trying to solve Cocoapods-related issues with Swift frameworks and dependencies on non-Swift frameworks...
+> Please note that `RLGoogleDirections` is not yet ready for prime time, as I'm still trying to solve Cocoapods-related issues (see below).
 
 ## Features
 - Supports all features from the Google Directions API as of March 2015 (see here for a full list: https://developers.google.com/maps/documentation/directions)
@@ -24,6 +24,7 @@ To use RLGoogleDirections in your project add the following 'Podfile' to your pr
 source 'https://github.com/CocoaPods/Specs.git'
 pod 'RLGoogleDirections'
 ```
+> This won't work right now, since `RLGoogleDirections` is not yet published on the official CocoaPods repo. Still working out some compatibility problems with Xcode 6.3, Swift, Objective-C, frameworks, and CocoaPods 0.36...
 
 And run the following command from the Terminal:
 
