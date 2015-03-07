@@ -52,9 +52,7 @@ See "Documentation" below for more information on the available properties and r
 ## Requirements
  - Runs on iOS 8 at least, or above.
  - Compatible with Swift 1.2 and Xcode 6.3.
-
-It also depends on the Google Maps SDK for iOS (from Google).
-More information here: https://developers.google.com/maps/documentation/ios/
+ - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
 ## Documentation
 (TODO)
