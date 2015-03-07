@@ -68,7 +68,7 @@
 		7A21B2301AA8FCED008618E7 /* RLGoogleDirectionsTransitLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitLine.swift; sourceTree = "<group>"; };
 		7A2CF2461AA8FF1E00A45852 /* RLGoogleDirectionsTransitLineVehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitLineVehicle.swift; sourceTree = "<group>"; };
 		7A2CF2481AA9017200A45852 /* RLGoogleDirectionsTransitAgency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTransitAgency.swift; sourceTree = "<group>"; };
-		7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RLGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
+		7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RLGoogleDirections.podspec; path = ../RLGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
 		7A2CF24C1AAA093500A45852 /* RLGoogleDirectionsTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTime.swift; sourceTree = "<group>"; };
 		7A2CF24E1AAA170300A45852 /* RLUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLUtils.swift; sourceTree = "<group>"; };
 		7A5CEC7E1AAA7FD1005A81AF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
