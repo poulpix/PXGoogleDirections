@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /// A single step of the calculated directions. A step is the most atomic unit of a direction's route, containing a single step describing a specific, single instruction on the journey (e.g. "Turn left at W. 4th St."). The step not only describes the instruction but also contains distance and duration information relating to how this step relates to the following step. For example, a step denoted as "Merge onto I-80 West" may contain a duration of "37 miles" and "40 minutes," indicating that the next step is 37 miles/40 minutes from this step.
 class RLGoogleDirectionsRouteLegStep: NSObject, RLGoogleDirectionsSteppable {

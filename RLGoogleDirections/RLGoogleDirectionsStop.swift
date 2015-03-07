@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /// Information about a start/stop station for a part of a trip
 struct RLGoogleDirectionsStop {

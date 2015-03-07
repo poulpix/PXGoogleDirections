@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /// A single leg of the journey from the origin to the destination in the calculated route.
 struct RLGoogleDirectionsRouteLeg: RLGoogleDirectionsSteppable {

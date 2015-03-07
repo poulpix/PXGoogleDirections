@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /// Specifies a location, either by coordinates or by name
 enum RLLocation {

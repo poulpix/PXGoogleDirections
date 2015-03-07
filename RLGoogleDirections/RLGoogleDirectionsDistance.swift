@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /// The total distance covered by a route leg
 struct RLGoogleDirectionsDistance {

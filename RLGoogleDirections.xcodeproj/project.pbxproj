@@ -21,13 +21,9 @@
 		7A2CF24B1AA9072B00A45852 /* RLGoogleDirections.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */; };
 		7A2CF24D1AAA093500A45852 /* RLGoogleDirectionsTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CF24C1AAA093500A45852 /* RLGoogleDirectionsTime.swift */; };
 		7A2CF24F1AAA170300A45852 /* RLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CF24E1AAA170300A45852 /* RLUtils.swift */; };
+		7A5CEC7F1AAA7FD1005A81AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5CEC7E1AAA7FD1005A81AF /* AppDelegate.swift */; };
 		7A6713611AA3831800787B92 /* RLGoogleDirectionsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6713601AA3831800787B92 /* RLGoogleDirectionsEnums.swift */; };
 		7A6713631AA5169D00787B92 /* RLTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6713621AA5169D00787B92 /* RLTime.swift */; };
-		7A8814D01AA366330040075F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814CF1AA366330040075F /* AppDelegate.swift */; };
-		7A8814D21AA366330040075F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814D11AA366330040075F /* ViewController.swift */; };
-		7A8814D51AA366330040075F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A8814D31AA366330040075F /* Main.storyboard */; };
-		7A8814D71AA366330040075F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A8814D61AA366330040075F /* Images.xcassets */; };
-		7A8814DA1AA366330040075F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A8814D81AA366330040075F /* LaunchScreen.xib */; };
 		7A8814E61AA366330040075F /* RLGoogleDirectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814E51AA366330040075F /* RLGoogleDirectionsTests.swift */; };
 		7A8814F01AA3666E0040075F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A8814EF1AA3666E0040075F /* GoogleMaps.framework */; };
 		7A8814F31AA3669D0040075F /* RLGoogleDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8814F21AA3669D0040075F /* RLGoogleDirections.swift */; };
@@ -72,15 +68,11 @@
 		7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RLGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
 		7A2CF24C1AAA093500A45852 /* RLGoogleDirectionsTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTime.swift; sourceTree = "<group>"; };
 		7A2CF24E1AAA170300A45852 /* RLUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLUtils.swift; sourceTree = "<group>"; };
+		7A5CEC7E1AAA7FD1005A81AF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A6713601AA3831800787B92 /* RLGoogleDirectionsEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsEnums.swift; sourceTree = "<group>"; };
 		7A6713621AA5169D00787B92 /* RLTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLTime.swift; sourceTree = "<group>"; };
 		7A8814CA1AA366330040075F /* RLGoogleDirections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RLGoogleDirections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A8814CE1AA366330040075F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A8814CF1AA366330040075F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7A8814D11AA366330040075F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7A8814D41AA366330040075F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7A8814D61AA366330040075F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7A8814D91AA366330040075F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7A8814DF1AA366330040075F /* RLGoogleDirectionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RLGoogleDirectionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A8814E41AA366330040075F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A8814E51AA366330040075F /* RLGoogleDirectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLGoogleDirectionsTests.swift; sourceTree = "<group>"; };
@@ -157,7 +149,6 @@
 		7A8814CC1AA366330040075F /* RLGoogleDirections */ = {
 			isa = PBXGroup;
 			children = (
-				7A8814CF1AA366330040075F /* AppDelegate.swift */,
 				7A8814F21AA3669D0040075F /* RLGoogleDirections.swift */,
 				7A21B2261AA786B2008618E7 /* RLGoogleDirectionsDistance.swift */,
 				7A21B2281AA7871F008618E7 /* RLGoogleDirectionsDuration.swift */,
@@ -176,10 +167,6 @@
 				7A88150F1AA3703F0040075F /* RLLocation.swift */,
 				7A6713621AA5169D00787B92 /* RLTime.swift */,
 				7A2CF24E1AAA170300A45852 /* RLUtils.swift */,
-				7A8814D11AA366330040075F /* ViewController.swift */,
-				7A8814D31AA366330040075F /* Main.storyboard */,
-				7A8814D61AA366330040075F /* Images.xcassets */,
-				7A8814D81AA366330040075F /* LaunchScreen.xib */,
 				7A8814CD1AA366330040075F /* Supporting Files */,
 			);
 			path = RLGoogleDirections;
@@ -188,6 +175,7 @@
 		7A8814CD1AA366330040075F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7A5CEC7E1AAA7FD1005A81AF /* AppDelegate.swift */,
 				7A2CF24A1AA9072B00A45852 /* RLGoogleDirections.podspec */,
 				7A8814F41AA366C80040075F /* RLGoogleDirections-Bridging-Header.h */,
 				7A8814CE1AA366330040075F /* Info.plist */,
@@ -313,10 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A8814D51AA366330040075F /* Main.storyboard in Resources */,
 				7A2CF24B1AA9072B00A45852 /* RLGoogleDirections.podspec in Resources */,
-				7A8814DA1AA366330040075F /* LaunchScreen.xib in Resources */,
-				7A8814D71AA366330040075F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +321,7 @@
 			files = (
 				7A21B2271AA786B2008618E7 /* RLGoogleDirectionsDistance.swift in Sources */,
 				7A2CF2491AA9017200A45852 /* RLGoogleDirectionsTransitAgency.swift in Sources */,
+				7A5CEC7F1AAA7FD1005A81AF /* AppDelegate.swift in Sources */,
 				7A2CF2471AA8FF1E00A45852 /* RLGoogleDirectionsTransitLineVehicle.swift in Sources */,
 				7A21B22F1AA78BC0008618E7 /* RLGoogleDirectionsStop.swift in Sources */,
 				7A8814F31AA3669D0040075F /* RLGoogleDirections.swift in Sources */,
@@ -345,7 +331,6 @@
 				7A6713611AA3831800787B92 /* RLGoogleDirectionsEnums.swift in Sources */,
 				7A21B2251AA7844F008618E7 /* RLGoogleDirectionsRouteLeg.swift in Sources */,
 				7A21B2291AA7871F008618E7 /* RLGoogleDirectionsDuration.swift in Sources */,
-				7A8814D21AA366330040075F /* ViewController.swift in Sources */,
 				7A21B22B1AA78792008618E7 /* RLGoogleDirectionsRouteLegStep.swift in Sources */,
 				7A8815121AA3765E0040075F /* RLGoogleDirectionsResponse.swift in Sources */,
 				7A8815101AA3703F0040075F /* RLLocation.swift in Sources */,
@@ -353,7 +338,6 @@
 				7A6713631AA5169D00787B92 /* RLTime.swift in Sources */,
 				7A21B2211AA77D35008618E7 /* RLGoogleDirectionsRoute.swift in Sources */,
 				7A21B2311AA8FCED008618E7 /* RLGoogleDirectionsTransitLine.swift in Sources */,
-				7A8814D01AA366330040075F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,25 +358,6 @@
 			targetProxy = 7A8814E01AA366330040075F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		7A8814D31AA366330040075F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7A8814D41AA366330040075F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7A8814D81AA366330040075F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7A8814D91AA366330040075F /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		7A8814E71AA366330040075F /* Debug */ = {
