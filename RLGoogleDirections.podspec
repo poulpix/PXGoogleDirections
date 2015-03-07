@@ -6,7 +6,7 @@ s.platforms             = { :ios => '8.0', :osx => '10.10' }
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = '10.10'
 s.license               = { :type => 'BSD', :file => 'LICENSE' }
-s.source_files          = 'RLGoogleDirections/*.{h,swift}', '*.framework'
+s.source_files          = 'RLGoogleDirections/*.{h,swift}', '$(PODS_ROOT)/Goole-Maps-iOS-SDK/*.framework'
 s.source                = { :git => "https://github.com/poulpix/RLGoogleDirections.git", :tag => "1.0.0" }
 s.requires_arc          = true
 s.frameworks            = "Foundation", "CoreLocation"
