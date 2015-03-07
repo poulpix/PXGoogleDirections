@@ -51,6 +51,7 @@ See "Documentation" below for more information on the available properties and r
 
 ## Requirements
 This SDK requires iOS 8 at least, or above.
+You will also need to work with Swift 1.2 and Xcode 6.3.
 
 It also depends on the Google Maps SDK for iOS (from Google).
 More information here: https://developers.google.com/maps/documentation/ios/
