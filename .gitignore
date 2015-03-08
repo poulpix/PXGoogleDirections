@@ -25,3 +25,8 @@ DerivedData
 #
 Pods/
 *.lock
+
+# Sample
+#
+# Omit private information, like API keys in the sample project
+Sample/Private/*.*
