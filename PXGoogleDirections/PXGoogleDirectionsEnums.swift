@@ -40,7 +40,7 @@ public enum PXGoogleDirectionsError: Int {
 		case .NotFound:
 			return "At least one of the locations specified in the request's origin, destination, or waypoints could not be geocoded"
 		case .ZeroResults:
-			return "No route could be found between the origin and destination"
+			return "No route could be found between the specified origin and destination"
 		case .MaxWaypointsExceeded:
 			return "Too many waypointss were provided in the request"
 		case .InvalidRequest:
