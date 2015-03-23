@@ -115,6 +115,10 @@ public class PXGoogleDirections: NSObject {
 	public var directionsAPIRequestURL: NSURL? {
 		// Ensure origin and destination are set
 		if let f = from, t = to {
+			// Ensure there is actually something specified for both origin and destination addresses
+			if !f.isSpecified() || !t.isSpecified() {
+				return nil
+			}
 			// Create the base URL with minimal arguments
 			var preparedRequest = "\(PXGoogleDirections.apiBaseURL)?key=\(PXGoogleDirections.apiKey)&origin=\(f)&destination=\(t)"
 			// Handle transport mode
@@ -252,7 +256,7 @@ public class PXGoogleDirections: NSObject {
 									// API error received: notify delegate and call completion block (with error value)
 									let err = prepareError(status)
 									self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-									completion(.Error(err.description))
+									completion(.Error(err))
 									return
 								} else {
 									// From here on: try to parse and process the received data
@@ -366,14 +370,14 @@ public class PXGoogleDirections: NSObject {
 								// API response status code missing: notify delegate and call completion block (with error value)
 								let err = prepareError(.MissingStatusCode)
 								self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-								completion(.Error(err.description))
+								completion(.Error(err))
 								return
 							}
 						} else {
 							// Unable to parse the API response: notify delegate and call completion block (with error value)
 							let err = prepareError(.BadJSONFormatting)
 							self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-							completion(.Error(err.description))
+							completion(.Error(err))
 							return
 						}
 						// Everything went well up to this point: ready to forward results to delegate and callback
@@ -386,7 +390,7 @@ public class PXGoogleDirections: NSObject {
 					} else {
 						// Generic NSURLSession error: notify delegate and call completion block (with error value)
 						self.delegate?.googleDirectionsRequestDidFail?(self, withError: error)
-						completion(.Error(error.description))
+						completion(.Error(error))
 						return
 					}
 				}).resume()
@@ -397,7 +401,7 @@ public class PXGoogleDirections: NSObject {
 			// Unable to create an API URL with the supplied arguments: notify delegate and call completion block (with error value)
 			let err = prepareError(.BadAPIURL)
 			delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-			completion(.Error(err.description))
+			completion(.Error(err))
 			return
 		}
 	}

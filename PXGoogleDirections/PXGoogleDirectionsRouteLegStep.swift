@@ -40,4 +40,22 @@ public class PXGoogleDirectionsRouteLegStep: NSObject, PXGoogleDirectionsSteppab
 			return nil
 		}
 	}
+	/// Returns the coordinate bounds for this step
+	public var bounds: GMSCoordinateBounds? {
+		var b: GMSCoordinateBounds?
+		if let p = path {
+			b = GMSCoordinateBounds(path: p)
+		}
+		return b
+	}
+	/// Raw instructions for this step, derived from the HTML instructions
+	public var rawInstructions: String? {
+		var result = htmlInstructions
+		if result != nil {
+			while let r = result!.rangeOfString("<[^>]+>", options: .RegularExpressionSearch) {
+				result = result!.stringByReplacingCharactersInRange(r, withString: "")
+			}
+		}
+		return result
+	}
 }

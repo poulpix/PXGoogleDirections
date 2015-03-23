@@ -14,7 +14,25 @@ public enum PXLocation {
 	/// Specifies a location by latitude and longitude coordinates
 	case CoordinateLocation(CLLocationCoordinate2D)
 	/// Specifies a location by name, city and/or country
-	case NamedLocation(String?, String?, String?)
+	case SpecificLocation(String?, String?, String?)
+	/// Specifies a location by a single string address
+	case NamedLocation(String)
+	
+	/**
+	Returns `true` if a location is indeed specifically defined.
+	
+	:returns: `true` if the object holds a specific location, `false` otherwise
+	*/
+	public func isSpecified() -> Bool {
+		switch self {
+		case let .SpecificLocation(address, city, country):
+			return count(address ?? "") > 0 || count(city ?? "") > 0 || count(country ?? "") > 0
+		case let .NamedLocation(address):
+			return count(address.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())) > 0
+		default:
+			return true
+		}
+	}
 }
 
 extension PXLocation: Printable {
@@ -22,7 +40,7 @@ extension PXLocation: Printable {
 		switch (self) {
 		case let .CoordinateLocation(coords):
 			return "\(coords.latitude),\(coords.longitude)"
-		case let .NamedLocation(name, city, country):
+		case let .SpecificLocation(name, city, country):
 			var locationFullName = ""
 			if let n = name {
 				locationFullName = n
@@ -36,6 +54,8 @@ extension PXLocation: Printable {
 				locationFullName += "\(separator)\(c)"
 			}
 			return locationFullName
+		case let .NamedLocation(address):
+			return address
 		}
 	}
 }

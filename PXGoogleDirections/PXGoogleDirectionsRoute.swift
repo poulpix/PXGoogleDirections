@@ -35,4 +35,75 @@ public class PXGoogleDirectionsRoute: NSObject {
 			return nil
 		}
 	}
+	
+	/**
+	Draws the route on the specified Google Maps map view.
+	
+	:param: map A `GMSMapView` object on which the route should be drawn
+	:param: strokeColor The optional route stroke color
+	:param: strokeWidth The optional route stroke width
+	:returns: The resulting `GMSPolyline` object that was drawn to the map
+	*/
+	public func drawOnMap(map: GMSMapView, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> GMSPolyline? {
+		var polyline: GMSPolyline?
+		if let p = path {
+			let polyline = GMSPolyline(path: p)
+			polyline.strokeColor = strokeColor
+			polyline.strokeWidth = CGFloat(strokeWidth)
+			polyline.map = map
+		}
+		return polyline
+	}
+	
+	/**
+	Draws a marker representing the origin of the route on the specified Google Maps map view.
+	
+	:param: map A `GMSMapView` object on which the marker should be drawn
+	:param: title An optional marker title
+	:param: color An optional marker color
+	:param: opacity An optional marker specific opacity
+	:param: flat An optional indicator to flatten the marker
+	:returns: The resulting `GMSMarker` object that was drawn to the map
+	*/
+	public func drawOriginMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
+		var marker: GMSMarker?
+		if let p = path {
+			if p.count() > 1 {
+				marker = drawMarkerWithCoordinates(p.coordinateAtIndex(0), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
+			}
+		}
+		return marker
+	}
+	
+	/**
+	Draws a marker representing the destination of the route on the specified Google Maps map view.
+	
+	:param: map A `GMSMapView` object on which the marker should be drawn
+	:param: title An optional marker title
+	:param: color An optional marker color
+	:param: opacity An optional marker specific opacity
+	:param: flat An optional indicator to flatten the marker
+	:returns: The resulting `GMSMarker` object that was drawn to the map
+	*/
+	public func drawDestinationMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
+		var marker: GMSMarker?
+		if let p = path {
+			if p.count() > 1 {
+				marker = drawMarkerWithCoordinates(p.coordinateAtIndex(p.count() - 1), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
+			}
+		}
+		return marker
+	}
+	
+	// MARK: Private functions
+
+	private func drawMarkerWithCoordinates(coordinates: CLLocationCoordinate2D, onMap map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker {
+		let marker = GMSMarker(position: coordinates)
+		marker.title = title
+		marker.icon = GMSMarker.markerImageWithColor(color)
+		marker.opacity = opacity
+		marker.flat = flat
+		marker.map = map
+		return marker
+	}
 }

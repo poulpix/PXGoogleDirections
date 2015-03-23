@@ -96,9 +96,9 @@ public enum PXGoogleDirectionsError: Int {
 }
 
 /// The mode of transport used when calculating directions
-public enum PXGoogleDirectionsMode {
+public enum PXGoogleDirectionsMode: Int {
 	/// Caclulate directions by car/automobile
-	case Driving
+	case Driving = 0
 	/// Calculate directions by walk
 	case Walking
 	/// Calculate directions by bicycle
@@ -144,9 +144,9 @@ extension PXGoogleDirectionsMode: Printable {
 }
 
 /// Features that should be avoided when calculating routes
-public enum PXGoogleDirectionsFeature {
+public enum PXGoogleDirectionsFeature: Int {
 	/// The calculated route should avoid toll roads/bridges
-	case Tolls
+	case Tolls = 0
 	/// The calculated route should avoid highways
 	case Highways
 	/// The calculated route should avoid ferries
@@ -167,9 +167,9 @@ extension PXGoogleDirectionsFeature: Printable {
 }
 
 /// The unit system to use when displaying results (by default, the texts are rendered using the unit system of the origin's country or region)
-public enum PXGoogleDirectionsUnit {
+public enum PXGoogleDirectionsUnit: Int {
 	/// Use the metric system (textual distances are returned using kilometers and meters)
-	case Metric
+	case Metric = 0
 	/// Use the imperial (English) system (textual distances are returned using kilometers and meters)
 	case Imperial
 }
@@ -186,9 +186,9 @@ extension PXGoogleDirectionsUnit: Printable {
 }
 
 /// Preferred modes of transit (only valid for transit directions)
-public enum PXGoogleDirectionsTransitMode {
+public enum PXGoogleDirectionsTransitMode: Int {
 	/// The calculated route should prefer travel by bus
-	case Bus
+	case Bus = 0
 	/// The calculated route should prefer travel by subway
 	case Subway
 	/// The calculated route should prefer travel by train
@@ -217,9 +217,9 @@ extension PXGoogleDirectionsTransitMode: Printable {
 }
 
 /// Preferences for transit routes only ; using this parameter, the options returned can be biased, rather than accepting the default best route chosen by the API
-public enum PXGoogleDirectionsTransitRoutingPreference {
+public enum PXGoogleDirectionsTransitRoutingPreference: Int {
 	/// Indicates that the calculated route should prefer limited amounts of walking
-	case LessWalking
+	case LessWalking = 0
 	/// Indicates that the calculated route should prefer a limited number of transfers
 	case FewerTransfers
 }
@@ -236,9 +236,9 @@ extension PXGoogleDirectionsTransitRoutingPreference: Printable {
 }
 
 /// Type of vehicles that run on transit lines
-public enum PXGoogleDirectionsVehicleType {
+public enum PXGoogleDirectionsVehicleType: Int {
 	/// Rail
-	case Rail
+	case Rail = 0
 	/// Light rail transit
 	case MetroRail
 	/// Underground light rail
