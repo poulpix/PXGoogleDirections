@@ -24,10 +24,21 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var trainSwitch: UISwitch!
 	@IBOutlet weak var tramSwitch: UISwitch!
 	@IBOutlet weak var railSwitch: UISwitch!
+	@IBOutlet weak var avoidTollsSwitch: UISwitch!
+	@IBOutlet weak var avoidHighwaysSwitch: UISwitch!
+	@IBOutlet weak var avoidFerriesSwitch: UISwitch!
+	@IBOutlet weak var startArriveField: UISegmentedControl!
+	@IBOutlet weak var startArriveDateField: UITextField!
+	var startArriveDate: NSDate?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		updateStartArriveDateField()
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
 	}
 	
 	private var directionsAPI: PXGoogleDirections {
@@ -42,14 +53,30 @@ class MainViewController: UIViewController {
 		return PXGoogleDirectionsUnit(rawValue: unitField.selectedSegmentIndex)!
 	}
 	
+	private func transitRoutingPreferenceFromField() -> PXGoogleDirectionsTransitRoutingPreference? {
+		return PXGoogleDirectionsTransitRoutingPreference(rawValue: transitRoutingField.selectedSegmentIndex)
+	}
+	
+	private func updateStartArriveDateField() {
+		if let saDate = startArriveDate {
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateStyle = .MediumStyle
+			dateFormatter.timeStyle = .MediumStyle
+			startArriveDateField.text = dateFormatter.stringFromDate(saDate)
+		} else {
+			startArriveDateField.text = ""
+		}
+	}
+	
 	@IBAction func advancedOptionsChanged(sender: UISwitch) {
 		UIView.animateWithDuration(0.5, animations: {
 			self.advancedView.alpha =  (self.advancedSwitch.on ? 1.0 : 0.0)
 		})
 	}
 	
-	private func transitRoutingPreferenceFromField() -> PXGoogleDirectionsTransitRoutingPreference? {
-		return PXGoogleDirectionsTransitRoutingPreference(rawValue: transitRoutingField.selectedSegmentIndex)
+	@IBAction func selectDateButtonTouched(sender: UIButton) {
+		startArriveDate = NSDate()
+		updateStartArriveDateField()
 	}
 	
 	@IBAction func goButtonTouched(sender: UIButton) {
@@ -77,21 +104,47 @@ class MainViewController: UIViewController {
 			if railSwitch.on {
 				directionsAPI.transitModes.insert(.Rail)
 			}
+			directionsAPI.featuresToAvoid = Set()
+			if avoidTollsSwitch.on {
+				directionsAPI.featuresToAvoid.insert(.Tolls)
+			}
+			if avoidHighwaysSwitch.on {
+				directionsAPI.featuresToAvoid.insert(.Highways)
+			}
+			if avoidFerriesSwitch.on {
+				directionsAPI.featuresToAvoid.insert(.Ferries)
+			}
+			switch startArriveField.selectedSegmentIndex {
+			case 0:
+				directionsAPI.departureTime = .Now
+				directionsAPI.arrivalTime = nil
+			case 1:
+				if let saDate = startArriveDate {
+					directionsAPI.departureTime = PXTime.timeFromDate(saDate)
+					directionsAPI.arrivalTime = nil
+				} else {
+					return
+				}
+			case 2:
+				if let saDate = startArriveDate {
+					directionsAPI.departureTime = nil
+					directionsAPI.arrivalTime = PXTime.timeFromDate(saDate)
+				} else {
+					return
+				}
+			default:
+				break
+			}
 		} else {
 			directionsAPI.transitRoutingPreference = nil
 			directionsAPI.units = nil
 			directionsAPI.alternatives = nil
 			directionsAPI.transitModes = Set()
+			directionsAPI.featuresToAvoid = Set()
+			directionsAPI.departureTime = nil
+			directionsAPI.arrivalTime = nil
 		}
 		/*
-		directionsAPI.featuresToAvoid.insert(.Ferries)
-		directionsAPI.featuresToAvoid.insert(.Highways)
-		directionsAPI.departureTime = .Now
-		directionsAPI.departureTime = nil
-		directionsAPI.arrivalTime = PXTime.timeFromDate(NSDate())
-		directionsAPI.transitModes.insert(.Bus)
-		directionsAPI.transitModes.insert(.Subway)
-		directionsAPI.mode = .Transit
 		let fb = PXLocation.SpecificLocation("Hacker Way", "Menlo Park", "Etats-Unis")
 		directionsAPI.waypoints.append(fb)
 		let tw = PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.782334, -122.400795))
@@ -102,19 +155,19 @@ class MainViewController: UIViewController {
 		directionsAPI.region = "fr"
 		*/
 		directionsAPI.calculateDirections { (response) -> Void in
-			switch response {
-			case .Error(let error):
-				var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-				alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-				self.presentViewController(alert, animated: true, completion: nil)
-			case .Success(let routes):
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				switch response {
+				case .Error(let error):
+					var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+					alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+					self.presentViewController(alert, animated: true, completion: nil)
+				case .Success(let routes):
 					if let rvc = self.storyboard?.instantiateViewControllerWithIdentifier("Results") as? ResultsViewController {
 						rvc.results = routes
 						self.presentViewController(rvc, animated: true, completion: nil)
 					}
-				})
-			}
+				}
+			})
 		}
 	}
 }
@@ -127,7 +180,7 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 	
 	func googleDirectionsDidSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) {
 		NSLog("googleDirectionsDidSendRequestToAPI:withURL:")
-		NSLog("\(requestURL.absoluteString?.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+		NSLog("\(requestURL.absoluteString!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
 	}
 	
 	func googleDirections(googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: NSData) {
@@ -148,3 +201,4 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 		}
 	}
 }
+
