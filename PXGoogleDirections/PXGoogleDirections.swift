@@ -232,7 +232,7 @@ public class PXGoogleDirections: NSObject {
 			// Show network activity indicator
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 			// Notify delegeate (if any)
-			let runQuery = (delegate == nil ? true : (delegate!.googleDirectionsWillSendRequestToAPI?(self, withURL: requestURL))!)
+			let runQuery = (delegate == nil ? true : (delegate!.googleDirectionsWillSendRequestToAPI?(self, withURL: requestURL) ?? true))
 			// Handle the case where the delegate might have askeed to cancel the request
 			if runQuery {
 				NSURLSession.sharedSession().dataTaskWithURL(requestURL, completionHandler: { (data, response, error) -> Void in
