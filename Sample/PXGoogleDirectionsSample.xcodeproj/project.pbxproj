@@ -14,6 +14,7 @@
 		7A12EF8F1AAC65710070BA73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EF8E1AAC65710070BA73 /* Images.xcassets */; };
 		7A12EF921AAC65710070BA73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EF901AAC65710070BA73 /* LaunchScreen.xib */; };
 		7A12EFA81AAC65CF0070BA73 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EFA71AAC65CF0070BA73 /* Podfile */; };
+		7A1A84E51AC5F33A0019E6B8 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */; };
 		7A7C6E381ABD951100D397F1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */; };
 		7AC67B651AAD044C00724CB9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B641AAD044C00724CB9 /* CoreLocation.framework */; };
 		7AC67B671AAD095C00724CB9 /* GoogleAPIKeyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC67B661AAD095C00724CB9 /* GoogleAPIKeyProvider.swift */; };
@@ -42,6 +43,7 @@
 		7A12EF8E1AAC65710070BA73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A12EF911AAC65710070BA73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7A12EFA71AAC65CF0070BA73 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7AC67B4B1AAD03AC00724CB9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7AC67B4C1AAD03AC00724CB9 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -147,9 +149,10 @@
 				7AC67B661AAD095C00724CB9 /* GoogleAPIKeyProvider.swift */,
 				7A12EF891AAC65710070BA73 /* MainViewController.swift */,
 				7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */,
+				7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */,
 				7A12EF8B1AAC65710070BA73 /* Main.storyboard */,
-				7A12EF8E1AAC65710070BA73 /* Images.xcassets */,
 				7A12EF901AAC65710070BA73 /* LaunchScreen.xib */,
+				7A12EF8E1AAC65710070BA73 /* Images.xcassets */,
 				7A12EF851AAC65710070BA73 /* Supporting Files */,
 			);
 			path = PXGoogleDirectionsSample;
@@ -290,6 +293,7 @@
 				7A12EF8A1AAC65710070BA73 /* MainViewController.swift in Sources */,
 				7AC67B671AAD095C00724CB9 /* GoogleAPIKeyProvider.swift in Sources */,
 				7A12EF881AAC65710070BA73 /* AppDelegate.swift in Sources */,
+				7A1A84E51AC5F33A0019E6B8 /* WaypointViewController.swift in Sources */,
 				7A7C6E381ABD951100D397F1 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

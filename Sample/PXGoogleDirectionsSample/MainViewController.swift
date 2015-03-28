@@ -10,6 +10,10 @@ import UIKit
 import CoreLocation
 import PXGoogleDirections
 
+protocol MainViewControllerDelegate {
+	func didAddWaypoint(waypoint: PXLocation)
+}
+
 class MainViewController: UIViewController {
 	@IBOutlet weak var originField: UITextField!
 	@IBOutlet weak var destinationField: UITextField!
@@ -29,12 +33,32 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var avoidFerriesSwitch: UISwitch!
 	@IBOutlet weak var startArriveField: UISegmentedControl!
 	@IBOutlet weak var startArriveDateField: UITextField!
+	@IBOutlet weak var waypointsLabel: UILabel!
+	@IBOutlet weak var optimizeWaypointsSwitch: UISwitch!
+	@IBOutlet weak var languageField: UISegmentedControl!
 	var startArriveDate: NSDate?
+	var waypoints: [PXLocation] = [PXLocation]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		updateStartArriveDateField()
+		updateStartArriveDateField(nil)
+		updateWaypointsField()
+		let datePicker = UIDatePicker()
+		datePicker.sizeToFit()
+		datePicker.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+		datePicker.datePickerMode = .DateAndTime
+		datePicker.minuteInterval = 5
+		startArriveDateField.inputView = datePicker
+		let keyboardDoneButtonView = UIToolbar()
+		keyboardDoneButtonView.barStyle = .Black
+		keyboardDoneButtonView.translucent = true
+		keyboardDoneButtonView.tintColor = nil
+		keyboardDoneButtonView.sizeToFit()
+		let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: Selector("doneButtonTouched:"))
+		let clearButton = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: Selector("clearButtonTouched:"))
+		keyboardDoneButtonView.setItems([doneButton, clearButton], animated: false)
+		startArriveDateField.inputAccessoryView = keyboardDoneButtonView
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -57,14 +81,31 @@ class MainViewController: UIViewController {
 		return PXGoogleDirectionsTransitRoutingPreference(rawValue: transitRoutingField.selectedSegmentIndex)
 	}
 	
-	private func updateStartArriveDateField() {
+	private func languageFromField() -> String {
+		return languageField.titleForSegmentAtIndex(languageField.selectedSegmentIndex)!
+		// There are quite a few other languages available, see here for more information: https://developers.google.com/maps/faq#languagesupport
+	}
+	
+	private func updateStartArriveDateField(newDate: NSDate?) {
+		startArriveDate = newDate
 		if let saDate = startArriveDate {
 			let dateFormatter = NSDateFormatter()
 			dateFormatter.dateStyle = .MediumStyle
-			dateFormatter.timeStyle = .MediumStyle
+			dateFormatter.timeStyle = .ShortStyle
 			startArriveDateField.text = dateFormatter.stringFromDate(saDate)
 		} else {
 			startArriveDateField.text = ""
+		}
+	}
+	
+	private func updateWaypointsField() {
+		switch count(waypoints) {
+		case 0:
+			waypointsLabel.text = "No waypoints"
+		case 1:
+			waypointsLabel.text = "1 waypoint"
+		default:
+			waypointsLabel.text = "\(count(waypoints)) waypoints"
 		}
 	}
 	
@@ -75,8 +116,32 @@ class MainViewController: UIViewController {
 	}
 	
 	@IBAction func selectDateButtonTouched(sender: UIButton) {
-		startArriveDate = NSDate()
-		updateStartArriveDateField()
+		startArriveDateField.enabled = true
+		startArriveDateField.becomeFirstResponder()
+	}
+	
+	func doneButtonTouched(sender: UIBarButtonItem) {
+		updateStartArriveDateField((startArriveDateField.inputView as! UIDatePicker).date)
+		startArriveDateField.resignFirstResponder()
+		startArriveDateField.enabled = false
+	}
+	
+	func clearButtonTouched(sender: UIBarButtonItem) {
+		updateStartArriveDateField(nil)
+		startArriveDateField.resignFirstResponder()
+		startArriveDateField.enabled = false
+	}
+	
+	@IBAction func addWaypointButtonTouched(sender: UIButton) {
+		if let wpvc = self.storyboard?.instantiateViewControllerWithIdentifier("Waypoint") as? WaypointViewController {
+			wpvc.delegate = self
+			self.presentViewController(wpvc, animated: true, completion: nil)
+		}
+	}
+	
+	@IBAction func clearWaypointsButtonTouched(sender: UIButton) {
+		waypoints.removeAll(keepCapacity: false)
+		updateWaypointsField()
 	}
 	
 	@IBAction func goButtonTouched(sender: UIButton) {
@@ -135,6 +200,9 @@ class MainViewController: UIViewController {
 			default:
 				break
 			}
+			directionsAPI.waypoints = waypoints
+			directionsAPI.optimizeWaypoints = optimizeWaypointsSwitch.on
+			directionsAPI.language = languageFromField()
 		} else {
 			directionsAPI.transitRoutingPreference = nil
 			directionsAPI.units = nil
@@ -143,16 +211,12 @@ class MainViewController: UIViewController {
 			directionsAPI.featuresToAvoid = Set()
 			directionsAPI.departureTime = nil
 			directionsAPI.arrivalTime = nil
+			directionsAPI.waypoints = [PXLocation]()
+			directionsAPI.optimizeWaypoints = nil
+			directionsAPI.language = nil
 		}
 		/*
-		let fb = PXLocation.SpecificLocation("Hacker Way", "Menlo Park", "Etats-Unis")
-		directionsAPI.waypoints.append(fb)
-		let tw = PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.782334, -122.400795))
-		directionsAPI.waypoints.append(tw)
-		directionsAPI.optimizeWaypoints = false
-		directionsAPI.optimizeWaypoints = true
-		directionsAPI.language = "fr"
-		directionsAPI.region = "fr"
+		directionsAPI.region = "fr" // Feature not demonstrated in this sample app
 		*/
 		directionsAPI.calculateDirections { (response) -> Void in
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -202,3 +266,9 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 	}
 }
 
+extension MainViewController: MainViewControllerDelegate {
+	func didAddWaypoint(waypoint: PXLocation) {
+		waypoints.append(waypoint)
+		updateWaypointsField()
+	}
+}
