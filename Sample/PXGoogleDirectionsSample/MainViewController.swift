@@ -221,11 +221,11 @@ class MainViewController: UIViewController {
 		directionsAPI.calculateDirections { (response) -> Void in
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				switch response {
-				case .Error(let error):
+				case let .Error(_, error):
 					var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
 					alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
 					self.presentViewController(alert, animated: true, completion: nil)
-				case .Success(let routes):
+				case let .Success(request, routes):
 					if let rvc = self.storyboard?.instantiateViewControllerWithIdentifier("Results") as? ResultsViewController {
 						rvc.results = routes
 						self.presentViewController(rvc, animated: true, completion: nil)
