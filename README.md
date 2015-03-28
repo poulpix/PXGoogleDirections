@@ -48,6 +48,7 @@ import PXGoogleDirections
 
 ## Usage
 Quick-start in two lines of Swift code:
+
  1) Create an API object:
 ```swift
 let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here>",
