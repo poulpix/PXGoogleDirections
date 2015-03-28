@@ -79,6 +79,10 @@ public class PXGoogleDirections: NSObject {
 	
 	/// The Google Directions API base URL (readonly).
 	public static var apiBaseURL: String { return _apiBaseURL }
+	///	Returns `true` if the Google Maps app is installed and can open places and directions URLs, `false` otherwise
+	public static var canOpenInGoogleMaps: Bool {
+		return UIApplication.sharedApplication().canOpenURL(NSURL(string: "comgooglemaps://")!) && UIApplication.sharedApplication().canOpenURL(NSURL(string: "comgooglemaps-x-callback://")!)
+	}
 
 	// MARK: Instance variables
 	
@@ -197,19 +201,6 @@ public class PXGoogleDirections: NSObject {
 			// Missing source and/or destination
 			return nil
 		}
-	}
-	
-	// MARK: Static functions
-	
-	/**
-	Returns a value indicating whether the device can open places and directions URLs in the Google Maps app or not.
-	
-	:returns: `true` if the Google Maps app is installed and can open places and directions URLs, `false` otherwise
-	*/
-	public class func canOpenInGoogleMaps() -> Bool {
-		return UIApplication.sharedApplication().canOpenURL(
-			NSURL(string: "comgooglemaps://")!) && UIApplication.sharedApplication().canOpenURL(
-				NSURL(string: "comgooglemaps-x-callback://")!)
 	}
 	
 	// MARK: Initializers
@@ -441,8 +432,8 @@ public class PXGoogleDirections: NSObject {
 				// Prepare the base URL parameters with provided arguments
 				var params = PXGoogleDirections.handleGoogleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
 				// Add origin and destination
-				params.append("saddr=\(f)")
-				params.append("daddr=\(t)")
+				params.append("saddr=\(f.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+				params.append("daddr=\(t.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
 				// Add optional method of transportation, if any
 				if let m = mode {
 					params.append("directionsmode=\(m)")
@@ -596,13 +587,12 @@ public class PXGoogleDirections: NSObject {
 	}
 	
 	internal class func buildGoogleMapsURL(var #params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
-		let ok = PXGoogleDirections.canOpenInGoogleMaps()
-		if ok {
+		if PXGoogleDirections.canOpenInGoogleMaps {
 			var scheme = "comgooglemaps"
 			if let cbURL = callbackURL, cbn = callbackName {
 				scheme = "comgooglemaps-x-callback"
-				params.append("x-success=\(cbURL.absoluteString!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))")
-				params.append("x-source=\(cbn.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))")
+				params.append("x-success=\(cbURL.absoluteString!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+				params.append("x-source=\(cbn.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
 			}
 			let p = (count(params) > 0) ? "?" + "&".join(params) : ""
 			return NSURL(string: "\(scheme)://\(p)")!
