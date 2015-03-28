@@ -7,7 +7,9 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 ## Features
 - Supports all features from the Google Directions API as of March 2015 (see here for a full list: https://developers.google.com/maps/documentation/directions)
-- Supports "open in Google Maps app", both for specific locations and directions request (also supports the callback feature to get the user back to your app when he's done in Google Maps)
+- Supports "open in Google Maps app", both for specific locations and directions request
+  * also supports the callback feature to get the user back to your app when he's done in Google Maps
+  * in case the Google Maps app is not installed, also supports fallback to the built-in Apple Maps app
 - Available both with modern, Swift-style completion blocks, or Objective-C-style delegation patterns
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
@@ -77,8 +79,7 @@ See "Documentation" below for more information on the available properties and r
  - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
 ## Documentation
-(TODO)
-I'm working on a sample project to hepl getting you started with the library...
+A sample project is available in the "Sample" subfolder of this repository to help getting you started with the SDK.
 
 ## License
 The PXGoogleDirections SDK is licensed under the New BSD license. (see LICENSE for more information.)
