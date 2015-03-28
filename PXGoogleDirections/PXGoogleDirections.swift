@@ -422,9 +422,10 @@ public class PXGoogleDirections: NSObject {
 	:param: zoom specifies the zoom level of the map
 	:param: callbackURL the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
 	:param: callbackName the name of the application sending the callback request (short names are preferred)
+	:param: fallbackToAppleMaps `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
 	:returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
-	public func openInGoogleMaps(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?) -> Bool {
+	public func openInGoogleMaps(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
 		// Ensure both origin and destination are set
 		if let f = from, t = to {
 			// Ensure there is actually something specified for both origin and destination addresses
@@ -442,6 +443,16 @@ public class PXGoogleDirections: NSObject {
 				if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
 					UIApplication.sharedApplication().openURL(url)
 					return true
+				} else {
+					// Apply fallback strategy
+					if fallbackToAppleMaps {
+						var params = PXGoogleDirections.handleAppleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
+						params.append("saddr=\(f.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+						params.append("daddr=\(t.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+						let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+						UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
+						return true
+					}
 				}
 			}
 		}
@@ -582,6 +593,32 @@ public class PXGoogleDirections: NSObject {
 		}
 		if let z = zoom {
 			params.append("zoom=\(z)")
+		}
+		return params
+	}
+	
+	internal class func handleAppleMapsURL(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
+		var params = [String]()
+		if let loc = center {
+			params.append("ll=\(loc.latitude),\(loc.longitude)")
+		}
+		var allowedToAddZAndT = true
+		if let mm = mapMode {
+			if mm == .StreetView {
+				params.append("z=19")
+				params.append("t=k")
+				allowedToAddZAndT = false
+			}
+		}
+		if let v = view {
+			if v.contains(.Satellite) && allowedToAddZAndT {
+				params.append("t=h")
+			}
+		}
+		if let z = zoom {
+			if allowedToAddZAndT {
+				params.append("z=\(z)")
+			}
 		}
 		return params
 	}
