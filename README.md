@@ -81,6 +81,8 @@ See "Documentation" below for more information on the available properties and r
 ## Documentation
 A sample project is available in the "Sample" subfolder of this repository to help getting you started with the SDK.
 
+<img src="https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/Mockup1.png" width="400px"/><img src="https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/Mockup2.png" width="400px"/>
+
 ## Credit
 - Some portions of code inspired by OpenInGoogleMaps-iOS (https://github.com/googlemaps/OpenInGoogleMaps-iOS) from the Google Maps team.
 
