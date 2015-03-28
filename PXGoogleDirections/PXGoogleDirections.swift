@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import GoogleMaps
 
+// MARK: PXGoogleDirectionsDelegate protocol
 @objc public protocol PXGoogleDirectionsDelegate {
 	/**
 	Notifies the delegate that an API request is going to be sent.
@@ -49,12 +50,14 @@ import GoogleMaps
 	optional func googleDirections(googleDirections: PXGoogleDirections, didReceiveResponseFromAPI apiResponse: [PXGoogleDirectionsRoute])
 }
 
+// MARK: PXGoogleDirectionsSteppable protocol
 protocol PXGoogleDirectionsSteppable {
 	var steps: [PXGoogleDirectionsRouteLegStep] { get set }
 }
 
 public typealias PXGoogleDirectionsRequestCompletionBlock = (PXGoogleDirectionsResponse) -> Void
 
+// MARK: PXGoogleDirections class
 public class PXGoogleDirections: NSObject {
 	
 	// MARK: Private class variables and consants
@@ -72,10 +75,13 @@ public class PXGoogleDirections: NSObject {
 		}
 	}
 	
-	// MARK: Class variables and constants
+	// MARK: Class variables
 	
 	/// The Google Directions API base URL (readonly).
 	public static var apiBaseURL: String { return _apiBaseURL }
+
+	// MARK: Instance variables
+	
 	/// The address or textual latitude/longitude value from which directions should be calculated (if an address is passed, the Directions API will geocode it and convert it to a latitude/longitude coordinate to calculate directions)
 	public var from: PXLocation!
 	/// The address or textual latitude/longitude value of the destination of the directions request (if an address is passed, the Directions API will geocode it and convert it to a latitude/longitude coordinate to calculate directions)
@@ -113,7 +119,7 @@ public class PXGoogleDirections: NSObject {
 	Tries to build an instance of `NSURL` pointing to the Google Directions API using the specified parameters, or `nil`.
 	*/
 	public var directionsAPIRequestURL: NSURL? {
-		// Ensure origin and destination are set
+		// Ensure both origin and destination are set
 		if let f = from, t = to {
 			// Ensure there is actually something specified for both origin and destination addresses
 			if !f.isSpecified() || !t.isSpecified() {
@@ -193,6 +199,19 @@ public class PXGoogleDirections: NSObject {
 		}
 	}
 	
+	// MARK: Static functions
+	
+	/**
+	Returns a value indicating whether the device can open places and directions URLs in the Google Maps app or not.
+	
+	:returns: `true` if the Google Maps app is installed and can open places and directions URLs, `false` otherwise
+	*/
+	public class func canOpenInGoogleMaps() -> Bool {
+		return UIApplication.sharedApplication().canOpenURL(
+			NSURL(string: "comgooglemaps://")!) && UIApplication.sharedApplication().canOpenURL(
+				NSURL(string: "comgooglemaps-x-callback://")!)
+	}
+	
 	// MARK: Initializers
 	
 	/**
@@ -251,9 +270,9 @@ public class PXGoogleDirections: NSObject {
 								// Handle any potential error status code the API might have returned
 								if status.failed {
 									// API error received: notify delegate and call completion block (with error value)
-									let err = prepareError(status)
+									let err = self.prepareError(status)
 									self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-									completion(.Error(err))
+									completion(.Error(self, err))
 									return
 								} else {
 									// From here on: try to parse and process the received data
@@ -365,29 +384,29 @@ public class PXGoogleDirections: NSObject {
 								}
 							} else {
 								// API response status code missing: notify delegate and call completion block (with error value)
-								let err = prepareError(.MissingStatusCode)
+								let err = self.prepareError(.MissingStatusCode)
 								self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-								completion(.Error(err))
+								completion(.Error(self, err))
 								return
 							}
 						} else {
 							// Unable to parse the API response: notify delegate and call completion block (with error value)
-							let err = prepareError(.BadJSONFormatting)
+							let err = self.prepareError(.BadJSONFormatting)
 							self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-							completion(.Error(err))
+							completion(.Error(self, err))
 							return
 						}
 						// Everything went well up to this point: ready to forward results to delegate and callback
 						dispatch_async(dispatch_get_main_queue()) {
 							// Success: notify delegate and call completion block (with success value)
 							self.delegate?.googleDirections?(self, didReceiveResponseFromAPI: response)
-							completion(.Success(response))
+							completion(.Success(self, response))
 							return
 						}
 					} else {
 						// Generic NSURLSession error: notify delegate and call completion block (with error value)
 						self.delegate?.googleDirectionsRequestDidFail?(self, withError: error)
-						completion(.Error(error))
+						completion(.Error(self, error))
 						return
 					}
 				}).resume()
@@ -398,9 +417,44 @@ public class PXGoogleDirections: NSObject {
 			// Unable to create an API URL with the supplied arguments: notify delegate and call completion block (with error value)
 			let err = prepareError(.BadAPIURL)
 			delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-			completion(.Error(err))
+			completion(.Error(self, err))
 			return
 		}
+	}
+	
+	/**
+	Tries to open the selected directions request in the Google Maps app.
+	
+	:param: center the map viewport center point
+	:param: mapMode the kind of map shown (if not specified, the current application settings will be used)
+	:param: view turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
+	:param: zoom specifies the zoom level of the map
+	:param: callbackURL the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
+	:param: callbackName the name of the application sending the callback request (short names are preferred)
+	:returns: `true` if opening in the Google Maps is available, `false` otherwise
+	*/
+	public func openInGoogleMaps(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?) -> Bool {
+		// Ensure both origin and destination are set
+		if let f = from, t = to {
+			// Ensure there is actually something specified for both origin and destination addresses
+			if f.isSpecified() && t.isSpecified() {
+				// Prepare the base URL parameters with provided arguments
+				var params = PXGoogleDirections.handleGoogleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
+				// Add origin and destination
+				params.append("saddr=\(f)")
+				params.append("daddr=\(t)")
+				// Add optional method of transportation, if any
+				if let m = mode {
+					params.append("directionsmode=\(m)")
+				}
+				// Build the Google Maps URL and open it
+				if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
+					UIApplication.sharedApplication().openURL(url)
+					return true
+				}
+			}
+		}
+		return false
 	}
 	
 	// MARK: Private functions
@@ -519,5 +573,41 @@ public class PXGoogleDirections: NSObject {
 			}
 		}
 		return results
+	}
+	
+	internal class func handleGoogleMapsURL(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
+		var params = [String]()
+		if let loc = center {
+			params.append("center=\(loc.latitude),\(loc.longitude)")
+		}
+		if let mm = mapMode {
+			params.append("mapmode=\(mm.description)")
+		}
+		if let v = view {
+			if v.count > 0 {
+				let vcs = ",".join(map(v, { $0.description }))
+				params.append("view=\(vcs)")
+			}
+		}
+		if let z = zoom {
+			params.append("zoom=\(z)")
+		}
+		return params
+	}
+	
+	internal class func buildGoogleMapsURL(var #params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
+		let ok = PXGoogleDirections.canOpenInGoogleMaps()
+		if ok {
+			var scheme = "comgooglemaps"
+			if let cbURL = callbackURL, cbn = callbackName {
+				scheme = "comgooglemaps-x-callback"
+				params.append("x-success=\(cbURL.absoluteString!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))")
+				params.append("x-source=\(cbn.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))")
+			}
+			let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+			return NSURL(string: "\(scheme)://\(p)")!
+		} else {
+			return nil
+		}
 	}
 }

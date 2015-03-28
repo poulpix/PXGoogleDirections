@@ -319,3 +319,45 @@ public enum PXGoogleDirectionsVehicleType: Int {
 		}
 	}
 }
+
+/// Kind of map shown when opening a location or direction in the Google Maps app
+public enum PXGoogleMapsMode: Int {
+	/// Standard map view
+	case Standard = 0
+	/// Google Street View mode
+	case StreetView
+}
+
+extension PXGoogleMapsMode: Printable {
+	public var description: String {
+		switch self {
+		case .Standard:
+			return "standard"
+		case .StreetView:
+			return "streetview"
+		}
+	}
+}
+
+/// Turns specific views on or off, like satellite, traffic or transit
+public enum PXGoogleMapsView: Int {
+	/// Turns satellite view on
+	case Satellite = 0
+	/// Turns traffic view on
+	case Traffic
+	/// Turns transit view on
+	case Transit
+}
+
+extension PXGoogleMapsView: Printable {
+	public var description: String {
+		switch self {
+		case .Satellite:
+			return "satellite"
+		case .Traffic:
+			return "traffic"
+		case .Transit:
+			return "transit"
+		}
+	}
+}
