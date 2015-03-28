@@ -7,6 +7,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 ## Features
 - Supports all features from the Google Directions API as of March 2015 (see here for a full list: https://developers.google.com/maps/documentation/directions)
+- Supports "open in Google Maps app", both for specific locations and directions request (also supports the callback feature to get the user back to your app when he's done in Google Maps)
 - Available both with modern, Swift-style completion blocks, or Objective-C-style delegation patterns
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
@@ -14,8 +15,6 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 ## Installation
 ### From Cocoapods
-At this time, Cocoapods support for Swift frameworks is still in Beta: http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/.
-
 To use PXGoogleDirections in your project add the following 'Podfile' to your project:
 
 ```
@@ -40,7 +39,7 @@ Now, from your code, you should be able to simply import the module like this:
 import PXGoogleDirections
 ```
 
-> As CocoaPods is still in 0.36 Beta, Swift is not yet finished and I'm not quite yet an expert in Cocoapods, please come back to me if you face any problem using this SDK in your project...
+> Swift frameworks in CocoaPods 0.36 being still somewhat shaky, Swift not being finished yet and myself not being quite a Cocoapods expert yet, please come back to me if you face any problem using this SDK in your project...
 
 ### From source
  - Clone the repository
@@ -49,16 +48,22 @@ import PXGoogleDirections
 
 ## Usage
 Quick-start in two lines of Swift code:
- 1. Create an API object:
+1. Create an API object:
 ```swift
 let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here>",
                                          from: PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)),
                                            to: PXLocation.NamedLocation("Googleplex", "Mountain View", "United States")
 ```
- 2. Run the Directions request:
+2. Run the Directions request:
 ```swift
 directionsAPI.calculateDirections( (response) -> Void in {
-    // Do your work here
+    switch response {
+    case let .Error(_, error):
+        // Oops, something bad happened, see the error object for more information
+        break
+    case let .Success(request, routes):
+        // Do your work with the routes object array here
+        break
 })
 ```
 
@@ -66,7 +71,7 @@ See "Documentation" below for more information on the available properties and r
 
 ## Requirements
  - Runs on iOS 8 at least, or above.
- - Compatible with Swift 1.2 and Xcode 6.3.
+ - Compatible with Swift 1.2 / Xcode 6.3 and later.
  - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
 ## Documentation
