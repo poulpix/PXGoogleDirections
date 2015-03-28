@@ -81,6 +81,9 @@ See "Documentation" below for more information on the available properties and r
 ## Documentation
 A sample project is available in the "Sample" subfolder of this repository to help getting you started with the SDK.
 
+## Credit
+- Some portions of code inspired by OpenInGoogleMaps-iOS (https://github.com/googlemaps/OpenInGoogleMaps-iOS) from the Google Maps team.
+
 ## License
 The PXGoogleDirections SDK is licensed under the New BSD license. (see LICENSE for more information.)
 
