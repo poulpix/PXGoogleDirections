@@ -215,9 +215,7 @@ class MainViewController: UIViewController {
 			directionsAPI.optimizeWaypoints = nil
 			directionsAPI.language = nil
 		}
-		/*
-		directionsAPI.region = "fr" // Feature not demonstrated in this sample app
-		*/
+		// directionsAPI.region = "fr" // Feature not demonstrated in this sample app
 		directionsAPI.calculateDirections { (response) -> Void in
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				switch response {
@@ -227,6 +225,7 @@ class MainViewController: UIViewController {
 					self.presentViewController(alert, animated: true, completion: nil)
 				case let .Success(request, routes):
 					if let rvc = self.storyboard?.instantiateViewControllerWithIdentifier("Results") as? ResultsViewController {
+						rvc.request = request
 						rvc.results = routes
 						self.presentViewController(rvc, animated: true, completion: nil)
 					}

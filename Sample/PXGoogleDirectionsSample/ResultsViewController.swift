@@ -16,6 +16,7 @@ class ResultsViewController: UIViewController {
 	@IBOutlet weak var nextButton: UIButton!
 	@IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var directions: UITableView!
+	var request: PXGoogleDirections!
 	var results: [PXGoogleDirectionsRoute]!
 	var routeIndex: Int = 0
 	
@@ -41,6 +42,14 @@ class ResultsViewController: UIViewController {
 	
 	@IBAction func closeButtonTouched(sender: UIButton) {
 		dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	@IBAction func openInGoogleMapsButtonTouched(sender: UIButton) {
+		if !request.openInGoogleMaps(center: nil, mapMode: .StreetView, view: Set(arrayLiteral: PXGoogleMapsView.Satellite, PXGoogleMapsView.Traffic, PXGoogleMapsView.Transit), zoom: 15, callbackURL: NSURL(string: "pxsample://"), callbackName: "PXSample") {
+			var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Could not launch the Google Maps app. Maybe this app is not installed on this device?", preferredStyle: UIAlertControllerStyle.Alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+			self.presentViewController(alert, animated: true, completion: nil)
+		}
 	}
 	
 	func updateRoute() {
