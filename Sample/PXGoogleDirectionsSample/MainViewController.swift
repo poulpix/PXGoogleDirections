@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
 		updateWaypointsField()
 		let datePicker = UIDatePicker()
 		datePicker.sizeToFit()
-		datePicker.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+		datePicker.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
 		datePicker.datePickerMode = .DateAndTime
 		datePicker.minuteInterval = 5
 		startArriveDateField.inputView = datePicker
@@ -99,13 +99,13 @@ class MainViewController: UIViewController {
 	}
 	
 	private func updateWaypointsField() {
-		switch count(waypoints) {
+		switch (waypoints).count {
 		case 0:
 			waypointsLabel.text = "No waypoints"
 		case 1:
 			waypointsLabel.text = "1 waypoint"
 		default:
-			waypointsLabel.text = "\(count(waypoints)) waypoints"
+			waypointsLabel.text = "\((waypoints).count) waypoints"
 		}
 	}
 	
@@ -146,8 +146,8 @@ class MainViewController: UIViewController {
 	
 	@IBAction func goButtonTouched(sender: UIButton) {
 		directionsAPI.delegate = self
-		directionsAPI.from = PXLocation.NamedLocation(originField.text)
-		directionsAPI.to = PXLocation.NamedLocation(destinationField.text)
+		directionsAPI.from = PXLocation.NamedLocation(originField.text!)
+		directionsAPI.to = PXLocation.NamedLocation(destinationField.text!)
 		directionsAPI.mode = modeFromField()
 		if advancedSwitch.on {
 			directionsAPI.transitRoutingPreference = transitRoutingPreferenceFromField()
@@ -220,7 +220,7 @@ class MainViewController: UIViewController {
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				switch response {
 				case let .Error(_, error):
-					var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+					let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
 					alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
 					self.presentViewController(alert, animated: true, completion: nil)
 				case let .Success(request, routes):
@@ -243,7 +243,7 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 	
 	func googleDirectionsDidSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) {
 		NSLog("googleDirectionsDidSendRequestToAPI:withURL:")
-		NSLog("\(requestURL.absoluteString!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+		NSLog("\(requestURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 	}
 	
 	func googleDirections(googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: NSData) {

@@ -46,7 +46,7 @@ class ResultsViewController: UIViewController {
 	
 	@IBAction func openInGoogleMapsButtonTouched(sender: UIButton) {
 		if !request.openInGoogleMaps(center: nil, mapMode: .StreetView, view: Set(arrayLiteral: PXGoogleMapsView.Satellite, PXGoogleMapsView.Traffic, PXGoogleMapsView.Transit), zoom: 15, callbackURL: NSURL(string: "pxsample://"), callbackName: "PXSample") {
-			var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Could not launch the Google Maps app. Maybe this app is not installed on this device?", preferredStyle: UIAlertControllerStyle.Alert)
+			let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Could not launch the Google Maps app. Maybe this app is not installed on this device?", preferredStyle: UIAlertControllerStyle.Alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
 			self.presentViewController(alert, animated: true, completion: nil)
 		}
@@ -54,10 +54,10 @@ class ResultsViewController: UIViewController {
 	
 	func updateRoute() {
 		prevButton.enabled = (routeIndex > 0)
-		nextButton.enabled = (routeIndex < count(results) - 1)
-		routesLabel.text = "\(routeIndex + 1) of \(count(results))"
+		nextButton.enabled = (routeIndex < (results).count - 1)
+		routesLabel.text = "\(routeIndex + 1) of \((results).count)"
 		mapView.clear()
-		for i in 0 ..< count(results) {
+		for i in 0 ..< (results).count {
 			if i != routeIndex {
 				results[i].drawOnMap(mapView, strokeColor: UIColor.lightGrayColor(), strokeWidth: 3.0)
 			}
@@ -75,11 +75,11 @@ extension ResultsViewController: GMSMapViewDelegate {
 
 extension ResultsViewController: UITableViewDataSource {
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return count(results[routeIndex].legs)
+		return (results[routeIndex].legs).count
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return count(results[routeIndex].legs[section].steps)
+		return (results[routeIndex].legs[section].steps).count
 	}
 	
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -92,7 +92,7 @@ extension ResultsViewController: UITableViewDataSource {
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("RouteStep") as? UITableViewCell
+		var cell = tableView.dequeueReusableCellWithIdentifier("RouteStep")
 		if (cell == nil) {
 			cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "RouteStep")
 		}
@@ -119,7 +119,7 @@ extension ResultsViewController: UITableViewDataSource {
 		} else {
 			msg = "\(step.rawInstructions!)\nFrom: (\(step.startLocation!.latitude); \(step.startLocation!.longitude))\nTo: (\(step.endLocation!.latitude); \(step.endLocation!.longitude))"
 		}
-		var alert = UIAlertController(title: "PXGoogleDirectionsSample", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+		let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
 		self.presentViewController(alert, animated: true, completion: nil)
 	}

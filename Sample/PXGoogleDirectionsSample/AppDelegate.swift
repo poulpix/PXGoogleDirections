@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		UISegmentedControl.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Avenir Next", size: 15.0)!], forState: .Normal)
-		// TODO: Replace `getGoogleAPIKey()` with your own Google Maps API key!
+		// TODO: For you fellow developer: replace `getGoogleAPIKey()` in the line below with a string containing your own Google Maps API key!
 		directionsAPI = PXGoogleDirections(apiKey: getGoogleAPIKey())
 		return true
 	}

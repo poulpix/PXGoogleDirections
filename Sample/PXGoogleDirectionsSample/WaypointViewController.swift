@@ -38,14 +38,14 @@ class WaypointViewController: UIViewController {
 	@IBAction func addWaypointButtonTouched(sender: UIButton) {
 		var waypoint: PXLocation?
 		if !namedLocationView.hidden {
-			if count(namedLocationField.text) > 0 {
-				waypoint = PXLocation.NamedLocation(namedLocationField.text)
+			if namedLocationField.text!.characters.count > 0 {
+				waypoint = PXLocation.NamedLocation(namedLocationField.text!)
 			}
 		}
 		if !coordinateLocationView.hidden {
-			if count(latitudeField.text) > 0 && count(longitudeField.text) > 0 {
-				let lat = NSString(string: latitudeField.text).doubleValue
-				let lng = NSString(string: longitudeField.text).doubleValue
+			if latitudeField.text!.characters.count > 0 && longitudeField.text!.characters.count > 0 {
+				let lat = NSString(string: latitudeField.text!).doubleValue
+				let lng = NSString(string: longitudeField.text!).doubleValue
 				waypoint = PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(lat, lng))
 			}
 		}
