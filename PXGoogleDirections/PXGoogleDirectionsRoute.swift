@@ -39,13 +39,13 @@ public class PXGoogleDirectionsRoute: NSObject {
 	/**
 	Draws the route on the specified Google Maps map view.
 	
-	:param: map A `GMSMapView` object on which the route should be drawn
-	:param: strokeColor The optional route stroke color
-	:param: strokeWidth The optional route stroke width
-	:returns: The resulting `GMSPolyline` object that was drawn to the map
+	- parameter map: A `GMSMapView` object on which the route should be drawn
+	- parameter strokeColor: The optional route stroke color
+	- parameter strokeWidth: The optional route stroke width
+	- returns: The resulting `GMSPolyline` object that was drawn to the map
 	*/
 	public func drawOnMap(map: GMSMapView, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> GMSPolyline? {
-		var polyline: GMSPolyline?
+		let polyline: GMSPolyline? = nil
 		if let p = path {
 			let polyline = GMSPolyline(path: p)
 			polyline.strokeColor = strokeColor
@@ -58,12 +58,12 @@ public class PXGoogleDirectionsRoute: NSObject {
 	/**
 	Draws a marker representing the origin of the route on the specified Google Maps map view.
 	
-	:param: map A `GMSMapView` object on which the marker should be drawn
-	:param: title An optional marker title
-	:param: color An optional marker color
-	:param: opacity An optional marker specific opacity
-	:param: flat An optional indicator to flatten the marker
-	:returns: The resulting `GMSMarker` object that was drawn to the map
+	- parameter map: A `GMSMapView` object on which the marker should be drawn
+	- parameter title: An optional marker title
+	- parameter color: An optional marker color
+	- parameter opacity: An optional marker specific opacity
+	- parameter flat: An optional indicator to flatten the marker
+	- returns: The resulting `GMSMarker` object that was drawn to the map
 	*/
 	public func drawOriginMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
 		var marker: GMSMarker?
@@ -78,12 +78,12 @@ public class PXGoogleDirectionsRoute: NSObject {
 	/**
 	Draws a marker representing the destination of the route on the specified Google Maps map view.
 	
-	:param: map A `GMSMapView` object on which the marker should be drawn
-	:param: title An optional marker title
-	:param: color An optional marker color
-	:param: opacity An optional marker specific opacity
-	:param: flat An optional indicator to flatten the marker
-	:returns: The resulting `GMSMarker` object that was drawn to the map
+	- parameter map: A `GMSMapView` object on which the marker should be drawn
+	- parameter title: An optional marker title
+	- parameter color: An optional marker color
+	- parameter opacity: An optional marker specific opacity
+	- parameter flat: An optional indicator to flatten the marker
+	- returns: The resulting `GMSMarker` object that was drawn to the map
 	*/
 	public func drawDestinationMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
 		var marker: GMSMarker?

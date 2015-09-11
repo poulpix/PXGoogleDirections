@@ -16,7 +16,7 @@ public struct PXGoogleDirectionsRouteFare {
 	public var value: Double?
 }
 
-extension PXGoogleDirectionsRouteFare: Printable {
+extension PXGoogleDirectionsRouteFare: CustomStringConvertible {
 	public var description: String {
 		return "\(currency) \(value)"
 	}

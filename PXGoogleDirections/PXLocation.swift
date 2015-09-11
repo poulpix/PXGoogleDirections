@@ -30,14 +30,14 @@ public enum PXLocation {
 	/**
 	Returns `true` if a location is indeed specifically defined.
 	
-	:returns: `true` if the object holds a specific location, `false` otherwise
+	- returns: `true` if the object holds a specific location, `false` otherwise
 	*/
 	public func isSpecified() -> Bool {
 		switch self {
 		case let .SpecificLocation(address, city, country):
-			return count(address ?? "") > 0 || count(city ?? "") > 0 || count(country ?? "") > 0
+			return (address ?? "").characters.count > 0 || (city ?? "").characters.count > 0 || (country ?? "").characters.count > 0
 		case let .NamedLocation(address):
-			return count(address.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())) > 0
+			return address.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.count > 0
 		default:
 			return true
 		}
@@ -46,15 +46,15 @@ public enum PXLocation {
 	/**
 	Tries to open the selected location in the Google Maps app.
 	
-	:param: mapMode the kind of map shown (if not specified, the current application settings will be used)
-	:param: view turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
-	:param: zoom specifies the zoom level of the map
-	:param: callbackURL the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
-	:param: callbackName the name of the application sending the callback request (short names are preferred)
-	:param: fallbackToAppleMaps `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
-	:returns: `true` if opening in the Google Maps is available, `false` otherwise
+	- parameter mapMode: the kind of map shown (if not specified, the current application settings will be used)
+	- parameter view: turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
+	- parameter zoom: specifies the zoom level of the map
+	- parameter callbackURL: the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
+	- parameter callbackName: the name of the application sending the callback request (short names are preferred)
+	- parameter fallbackToAppleMaps: `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
+	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
-	public func openInGoogleMaps(#mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
+	public func openInGoogleMaps(mapMode mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
 		// Prepare the base URL parameters with provided arguments
 		let params = PXGoogleDirections.handleGoogleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 		// Build the Google Maps URL and open it
@@ -65,7 +65,7 @@ public enum PXLocation {
 			// Apply fallback strategy
 			if fallbackToAppleMaps {
 				let params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
-				let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+				let p = (params.count > 0) ? "?" + "&".join(params) : ""
 				UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 				return true
 			}
@@ -76,20 +76,20 @@ public enum PXLocation {
 	/**
 	Tries to launch the Google Maps app and searches for the specified query.
 	
-	:param: query the search query string
-	:param: mapMode the kind of map shown (if not specified, the current application settings will be used)
-	:param: view turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
-	:param: zoom specifies the zoom level of the map
-	:param: callbackURL the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
-	:param: callbackName the name of the application sending the callback request (short names are preferred)
-	:param: fallbackToAppleMaps `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
-	:returns: `true` if opening in the Google Maps is available, `false` otherwise
+	- parameter query: the search query string
+	- parameter mapMode: the kind of map shown (if not specified, the current application settings will be used)
+	- parameter view: turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
+	- parameter zoom: specifies the zoom level of the map
+	- parameter callbackURL: the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
+	- parameter callbackName: the name of the application sending the callback request (short names are preferred)
+	- parameter fallbackToAppleMaps: `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
+	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
 	public func searchInGoogleMaps(query: String, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
 		// Prepare the base URL parameters with provided arguments
 		var params = PXGoogleDirections.handleGoogleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 		// Add the query string
-		params.append("q=\(query.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+		params.append("q=\(query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 		// Build the Google Maps URL and open it
 		if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
 			UIApplication.sharedApplication().openURL(url)
@@ -98,8 +98,8 @@ public enum PXLocation {
 			// Apply fallback strategy
 			if fallbackToAppleMaps {
 				var params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
-				params.append("q=\(query.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
-				let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+				params.append("q=\(query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+				let p = (params.count > 0) ? "?" + "&".join(params) : ""
 				UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 				return true
 			}
@@ -108,7 +108,7 @@ public enum PXLocation {
 	}
 }
 
-extension PXLocation: Printable {
+extension PXLocation: CustomStringConvertible {
 	public var description: String {
 		switch (self) {
 		case let .CoordinateLocation(coords):

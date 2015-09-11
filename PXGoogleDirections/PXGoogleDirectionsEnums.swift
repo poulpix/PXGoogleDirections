@@ -57,16 +57,14 @@ public enum PXGoogleDirectionsError: Int {
 			return "Unable to parse JSON data returned from the API"
 		case .MissingStatusCode:
 			return "Response status code unexpectedly missing from the response payload"
-		default:
-			return "An unexpected and unknown error occurred"
 		}
 	}
 	
 	/**
 	Returns an `PXGoogleDirectionsError` object corresponding to the status code returned by the API for a specific response.
 	
-	:param: status The status code returned by the API
-	:returns: The corresponding `PXGoogleDirectionsError` instance
+	- parameter status: The status code returned by the API
+	- returns: The corresponding `PXGoogleDirectionsError` instance
 	*/
 	static func errorFromStatus(status: String) -> PXGoogleDirectionsError {
 		switch (status) {
@@ -109,8 +107,8 @@ public enum PXGoogleDirectionsMode: Int {
 	/**
 	Returns an `PXGoogleDirectionsMode` object corresponding to the status code returned by the API for a specific response.
 	
-	:param: label The label returned by the API
-	:returns: The corresponding `PXGoogleDirectionsMode` instance, or `nil` if no appropriate mode is found
+	- parameter label: The label returned by the API
+	- returns: The corresponding `PXGoogleDirectionsMode` instance, or `nil` if no appropriate mode is found
 	*/
 	public static func modeFromLabel(label: String) -> PXGoogleDirectionsMode? {
 		switch label {
@@ -128,7 +126,7 @@ public enum PXGoogleDirectionsMode: Int {
 	}
 }
 
-extension PXGoogleDirectionsMode: Printable {
+extension PXGoogleDirectionsMode: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Driving:
@@ -153,7 +151,7 @@ public enum PXGoogleDirectionsFeature: Int {
 	case Ferries
 }
 
-extension PXGoogleDirectionsFeature: Printable {
+extension PXGoogleDirectionsFeature: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Tolls:
@@ -174,7 +172,7 @@ public enum PXGoogleDirectionsUnit: Int {
 	case Imperial
 }
 
-extension PXGoogleDirectionsUnit: Printable {
+extension PXGoogleDirectionsUnit: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Metric:
@@ -199,7 +197,7 @@ public enum PXGoogleDirectionsTransitMode: Int {
 	case Rail
 }
 
-extension PXGoogleDirectionsTransitMode: Printable {
+extension PXGoogleDirectionsTransitMode: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Bus:
@@ -224,7 +222,7 @@ public enum PXGoogleDirectionsTransitRoutingPreference: Int {
 	case FewerTransfers
 }
 
-extension PXGoogleDirectionsTransitRoutingPreference: Printable {
+extension PXGoogleDirectionsTransitRoutingPreference: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .LessWalking:
@@ -275,8 +273,8 @@ public enum PXGoogleDirectionsVehicleType: Int {
 	/**
 	Returns an `PXGoogleDirectionsVehicleType` object corresponding to the vehicle type returned by the API for a specific line.
 	
-	:param: value The vehicle type code returned by the API
-	:returns: The corresponding `PXGoogleDirectionsVehicleType` instance
+	- parameter value: The vehicle type code returned by the API
+	- returns: The corresponding `PXGoogleDirectionsVehicleType` instance
 	*/
 	public static func vehicleTypeFromValue(value: String) -> PXGoogleDirectionsVehicleType {
 		switch value {
@@ -328,7 +326,7 @@ public enum PXGoogleMapsMode: Int {
 	case StreetView
 }
 
-extension PXGoogleMapsMode: Printable {
+extension PXGoogleMapsMode: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Standard:
@@ -349,7 +347,7 @@ public enum PXGoogleMapsView: Int {
 	case Transit
 }
 
-extension PXGoogleMapsView: Printable {
+extension PXGoogleMapsView: CustomStringConvertible {
 	public var description: String {
 		switch self {
 		case .Satellite:

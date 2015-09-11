@@ -18,7 +18,7 @@ public enum PXGoogleDirectionsResponse {
 	/// Returns `true` if this response indicates an error during the API request process, or `false` otherwise
 	public var failed: Bool {
 		switch self {
-		case let .Error(_, error):
+		case .Error(_, _):
 			return true
 		default:
 			return false

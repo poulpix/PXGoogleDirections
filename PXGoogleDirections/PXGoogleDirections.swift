@@ -15,37 +15,37 @@ import GoogleMaps
 	/**
 	Notifies the delegate that an API request is going to be sent.
 	
-	:param: googleDirections The `PXGoogleDirections` object issuing the request
-	:param: requestURL The URL that is going to be called
-	:returns: `true` if the request should be sent, `false` otherwise
+	- parameter googleDirections: The `PXGoogleDirections` object issuing the request
+	- parameter requestURL: The URL that is going to be called
+	- returns: `true` if the request should be sent, `false` otherwise
 	*/
 	optional func googleDirectionsWillSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) -> Bool
 	/**
 	Notifies the delegate that an API request has been sent.
 	
-	:param: googleDirections The `PXGoogleDirections` object issuing the request
-	:param: requestURL The URL that was called
+	- parameter googleDirections: The `PXGoogleDirections` object issuing the request
+	- parameter requestURL: The URL that was called
 	*/
 	optional func googleDirectionsDidSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL)
 	/**
 	Notifies the delegate that (yet unparsed) response data has been received from the API.
 	
-	:param: googleDirections The `PXGoogleDirections` object that issued the request
-	:param: data An `NSData` object containing raw data received from the API
+	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
+	- parameter data: An `NSData` object containing raw data received from the API
 	*/
 	optional func googleDirections(googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: NSData)
 	/**
 	Notifies the delegate that an error occurred while trying to handle the response received from the API.
 	
-	:param: googleDirections The `PXGoogleDirections` object that issued the request
-	:param: error An `NSError` object describing the type and potential cause of the error
+	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
+	- parameter error: An `NSError` object describing the type and potential cause of the error
 	*/
 	optional func googleDirectionsRequestDidFail(googleDirections: PXGoogleDirections, withError error: NSError)
 	/**
 	Notifies the delegate that a response has been successfully received and parsed from the API.
 	
-	:param: googleDirections The `PXGoogleDirections` object that issued the request
-	:param: apiResponse A list of `PXGoogleDirectionsRoute` objects containing all relevant data received from the API
+	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
+	- parameter apiResponse: A list of `PXGoogleDirectionsRoute` objects containing all relevant data received from the API
 	*/
 	optional func googleDirections(googleDirections: PXGoogleDirections, didReceiveResponseFromAPI apiResponse: [PXGoogleDirectionsRoute])
 }
@@ -137,7 +137,7 @@ public class PXGoogleDirections: NSObject {
 			}
 			// Handle optional waypoints
 			if waypoints.count > 0 {
-				let wp = "|".join(map(waypoints, { $0.description }))
+				let wp = "|".join(waypoints.map({ $0.description }))
 				let opt = ((optimizeWaypoints ?? false) ? "optimize:true|" : "")
 				preparedRequest += "&waypoints=\(opt)\(wp)"
 			}
@@ -148,7 +148,7 @@ public class PXGoogleDirections: NSObject {
 			}
 			// Handle request for features to avoid
 			if featuresToAvoid.count > 0 {
-				let fta = "|".join(map(featuresToAvoid, { $0.description }))
+				let fta = "|".join(featuresToAvoid.map({ $0.description }))
 				preparedRequest += "&avoid=\(fta)"
 			}
 			// Handle results language
@@ -180,7 +180,7 @@ public class PXGoogleDirections: NSObject {
 			// Handle public transit mode
 			if transitModes.count > 0 {
 				if mode == .Transit {
-					let tm = "|".join(map(transitModes, { $0.description }))
+					let tm = "|".join(transitModes.map({ $0.description }))
 					preparedRequest += "&transit_mode=\(tm)"
 				}
 			}
@@ -191,7 +191,7 @@ public class PXGoogleDirections: NSObject {
 				}
 			}
 			// Try to build the suitable NSURL and return it
-			if let requestURL = preparedRequest.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+			if let requestURL = preparedRequest.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
 				return NSURL(string: requestURL)
 			} else {
 				// Error while building NSURL
@@ -208,7 +208,7 @@ public class PXGoogleDirections: NSObject {
 	/**
 	Creates a new instance of `PXGoogleDirections` with the specified API key.
 	
-	:param: apiKey Your own API key, provided by Google
+	- parameter apiKey: Your own API key, provided by Google
 	*/
 	public init(apiKey: String) {
 		super.init()
@@ -218,9 +218,9 @@ public class PXGoogleDirections: NSObject {
 	/**
 	Creates a new instance of `PXGoogleDirections` with the specified API key, origin and destination.
 	
-	:param: apiKey Your own API key, provided by Google
-	:param: from The address or textual latitude/longitude value from which directions should be calculated
-	:param: to The address or textual latitude/longitude value of the destination of the directions request
+	- parameter apiKey: Your own API key, provided by Google
+	- parameter from: The address or textual latitude/longitude value from which directions should be calculated
+	- parameter to: The address or textual latitude/longitude value of the destination of the directions request
 	*/
 	public convenience init(apiKey: String, from: PXLocation, to: PXLocation) {
 		self.init(apiKey: apiKey)
@@ -233,7 +233,7 @@ public class PXGoogleDirections: NSObject {
 	/**
 	Performs a Google Directions API request with the specified parameters and calls the block when finished.
 	
-	:param: completion The completion block called when the request is done, or in case of any error
+	- parameter completion: The completion block called when the request is done, or in case of any error
 	*/
 	public func calculateDirections(completion: PXGoogleDirectionsRequestCompletionBlock)
 	{
@@ -249,142 +249,146 @@ public class PXGoogleDirections: NSObject {
 					// Hide network activity indicator
 					UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 					// Notify delegate
-					self.delegate?.googleDirections?(self, didReceiveRawDataFromAPI: data)
+					self.delegate?.googleDirections?(self, didReceiveRawDataFromAPI: data!)
 					// Check for any error (from an NSURLSession point of view)
 					if error == nil {
 						var response = [PXGoogleDirectionsRoute]()
 						// Try to parse the received JSON data
-						if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? [String: AnyObject] {
-							// Try fo fetch the API response status code
-							if let st = json["status"] as? String {
-								let status = PXGoogleDirectionsError.errorFromStatus(st)
-								// Handle any potential error status code the API might have returned
-								if status.failed {
-									// API error received: notify delegate and call completion block (with error value)
-									let err = self.prepareError(status)
+						do {
+							if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String: AnyObject] {
+								// Try fo fetch the API response status code
+								if let st = json["status"] as? String {
+									let status = PXGoogleDirectionsError.errorFromStatus(st)
+									// Handle any potential error status code the API might have returned
+									if status.failed {
+										// API error received: notify delegate and call completion block (with error value)
+										let err = self.prepareError(status)
+										self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
+										completion(.Error(self, err))
+										return
+									} else {
+										// From here on: try to parse and process the received data
+										if let routes = json["routes"] as AnyObject? as? [[String: AnyObject]] {
+											// Loop through routes
+											for r in routes {
+												// Create a new route object
+												let currentRoute = PXGoogleDirectionsRoute()
+												// General route information
+												currentRoute.summary = r["summary"] as? String
+												currentRoute.copyrights = r["copyrights"] as? String
+												// Route fare
+												if let fare = r["fare"] as? [String: AnyObject] {
+													currentRoute.fare = PXGoogleDirectionsRouteFare(currency: fare["currency"] as? String, value: fare["value"] as? Double)
+												}
+												// Overview polyline
+												if let polyline = r["overview_polyline"] as? [String: String] {
+													currentRoute.overviewPolyline = polyline["points"]
+												}
+												// Bounds
+												if let bounds = r["bounds"] as? [String: AnyObject] {
+													var northEastBound: CLLocationCoordinate2D?
+													var southWestBound: CLLocationCoordinate2D?
+													if let northeast = bounds["northeast"] as? [String: Double] {
+														if let neLat = northeast["lat"], neLng = northeast["lng"] {
+															northEastBound = CLLocationCoordinate2DMake(neLat, neLng)
+														}
+													}
+													if let southwest = bounds["southwest"] as? [String: Double] {
+														if let swLat = southwest["lat"], swLng = southwest["lng"] {
+															southWestBound = CLLocationCoordinate2DMake(swLat, swLng)
+														}
+													}
+													if northEastBound != nil && southWestBound != nil {
+														currentRoute.bounds = GMSCoordinateBounds(coordinate: northEastBound!, coordinate: southWestBound!)
+													}
+												}
+												// Warnings
+												if let warnings = r["warnings"] as? [String] {
+													for w in warnings {
+														currentRoute.warnings.append(w)
+													}
+												}
+												// Waypoint order
+												if let wpOrder = r["waypoint_oder"] as? [Int] {
+													for wp in wpOrder {
+														currentRoute.waypointsOrder.append(wp)
+													}
+												}
+												// Route legs
+												if let legs = r["legs"] as? [[String: AnyObject]] {
+													// Loop through legs
+													for l in legs {
+														// Create a new leg object
+														var currentLeg = PXGoogleDirectionsRouteLeg()
+														// General leg information
+														currentLeg.startAddress = l["start_address"] as? String
+														if let startLocation = l["start_location"] as? [String: CLLocationDegrees] {
+															if let slLat = startLocation["lat"], slLng = startLocation["lng"] {
+																currentLeg.startLocation = CLLocationCoordinate2DMake(slLat, slLng)
+															}
+														}
+														currentLeg.endAddress = l["end_address"] as? String
+														if let endLocation = l["end_location"] as? [String: CLLocationDegrees] {
+															if let elLat = endLocation["lat"], elLng = endLocation["lng"] {
+																currentLeg.endLocation = CLLocationCoordinate2DMake(elLat, elLng)
+															}
+														}
+														// Distance
+														if let distance = l["distance"] as? [String: AnyObject] {
+															currentLeg.distance = PXGoogleDirectionsDistance(distance: distance["value"] as? CLLocationDistance, description: distance["text"] as? String)
+														}
+														// Duration
+														if let duration = l["duration"] as? [String: AnyObject] {
+															currentLeg.duration = PXGoogleDirectionsDuration(duration: duration["value"] as? NSTimeInterval, description: duration["text"] as? String)
+														}
+														// Duration in traffic
+														if let durationT = l["duration_in_traffic"] as? [String: AnyObject] {
+															if let dTText = durationT["text"] as? String, dTValue = durationT["value"] as? NSTimeInterval {
+																currentLeg.durationInTraffic = PXGoogleDirectionsDuration(duration: dTValue, description: dTText)
+															}
+														}
+														// Departure time
+														if let departure = l["departure_time"] as? [String: AnyObject] {
+															currentLeg.departureTime = PXGoogleDirectionsTime(description: departure["text"] as? String, timeZone: nil, timestamp: departure["value"] as? NSTimeInterval)
+															if let dTZ = departure["time_zone"] as? String {
+																currentLeg.arrivalTime?.timeZone = NSTimeZone(name: dTZ)
+															}
+														}
+														// Arrival time
+														if let arrival = l["arrival_time"] as? [String: AnyObject] {
+															currentLeg.arrivalTime = PXGoogleDirectionsTime(description: arrival["text"] as? String, timeZone: nil, timestamp: arrival["value"] as? NSTimeInterval)
+															if let aTZ = arrival["time_zone"] as? String {
+																currentLeg.arrivalTime?.timeZone = NSTimeZone(name: aTZ)
+															}
+														}
+														// Leg steps
+														if let _ = l["steps"] as? [[String: AnyObject]] {
+															currentLeg.steps = self.handleSteps(l)
+														}
+														// Add the leg to the current route object
+														currentRoute.legs.append(currentLeg)
+													}
+												}
+												// Add the route to the response object
+												response.append(currentRoute)
+											}
+										}
+									}
+								} else {
+									// API response status code missing: notify delegate and call completion block (with error value)
+									let err = self.prepareError(.MissingStatusCode)
 									self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
 									completion(.Error(self, err))
 									return
-								} else {
-									// From here on: try to parse and process the received data
-									if let routes = json["routes"] as AnyObject? as? [[String: AnyObject]] {
-										// Loop through routes
-										for r in routes {
-											// Create a new route object
-											var currentRoute = PXGoogleDirectionsRoute()
-											// General route information
-											currentRoute.summary = r["summary"] as? String
-											currentRoute.copyrights = r["copyrights"] as? String
-											// Route fare
-											if let fare = r["fare"] as? [String: AnyObject] {
-												currentRoute.fare = PXGoogleDirectionsRouteFare(currency: fare["currency"] as? String, value: fare["value"] as? Double)
-											}
-											// Overview polyline
-											if let polyline = r["overview_polyline"] as? [String: String] {
-												currentRoute.overviewPolyline = polyline["points"]
-											}
-											// Bounds
-											if let bounds = r["bounds"] as? [String: AnyObject] {
-												var northEastBound: CLLocationCoordinate2D?
-												var southWestBound: CLLocationCoordinate2D?
-												if let northeast = bounds["northeast"] as? [String: Double] {
-													if let neLat = northeast["lat"], neLng = northeast["lng"] {
-														northEastBound = CLLocationCoordinate2DMake(neLat, neLng)
-													}
-												}
-												if let southwest = bounds["southwest"] as? [String: Double] {
-													if let swLat = southwest["lat"], swLng = southwest["lng"] {
-														southWestBound = CLLocationCoordinate2DMake(swLat, swLng)
-													}
-												}
-												if northEastBound != nil && southWestBound != nil {
-													currentRoute.bounds = GMSCoordinateBounds(coordinate: northEastBound!, coordinate: southWestBound!)
-												}
-											}
-											// Warnings
-											if let warnings = r["warnings"] as? [String] {
-												for w in warnings {
-													currentRoute.warnings.append(w)
-												}
-											}
-											// Waypoint order
-											if let wpOrder = r["waypoint_oder"] as? [Int] {
-												for wp in wpOrder {
-													currentRoute.waypointsOrder.append(wp)
-												}
-											}
-											// Route legs
-											if let legs = r["legs"] as? [[String: AnyObject]] {
-												// Loop through legs
-												for l in legs {
-													// Create a new leg object
-													var currentLeg = PXGoogleDirectionsRouteLeg()
-													// General leg information
-													currentLeg.startAddress = l["start_address"] as? String
-													if let startLocation = l["start_location"] as? [String: CLLocationDegrees] {
-														if let slLat = startLocation["lat"], slLng = startLocation["lng"] {
-															currentLeg.startLocation = CLLocationCoordinate2DMake(slLat, slLng)
-														}
-													}
-													currentLeg.endAddress = l["end_address"] as? String
-													if let endLocation = l["end_location"] as? [String: CLLocationDegrees] {
-														if let elLat = endLocation["lat"], elLng = endLocation["lng"] {
-															currentLeg.endLocation = CLLocationCoordinate2DMake(elLat, elLng)
-														}
-													}
-													// Distance
-													if let distance = l["distance"] as? [String: AnyObject] {
-														currentLeg.distance = PXGoogleDirectionsDistance(distance: distance["value"] as? CLLocationDistance, description: distance["text"] as? String)
-													}
-													// Duration
-													if let duration = l["duration"] as? [String: AnyObject] {
-														currentLeg.duration = PXGoogleDirectionsDuration(duration: duration["value"] as? NSTimeInterval, description: duration["text"] as? String)
-													}
-													// Duration in traffic
-													if let durationT = l["duration_in_traffic"] as? [String: AnyObject] {
-														if let dTText = durationT["text"] as? String, dTValue = durationT["value"] as? NSTimeInterval {
-															currentLeg.durationInTraffic = PXGoogleDirectionsDuration(duration: dTValue, description: dTText)
-														}
-													}
-													// Departure time
-													if let departure = l["departure_time"] as? [String: AnyObject] {
-														currentLeg.departureTime = PXGoogleDirectionsTime(description: departure["text"] as? String, timeZone: nil, timestamp: departure["value"] as? NSTimeInterval)
-														if let dTZ = departure["time_zone"] as? String {
-															currentLeg.arrivalTime?.timeZone = NSTimeZone(name: dTZ)
-														}
-													}
-													// Arrival time
-													if let arrival = l["arrival_time"] as? [String: AnyObject] {
-														currentLeg.arrivalTime = PXGoogleDirectionsTime(description: arrival["text"] as? String, timeZone: nil, timestamp: arrival["value"] as? NSTimeInterval)
-														if let aTZ = arrival["time_zone"] as? String {
-															currentLeg.arrivalTime?.timeZone = NSTimeZone(name: aTZ)
-														}
-													}
-													// Leg steps
-													if let steps = l["steps"] as? [[String: AnyObject]] {
-														currentLeg.steps = self.handleSteps(l)
-													}
-													// Add the leg to the current route object
-													currentRoute.legs.append(currentLeg)
-												}
-											}
-											// Add the route to the response object
-											response.append(currentRoute)
-										}
-									}
 								}
 							} else {
-								// API response status code missing: notify delegate and call completion block (with error value)
-								let err = self.prepareError(.MissingStatusCode)
+								// Unable to parse the API response: notify delegate and call completion block (with error value)
+								let err = self.prepareError(.BadJSONFormatting)
 								self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
 								completion(.Error(self, err))
 								return
 							}
-						} else {
-							// Unable to parse the API response: notify delegate and call completion block (with error value)
-							let err = self.prepareError(.BadJSONFormatting)
-							self.delegate?.googleDirectionsRequestDidFail?(self, withError: err)
-							completion(.Error(self, err))
+						} catch {
 							return
 						}
 						// Everything went well up to this point: ready to forward results to delegate and callback
@@ -396,8 +400,8 @@ public class PXGoogleDirections: NSObject {
 						}
 					} else {
 						// Generic NSURLSession error: notify delegate and call completion block (with error value)
-						self.delegate?.googleDirectionsRequestDidFail?(self, withError: error)
-						completion(.Error(self, error))
+						self.delegate?.googleDirectionsRequestDidFail?(self, withError: error!)
+						completion(PXGoogleDirectionsResponse.Error(self, error!))
 						return
 					}
 				}).resume()
@@ -412,20 +416,20 @@ public class PXGoogleDirections: NSObject {
 			return
 		}
 	}
-	
+
 	/**
 	Tries to open the selected directions request in the Google Maps app.
 	
-	:param: center the map viewport center point
-	:param: mapMode the kind of map shown (if not specified, the current application settings will be used)
-	:param: view turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
-	:param: zoom specifies the zoom level of the map
-	:param: callbackURL the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
-	:param: callbackName the name of the application sending the callback request (short names are preferred)
-	:param: fallbackToAppleMaps `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
-	:returns: `true` if opening in the Google Maps is available, `false` otherwise
+	- parameter center: the map viewport center point
+	- parameter mapMode: the kind of map shown (if not specified, the current application settings will be used)
+	- parameter view: turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
+	- parameter zoom: specifies the zoom level of the map
+	- parameter callbackURL: the URL to call when complete ; often this will be a URL scheme allowing users to return to the original application
+	- parameter callbackName: the name of the application sending the callback request (short names are preferred)
+	- parameter fallbackToAppleMaps: `true` to fall back to Apple Maps in case Google Maps is not installed, `false` otherwise
+	- returns: `true` if opening in the Google Maps is available, `false` otherwise
 	*/
-	public func openInGoogleMaps(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
+	public func openInGoogleMaps(center center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?, callbackURL: NSURL?, callbackName: String?, fallbackToAppleMaps: Bool = true) -> Bool {
 		// Ensure both origin and destination are set
 		if let f = from, t = to {
 			// Ensure there is actually something specified for both origin and destination addresses
@@ -433,8 +437,8 @@ public class PXGoogleDirections: NSObject {
 				// Prepare the base URL parameters with provided arguments
 				var params = PXGoogleDirections.handleGoogleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
 				// Add origin and destination
-				params.append("saddr=\(f.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
-				params.append("daddr=\(t.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+				params.append("saddr=\(f.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+				params.append("daddr=\(t.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 				// Add optional method of transportation, if any
 				if let m = mode {
 					params.append("directionsmode=\(m)")
@@ -447,9 +451,9 @@ public class PXGoogleDirections: NSObject {
 					// Apply fallback strategy
 					if fallbackToAppleMaps {
 						var params = PXGoogleDirections.handleAppleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
-						params.append("saddr=\(f.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
-						params.append("daddr=\(t.description.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
-						let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+						params.append("saddr=\(f.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+						params.append("daddr=\(t.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+						let p = (params.count > 0) ? "?" + "&".join(params) : ""
 						UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 						return true
 					}
@@ -470,7 +474,7 @@ public class PXGoogleDirections: NSObject {
 		if let steps = jsonData["steps"] as? [[String: AnyObject]] {
 			for s in steps {
 				// Loop through steps
-				var currentStep = PXGoogleDirectionsRouteLegStep()
+				let currentStep = PXGoogleDirectionsRouteLegStep()
 				// General step information
 				if let startLocation = s["start_location"] as? [String: CLLocationDegrees] {
 					if let slLat = startLocation["lat"], slLng = startLocation["lng"] {
@@ -566,7 +570,7 @@ public class PXGoogleDirections: NSObject {
 						}
 					}
 					// Sub-steps
-					if let substeps = s["steps"] as? [[String: AnyObject]] {
+					if let _ = s["steps"] as? [[String: AnyObject]] {
 						currentStep.steps = handleSteps(s)
 					}
 				}
@@ -577,7 +581,7 @@ public class PXGoogleDirections: NSObject {
 		return results
 	}
 	
-	internal class func handleGoogleMapsURL(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
+	internal class func handleGoogleMapsURL(center center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
 		var params = [String]()
 		if let loc = center {
 			params.append("center=\(loc.latitude),\(loc.longitude)")
@@ -587,7 +591,7 @@ public class PXGoogleDirections: NSObject {
 		}
 		if let v = view {
 			if v.count > 0 {
-				let vcs = ",".join(map(v, { $0.description }))
+				let vcs = ",".join(v.map({ $0.description }))
 				params.append("view=\(vcs)")
 			}
 		}
@@ -597,7 +601,7 @@ public class PXGoogleDirections: NSObject {
 		return params
 	}
 	
-	internal class func handleAppleMapsURL(#center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
+	internal class func handleAppleMapsURL(center center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
 		var params = [String]()
 		if let loc = center {
 			params.append("ll=\(loc.latitude),\(loc.longitude)")
@@ -623,15 +627,15 @@ public class PXGoogleDirections: NSObject {
 		return params
 	}
 	
-	internal class func buildGoogleMapsURL(var #params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
+	internal class func buildGoogleMapsURL(var params params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
 		if PXGoogleDirections.canOpenInGoogleMaps {
 			var scheme = "comgooglemaps"
 			if let cbURL = callbackURL, cbn = callbackName {
 				scheme = "comgooglemaps-x-callback"
-				params.append("x-success=\(cbURL.absoluteString!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
-				params.append("x-source=\(cbn.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)")
+				params.append("x-success=\(cbURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+				params.append("x-source=\(cbn.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 			}
-			let p = (count(params) > 0) ? "?" + "&".join(params) : ""
+			let p = (params.count > 0) ? "?" + "&".join(params) : ""
 			return NSURL(string: "\(scheme)://\(p)")!
 		} else {
 			return nil

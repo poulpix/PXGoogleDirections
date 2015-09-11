@@ -18,15 +18,15 @@ public enum PXTime {
 	/**
 	Creates an `PXTime` instance suitable for a departure or arrival time in a Google Directions API request.
 	
-	:param: date An `NSDate` to be used as a departure or arrival time
-	:returns: the `PXTime` to be used directly in a Google Directions API request
+	- parameter date: An `NSDate` to be used as a departure or arrival time
+	- returns: the `PXTime` to be used directly in a Google Directions API request
 	*/
 	public static func timeFromDate(date: NSDate) -> PXTime {
 		return .Timestamp(date.timeIntervalSince1970)
 	}
 }
 
-extension PXTime: Printable {
+extension PXTime: CustomStringConvertible {
 	public var description: String {
 		switch (self) {
 		case .Now:
