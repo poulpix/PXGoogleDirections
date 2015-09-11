@@ -14,6 +14,7 @@
 		7A12EF8F1AAC65710070BA73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EF8E1AAC65710070BA73 /* Images.xcassets */; };
 		7A12EF921AAC65710070BA73 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EF901AAC65710070BA73 /* LaunchScreen.xib */; };
 		7A12EFA81AAC65CF0070BA73 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EFA71AAC65CF0070BA73 /* Podfile */; };
+		7A1867181BA30B270056BEB3 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1867171BA30B270056BEB3 /* GoogleMaps.framework */; };
 		7A1A84E51AC5F33A0019E6B8 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */; };
 		7A7C6E381ABD951100D397F1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */; };
 		7AC67B651AAD044C00724CB9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B641AAD044C00724CB9 /* CoreLocation.framework */; };
@@ -43,6 +44,8 @@
 		7A12EF8E1AAC65710070BA73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7A12EF911AAC65710070BA73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7A12EFA71AAC65CF0070BA73 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7A1867171BA30B270056BEB3 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
+		7A1867191BA30B510056BEB3 /* PXGoogleDirectionsSample-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PXGoogleDirectionsSample-BridgingHeader.h"; sourceTree = "<group>"; };
 		7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7AC67B4B1AAD03AC00724CB9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,7 @@
 				7AED66EB1AAF669500B0FD8F /* SystemConfiguration.framework in Frameworks */,
 				7AC67B651AAD044C00724CB9 /* CoreLocation.framework in Frameworks */,
 				5A5CAF0E2539948B205B99C4 /* Pods.framework in Frameworks */,
+				7A1867181BA30B270056BEB3 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +98,7 @@
 		3A7FE944520806CD1C3F1A30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A1867171BA30B270056BEB3 /* GoogleMaps.framework */,
 				7AED66F31AAF6A6000B0FD8F /* GoogleMaps.bundle */,
 				7AED66F11AAF6A2D00B0FD8F /* GoogleMaps.framework */,
 				7AED66ED1AAF689600B0FD8F /* libstdc++.dylib */,
@@ -163,6 +168,7 @@
 			children = (
 				7A12EFA71AAC65CF0070BA73 /* Podfile */,
 				7A12EF861AAC65710070BA73 /* Info.plist */,
+				7A1867191BA30B510056BEB3 /* PXGoogleDirectionsSample-BridgingHeader.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 					"$(inherited)",
 					/Users/Romain/Projets/PXGoogleDirections/Dependencies,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/PXGoogleDirections/Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -421,6 +428,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Poulpix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PXGoogleDirectionsSample-BridgingHeader.h";
 			};
 			name = Debug;
 		};
@@ -434,6 +442,7 @@
 					"$(inherited)",
 					/Users/Romain/Projets/PXGoogleDirections/Dependencies,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/PXGoogleDirections/Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -441,6 +450,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Poulpix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PXGoogleDirectionsSample-BridgingHeader.h";
 			};
 			name = Release;
 		};
