@@ -45,6 +45,7 @@
 		59B683EB59F9DDD3EA79A643 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1867151BA308490056BEB3 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7A18671C1BA3358A0056BEB3 /* GoogleMaps.podspec.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GoogleMaps.podspec.json; sourceTree = SOURCE_ROOT; };
+		7ACA42D81BA3361300BD6516 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		7ACC22691AAC5BF600598142 /* PXGoogleDirections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PXGoogleDirections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ACC226D1AAC5BF600598142 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ACC226E1AAC5BF600598142 /* PXGoogleDirections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXGoogleDirections.h; sourceTree = "<group>"; };
@@ -173,6 +174,7 @@
 		7ACC226C1AAC5BF600598142 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7ACA42D81BA3361300BD6516 /* Podfile */,
 				7A18671C1BA3358A0056BEB3 /* GoogleMaps.podspec.json */,
 				7ACC22DB1AAC5ED900598142 /* PXGoogleDirections.podspec */,
 				7ACC226D1AAC5BF600598142 /* Info.plist */,
