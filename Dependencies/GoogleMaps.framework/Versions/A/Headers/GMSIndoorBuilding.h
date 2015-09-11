@@ -9,6 +9,8 @@
 //
 
 
+#import <Foundation/Foundation.h>
+
 /**
  * Describes a building which contains levels.
  */

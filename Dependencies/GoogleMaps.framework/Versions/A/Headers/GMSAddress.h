@@ -44,10 +44,20 @@
 /** An array of NSString containing formatted lines of the address. May be nil. */
 @property(nonatomic, copy, readonly) NSArray *lines;
 
-/** Returns the first line of the address. */
+/**
+ * Returns the first line of the address.
+ *
+ * This method is obsolete and deprecated and will be removed in a future release.
+ * Use the lines property instead.
+ */
 - (NSString *)addressLine1 __GMS_AVAILABLE_BUT_DEPRECATED;
 
-/** Returns the second line of the address. */
+/**
+ * Returns the second line of the address.
+ *
+ * This method is obsolete and deprecated and will be removed in a future release.
+ * Use the lines property instead.
+ */
 - (NSString *)addressLine2 __GMS_AVAILABLE_BUT_DEPRECATED;
 
 @end

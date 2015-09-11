@@ -85,4 +85,10 @@
  */
 @property(nonatomic, assign) BOOL indoorPicker;
 
+/**
+ * Controls whether rotate and zoom gestures can be performed off-center and scrolled around
+ * (default YES).
+ */
+@property(nonatomic, assign) BOOL allowScrollGesturesDuringRotateOrZoom;
+
 @end

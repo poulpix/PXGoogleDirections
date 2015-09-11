@@ -9,6 +9,8 @@
 //
 
 
+#import <Foundation/Foundation.h>
+
 /**
  * Describes a single level in a building.
  * Multiple buildings can share a level - in this case the level instances will

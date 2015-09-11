@@ -194,7 +194,7 @@ typedef enum {
 @interface GMSMapView : UIView
 
 /** GMSMapView delegate. */
-@property(nonatomic, weak) id<GMSMapViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<GMSMapViewDelegate> delegate;
 
 /**
  * Controls the camera, which defines how the map is oriented. Modification of
@@ -323,11 +323,15 @@ typedef enum {
 
 /**
  * Tells this map to power up its renderer. This is optional and idempotent.
+ *
+ * This method is obsolete and deprecated and will be removed in a future release.
  */
 - (void)startRendering __GMS_AVAILABLE_BUT_DEPRECATED;
 
 /**
  * Tells this map to power down its renderer. This is optional and idempotent.
+ *
+ * This method is obsolete and deprecated and will be removed in a future release.
  */
 - (void)stopRendering __GMS_AVAILABLE_BUT_DEPRECATED;
 

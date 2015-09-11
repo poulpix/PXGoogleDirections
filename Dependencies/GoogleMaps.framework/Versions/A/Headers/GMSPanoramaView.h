@@ -110,7 +110,7 @@
 @property(nonatomic, strong) GMSPanorama *panorama;
 
 /** GMSPanoramaView delegate. */
-@property(nonatomic, weak) id<GMSPanoramaViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<GMSPanoramaViewDelegate> delegate;
 
 /**
  * Sets the preference for whether all gestures should be enabled (default) or

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'PXGoogleDirections'
-    s.version               = '1.1.0'
+    s.version               = '1.2.0'
 
     s.homepage              = "https://github.com/poulpix/PXGoogleDirections"
     s.summary               = 'Google Directions API SDK for iOS, entirely written in Swift'
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
     s.source_files          = 'PXGoogleDirections/*.{h,swift}'
     s.module_name           = 'PXGoogleDirections'
-    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.1.0" }
+    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.2.0" }
     s.requires_arc          = true
     s.libraries             = "c++", "icucore", "z"
     s.frameworks            = "AVFoundation", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "SystemConfiguration", "GoogleMaps"
