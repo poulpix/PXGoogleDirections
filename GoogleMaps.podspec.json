@@ -10,7 +10,8 @@
   },
   "authors": "Google Inc.",
   "source": {
-    "http": "https://www.gstatic.com/cpdc/11a5da8180322c35-GoogleMaps-1.10.2.tar.gz"
+    "http": "https://www.gstatic.com/cpdc/11a5da8180322c35-GoogleMaps-1.10.2.tar.gz",
+    "flatten": true
   },
   "platforms": {
     "ios": "7.0"
