@@ -41,7 +41,7 @@
 		7ACC22D81AAC5E7A00598142 /* PXLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC22C61AAC5E7A00598142 /* PXLocation.swift */; };
 		7ACC22D91AAC5E7A00598142 /* PXTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC22C71AAC5E7A00598142 /* PXTime.swift */; };
 		7ACC22DA1AAC5E7A00598142 /* PXUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC22C81AAC5E7A00598142 /* PXUtils.swift */; };
-		7F0ADC536D6FE01A744A4E69 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B683EB59F9DDD3EA79A643 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7F0ADC536D6FE01A744A4E69 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B683EB59F9DDD3EA79A643 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
