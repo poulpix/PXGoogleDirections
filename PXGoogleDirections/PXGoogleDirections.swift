@@ -137,7 +137,7 @@ public class PXGoogleDirections: NSObject {
 			}
 			// Handle optional waypoints
 			if waypoints.count > 0 {
-				let wp = "|".join(waypoints.map({ $0.description }))
+				let wp = waypoints.map({ $0.description }).joinWithSeparator("|")
 				let opt = ((optimizeWaypoints ?? false) ? "optimize:true|" : "")
 				preparedRequest += "&waypoints=\(opt)\(wp)"
 			}
@@ -148,7 +148,7 @@ public class PXGoogleDirections: NSObject {
 			}
 			// Handle request for features to avoid
 			if featuresToAvoid.count > 0 {
-				let fta = "|".join(featuresToAvoid.map({ $0.description }))
+				let fta = featuresToAvoid.map({ $0.description }).joinWithSeparator("|")
 				preparedRequest += "&avoid=\(fta)"
 			}
 			// Handle results language
@@ -180,7 +180,7 @@ public class PXGoogleDirections: NSObject {
 			// Handle public transit mode
 			if transitModes.count > 0 {
 				if mode == .Transit {
-					let tm = "|".join(transitModes.map({ $0.description }))
+					let tm = transitModes.map({ $0.description }).joinWithSeparator("|")
 					preparedRequest += "&transit_mode=\(tm)"
 				}
 			}
@@ -453,7 +453,7 @@ public class PXGoogleDirections: NSObject {
 						var params = PXGoogleDirections.handleAppleMapsURL(center: center, mapMode: mapMode, view: view, zoom: zoom)
 						params.append("saddr=\(f.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 						params.append("daddr=\(t.description.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
-						let p = (params.count > 0) ? "?" + "&".join(params) : ""
+						let p = (params.count > 0) ? "?" + params.joinWithSeparator("&") : ""
 						UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 						return true
 					}
@@ -591,7 +591,7 @@ public class PXGoogleDirections: NSObject {
 		}
 		if let v = view {
 			if v.count > 0 {
-				let vcs = ",".join(v.map({ $0.description }))
+				let vcs = v.map({ $0.description }).joinWithSeparator(",")
 				params.append("view=\(vcs)")
 			}
 		}
@@ -635,7 +635,7 @@ public class PXGoogleDirections: NSObject {
 				params.append("x-success=\(cbURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 				params.append("x-source=\(cbn.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 			}
-			let p = (params.count > 0) ? "?" + "&".join(params) : ""
+			let p = (params.count > 0) ? "?" + params.joinWithSeparator("&") : ""
 			return NSURL(string: "\(scheme)://\(p)")!
 		} else {
 			return nil

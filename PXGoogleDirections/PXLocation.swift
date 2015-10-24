@@ -65,7 +65,7 @@ public enum PXLocation {
 			// Apply fallback strategy
 			if fallbackToAppleMaps {
 				let params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
-				let p = (params.count > 0) ? "?" + "&".join(params) : ""
+				let p = (params.count > 0) ? "?" + params.joinWithSeparator("&") : ""
 				UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 				return true
 			}
@@ -99,7 +99,7 @@ public enum PXLocation {
 			if fallbackToAppleMaps {
 				var params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 				params.append("q=\(query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
-				let p = (params.count > 0) ? "?" + "&".join(params) : ""
+				let p = (params.count > 0) ? "?" + params.joinWithSeparator("&") : ""
 				UIApplication.sharedApplication().openURL(NSURL(string: "https://maps.apple.com/\(p)")!)
 				return true
 			}

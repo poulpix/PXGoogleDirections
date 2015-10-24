@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import PXGoogleDirections
+import GoogleMaps
 
 protocol MainViewControllerDelegate {
 	func didAddWaypoint(waypoint: PXLocation)

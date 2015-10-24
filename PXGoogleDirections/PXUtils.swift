@@ -16,7 +16,7 @@ public extension UIColor {
 		var alpha: CGFloat = 1.0
 		
 		if hexColor.hasPrefix("#") {
-			let index = advance(hexColor.startIndex, 1)
+			let index = hexColor.startIndex.advancedBy(1)
 			let hex = hexColor.substringFromIndex(index)
 			let scanner = NSScanner(string: hex)
 			var hexValue: CUnsignedLongLong = 0

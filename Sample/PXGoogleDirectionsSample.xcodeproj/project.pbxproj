@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A5CAF0E2539948B205B99C4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFCFC5D63BD7A05A0DB242 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5A5CAF0E2539948B205B99C4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFCFC5D63BD7A05A0DB242 /* Pods.framework */; };
 		7A12EF881AAC65710070BA73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12EF871AAC65710070BA73 /* AppDelegate.swift */; };
 		7A12EF8A1AAC65710070BA73 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A12EF891AAC65710070BA73 /* MainViewController.swift */; };
 		7A12EF8D1AAC65710070BA73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EF8B1AAC65710070BA73 /* Main.storyboard */; };
@@ -16,6 +16,10 @@
 		7A12EFA81AAC65CF0070BA73 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7A12EFA71AAC65CF0070BA73 /* Podfile */; };
 		7A1867181BA30B270056BEB3 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1867171BA30B270056BEB3 /* GoogleMaps.framework */; };
 		7A1A84E51AC5F33A0019E6B8 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */; };
+		7A79CE601BDB8FDD00DB777D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79CE5F1BDB8FDD00DB777D /* CoreBluetooth.framework */; };
+		7A79CE621BDB8FE800DB777D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79CE611BDB8FE800DB777D /* Security.framework */; };
+		7A79CE641BDB901900DB777D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79CE631BDB901900DB777D /* Accelerate.framework */; };
+		7A79CE661BDB908600DB777D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A79CE651BDB908600DB777D /* GoogleMaps.bundle */; };
 		7A7C6E381ABD951100D397F1 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */; };
 		7AC67B651AAD044C00724CB9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B641AAD044C00724CB9 /* CoreLocation.framework */; };
 		7AC67B671AAD095C00724CB9 /* GoogleAPIKeyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC67B661AAD095C00724CB9 /* GoogleAPIKeyProvider.swift */; };
@@ -30,8 +34,6 @@
 		7AED66EB1AAF669500B0FD8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B561AAD03AC00724CB9 /* SystemConfiguration.framework */; };
 		7AED66EC1AAF66A300B0FD8F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B4D1AAD03AC00724CB9 /* CoreData.framework */; };
 		7AED66EF1AAF68C300B0FD8F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC67B511AAD03AC00724CB9 /* libc++.dylib */; };
-		7AED66F21AAF6A2D00B0FD8F /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AED66F11AAF6A2D00B0FD8F /* GoogleMaps.framework */; };
-		7AED66F41AAF6A6000B0FD8F /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AED66F31AAF6A6000B0FD8F /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,10 @@
 		7A12EFA71AAC65CF0070BA73 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7A1867171BA30B270056BEB3 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7A1A84E41AC5F33A0019E6B8 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
+		7A79CE5F1BDB8FDD00DB777D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		7A79CE611BDB8FE800DB777D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7A79CE631BDB901900DB777D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7A79CE651BDB908600DB777D /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		7A7C6E371ABD951100D397F1 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7AC67B4B1AAD03AC00724CB9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7AC67B4C1AAD03AC00724CB9 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -61,9 +67,6 @@
 		7AC67B561AAD03AC00724CB9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7AC67B641AAD044C00724CB9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7AC67B661AAD095C00724CB9 /* GoogleAPIKeyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAPIKeyProvider.swift; path = Private/GoogleAPIKeyProvider.swift; sourceTree = SOURCE_ROOT; };
-		7AED66ED1AAF689600B0FD8F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		7AED66F11AAF6A2D00B0FD8F /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		7AED66F31AAF6A6000B0FD8F /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		99AC9BD82FBB482C7BCD4987 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EFAA109881575C4A888F1B64 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A79CE641BDB901900DB777D /* Accelerate.framework in Frameworks */,
+				7A79CE621BDB8FE800DB777D /* Security.framework in Frameworks */,
+				7A79CE601BDB8FDD00DB777D /* CoreBluetooth.framework in Frameworks */,
 				7AED66EF1AAF68C300B0FD8F /* libc++.dylib in Frameworks */,
 				7AED66EC1AAF66A300B0FD8F /* CoreData.framework in Frameworks */,
 				7AED66E21AAF669500B0FD8F /* AVFoundation.framework in Frameworks */,
@@ -81,7 +87,6 @@
 				7AED66E51AAF669500B0FD8F /* ImageIO.framework in Frameworks */,
 				7AED66E71AAF669500B0FD8F /* libicucore.dylib in Frameworks */,
 				7AED66E81AAF669500B0FD8F /* libz.dylib in Frameworks */,
-				7AED66F21AAF6A2D00B0FD8F /* GoogleMaps.framework in Frameworks */,
 				7AED66E91AAF669500B0FD8F /* OpenGLES.framework in Frameworks */,
 				7AED66EA1AAF669500B0FD8F /* QuartzCore.framework in Frameworks */,
 				7AED66EB1AAF669500B0FD8F /* SystemConfiguration.framework in Frameworks */,
@@ -97,10 +102,11 @@
 		3A7FE944520806CD1C3F1A30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A79CE651BDB908600DB777D /* GoogleMaps.bundle */,
+				7A79CE631BDB901900DB777D /* Accelerate.framework */,
+				7A79CE611BDB8FE800DB777D /* Security.framework */,
+				7A79CE5F1BDB8FDD00DB777D /* CoreBluetooth.framework */,
 				7A1867171BA30B270056BEB3 /* GoogleMaps.framework */,
-				7AED66F31AAF6A6000B0FD8F /* GoogleMaps.bundle */,
-				7AED66F11AAF6A2D00B0FD8F /* GoogleMaps.framework */,
-				7AED66ED1AAF689600B0FD8F /* libstdc++.dylib */,
 				7AC67B641AAD044C00724CB9 /* CoreLocation.framework */,
 				7AC67B4B1AAD03AC00724CB9 /* AVFoundation.framework */,
 				7AC67B4C1AAD03AC00724CB9 /* CoreAudio.framework */,
@@ -233,11 +239,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A79CE661BDB908600DB777D /* GoogleMaps.bundle in Resources */,
 				7A12EF8D1AAC65710070BA73 /* Main.storyboard in Resources */,
 				7A12EF921AAC65710070BA73 /* LaunchScreen.xib in Resources */,
 				7A12EFA81AAC65CF0070BA73 /* Podfile in Resources */,
 				7A12EF8F1AAC65710070BA73 /* Images.xcassets in Resources */,
-				7AED66F41AAF6A6000B0FD8F /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
