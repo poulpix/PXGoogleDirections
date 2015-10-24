@@ -41,7 +41,7 @@ Now, from your code, you should be able to simply import the module like this:
 import PXGoogleDirections
 ```
 
-> Swift frameworks in CocoaPods 0.36 being still somewhat shaky, Swift not being finished yet and myself not being quite a Cocoapods expert yet, please come back to me if you face any problem using this SDK in your project...
+> You might run into issues if you mix up PXGoogleDirections with the Google Maps iOS SDK in your app. If you do so, please check the "In case of problems" paragraph below, and do not hesitate to contact me and describe your issue if you require assistance!
 
 ### From source
 - Clone the repository
