@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'PXGoogleDirections'
-    s.version               = '1.2.0'
+    s.version               = '1.2.1'
 
     s.homepage              = "https://github.com/poulpix/PXGoogleDirections"
     s.summary               = 'Google Directions API SDK for iOS, entirely written in Swift'
@@ -15,11 +15,11 @@ Pod::Spec.new do |s|
 
     s.source_files          = 'PXGoogleDirections/*.{h,swift}'
     s.module_name           = 'PXGoogleDirections'
-    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.2.0" }
+    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "master" }
     s.requires_arc          = true
     s.libraries             = "c++", "icucore", "z"
-    s.frameworks            = "AVFoundation", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "SystemConfiguration", "GoogleMaps"
+    s.frameworks            = "Accelerate", "AVFoundation", "CoreBluetooth", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "Security", "SystemConfiguration", "CoreGraphics", "GoogleMaps"
+    s.resource_bundles      = { 'GoogleMaps' => ['Pods/GoogleMaps/Frameworks/GoogleMaps.framework/Resources/*.bundle'] }
     s.vendored_frameworks   = "Dependencies/GoogleMaps.framework"
-    #s.xcconfig              = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/Google-Maps-iOS-SDK' }
-    #s.dependency              'Google-Maps-iOS-SDK'
+    s.xcconfig              = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/PXGoogleDirections/Dependencies' }
 end
