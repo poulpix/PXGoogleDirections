@@ -52,7 +52,7 @@ import PXGoogleDirections
 If your app also requires the Google Maps iOS SDK, you might run into troubles because of conflicts with the bundled Google Maps iOS SDK in the Cocoapod.
 If you happen to face these problems, please try to do the following:
 - Add `-framework "GoogleMaps"` to the "Other Linker Flags" of your Xcode project.
-- Make sure you are linking your app with all the libraries and frameworks required by the Google Maps iOS SDK. For a full list, see here: https://github.com/CocoaPods/Specs/blob/master/Specs/GoogleMaps/1.10.4/GoogleMaps.podspec.json
+- Make sure you are linking your app with all the libraries and frameworks required by the Google Maps iOS SDK. For a full list, see here: https://github.com/CocoaPods/Specs/blob/master/Specs/GoogleMaps/1.12.3/GoogleMaps.podspec.json
 - Also make sure that your app contains the `GoogleMaps.bundle` in the "Copy Bundle Resources" phase of the build process. If it doesn't, you can manually add it to Xcode by browsing to the following directory in the Finder: `/Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle`. Drop it in the "Frameworks" group of your project and uncheck the "Copy" checkbox.
 
 ## Usage
