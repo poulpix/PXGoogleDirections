@@ -62,11 +62,11 @@ Quick-start in two lines of Swift code:
 ```swift
 let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here>",
 from: PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)),
-to: PXLocation.NamedLocation("Googleplex", "Mountain View", "United States"))
+to: PXLocation.SpecificLocation("Googleplex", "Mountain View", "United States"))
 ```
 2) Run the Directions request:
 ```swift
-directionsAPI.calculateDirections( (response) -> Void in {
+directionsAPI.calculateDirections({ response in
 switch response {
 case let .Error(_, error):
 // Oops, something bad happened, see the error object for more information
