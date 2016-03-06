@@ -35,6 +35,32 @@ public class PXGoogleDirectionsRoute: NSObject {
 			return nil
 		}
 	}
+	/// Returns the route's total duration, in seconds
+	public var totalDuration: NSTimeInterval {
+		get {
+			var td = 0 as NSTimeInterval
+			for l in legs {
+				guard let ld = l.duration, d = ld.duration else {
+					break
+				}
+				td += d
+			}
+			return td
+		}
+	}
+	/// Returns the route's total distance, in meters
+	public var totalDistance: CLLocationDistance {
+		get {
+			var td = 0 as CLLocationDistance
+			for l in legs {
+				guard let ld = l.distance, d = ld.distance else {
+					break
+				}
+				td += d
+			}
+			return td
+		}
+	}
 	
 	/**
 	Draws the route on the specified Google Maps map view.
