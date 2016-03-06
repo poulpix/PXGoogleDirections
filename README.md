@@ -61,20 +61,20 @@ Quick-start in two lines of Swift code:
 1) Create an API object:
 ```swift
 let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here>",
-from: PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)),
-to: PXLocation.SpecificLocation("Googleplex", "Mountain View", "United States"))
+    from: PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)),
+    to: PXLocation.SpecificLocation("Googleplex", "Mountain View", "United States"))
 ```
 2) Run the Directions request:
 ```swift
 directionsAPI.calculateDirections({ response in
-switch response {
-case let .Error(_, error):
-// Oops, something bad happened, see the error object for more information
-break
-case let .Success(request, routes):
-// Do your work with the routes object array here
-break
-}
+ switch response {
+  case let .Error(_, error):
+   // Oops, something bad happened, see the error object for more information
+   break
+  case let .Success(request, routes):
+   // Do your work with the routes object array here
+   break
+ }
 })
 ```
 
