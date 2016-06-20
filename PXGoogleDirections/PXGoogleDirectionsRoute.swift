@@ -71,13 +71,14 @@ public class PXGoogleDirectionsRoute: NSObject {
 	- returns: The resulting `GMSPolyline` object that was drawn to the map
 	*/
 	public func drawOnMap(map: GMSMapView, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> GMSPolyline? {
-		let polyline: GMSPolyline? = nil
-		if let p = path {
-			let polyline = GMSPolyline(path: p)
-			polyline.strokeColor = strokeColor
-			polyline.strokeWidth = CGFloat(strokeWidth)
-			polyline.map = map
+		guard let path = path else {
+			return nil
 		}
+	
+		let polyline = GMSPolyline(path: path)
+		polyline.strokeColor = strokeColor
+		polyline.strokeWidth = CGFloat(strokeWidth)
+		polyline.map = map
 		return polyline
 	}
 	
