@@ -16,7 +16,7 @@ public enum PXGoogleDirectionsError: Int {
 	case NotFound
 	/// Indicates no route could be found between the origin and destination
 	case ZeroResults
-	/// Indicates that too many waypointss were provided in the request (the maximum allowed waypoints is 8, plus the origin, and destination)
+	/// Indicates that too many waypoints were provided in the request (the maximum allowed waypoints is 8, plus the origin, and destination)
 	case MaxWaypointsExceeded
 	/// Indicates that the provided request was invalid. Common causes of this status include an invalid parameter or parameter value
 	case InvalidRequest
@@ -32,7 +32,7 @@ public enum PXGoogleDirectionsError: Int {
 	case BadJSONFormatting
 	/// Indicates the response status code was unexpectedly missing from the JSON data
 	case MissingStatusCode
-	
+
 	public var description: String {
 		switch self {
 		case .OK:
@@ -59,10 +59,10 @@ public enum PXGoogleDirectionsError: Int {
 			return "Response status code unexpectedly missing from the response payload"
 		}
 	}
-	
+
 	/**
 	Returns an `PXGoogleDirectionsError` object corresponding to the status code returned by the API for a specific response.
-	
+
 	- parameter status: The status code returned by the API
 	- returns: The corresponding `PXGoogleDirectionsError` instance
 	*/
@@ -88,7 +88,7 @@ public enum PXGoogleDirectionsError: Int {
 			return .UnknownError
 		}
 	}
-	
+
 	/// Returns `true` if this status code indicates an error during the API request process, or `false` otherwise
 	public var failed: Bool { return (self != .OK) }
 }
@@ -103,10 +103,10 @@ public enum PXGoogleDirectionsMode: Int {
 	case Bicycling
 	/// Calculate directions with public transports
 	case Transit
-	
+
 	/**
 	Returns an `PXGoogleDirectionsMode` object corresponding to the status code returned by the API for a specific response.
-	
+
 	- parameter label: The label returned by the API
 	- returns: The corresponding `PXGoogleDirectionsMode` instance, or `nil` if no appropriate mode is found
 	*/
@@ -269,10 +269,10 @@ public enum PXGoogleDirectionsVehicleType: Int {
 	case Funicular
 	/// All other vehicles will return this type
 	case Other
-	
+
 	/**
 	Returns an `PXGoogleDirectionsVehicleType` object corresponding to the vehicle type returned by the API for a specific line.
-	
+
 	- parameter value: The vehicle type code returned by the API
 	- returns: The corresponding `PXGoogleDirectionsVehicleType` instance
 	*/

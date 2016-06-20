@@ -14,7 +14,7 @@ import GoogleMaps
 @objc public protocol PXGoogleDirectionsDelegate {
 	/**
 	Notifies the delegate that an API request is going to be sent.
-	
+
 	- parameter googleDirections: The `PXGoogleDirections` object issuing the request
 	- parameter requestURL: The URL that is going to be called
 	- returns: `true` if the request should be sent, `false` otherwise
@@ -22,28 +22,28 @@ import GoogleMaps
 	optional func googleDirectionsWillSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) -> Bool
 	/**
 	Notifies the delegate that an API request has been sent.
-	
+
 	- parameter googleDirections: The `PXGoogleDirections` object issuing the request
 	- parameter requestURL: The URL that was called
 	*/
 	optional func googleDirectionsDidSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL)
 	/**
 	Notifies the delegate that (yet unparsed) response data has been received from the API.
-	
+
 	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
 	- parameter data: An `NSData` object containing raw data received from the API
 	*/
 	optional func googleDirections(googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: NSData)
 	/**
 	Notifies the delegate that an error occurred while trying to handle the response received from the API.
-	
+
 	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
 	- parameter error: An `NSError` object describing the type and potential cause of the error
 	*/
 	optional func googleDirectionsRequestDidFail(googleDirections: PXGoogleDirections, withError error: NSError)
 	/**
 	Notifies the delegate that a response has been successfully received and parsed from the API.
-	
+
 	- parameter googleDirections: The `PXGoogleDirections` object that issued the request
 	- parameter apiResponse: A list of `PXGoogleDirectionsRoute` objects containing all relevant data received from the API
 	*/
@@ -59,9 +59,9 @@ public typealias PXGoogleDirectionsRequestCompletionBlock = (PXGoogleDirectionsR
 
 // MARK: PXGoogleDirections class
 public class PXGoogleDirections: NSObject {
-	
+
 	// MARK: Private class variables and consants
-	
+
 	private static let errorDomain = "PXGoogleDirectionsErrorDomain"
 	private static let _apiBaseURL = "https://maps.googleapis.com/maps/api/directions/json"
 	private static var _apiKey = ""
@@ -74,9 +74,9 @@ public class PXGoogleDirections: NSObject {
 			GMSServices.provideAPIKey(_apiKey)
 		}
 	}
-	
+
 	// MARK: Class variables
-	
+
 	/// The Google Directions API base URL (readonly).
 	public static var apiBaseURL: String { return _apiBaseURL }
 	///	Returns `true` if the Google Maps app is installed and can open places and directions URLs, `false` otherwise
@@ -85,7 +85,7 @@ public class PXGoogleDirections: NSObject {
 	}
 
 	// MARK: Instance variables
-	
+
 	/// The address or textual latitude/longitude value from which directions should be calculated (if an address is passed, the Directions API will geocode it and convert it to a latitude/longitude coordinate to calculate directions)
 	public var from: PXLocation!
 	/// The address or textual latitude/longitude value of the destination of the directions request (if an address is passed, the Directions API will geocode it and convert it to a latitude/longitude coordinate to calculate directions)
@@ -116,9 +116,9 @@ public class PXGoogleDirections: NSObject {
 	public var region: String?
 	/// Specifies an optional delegate that will be notified of all events regarding the Google Directions API
 	public var delegate: PXGoogleDirectionsDelegate?
-	
+
 	// MARK: Properties
-	
+
 	/**
 	Tries to build an instance of `NSURL` pointing to the Google Directions API using the specified parameters, or `nil`.
 	*/
@@ -202,22 +202,22 @@ public class PXGoogleDirections: NSObject {
 			return nil
 		}
 	}
-	
+
 	// MARK: Initializers
-	
+
 	/**
 	Creates a new instance of `PXGoogleDirections` with the specified API key.
-	
+
 	- parameter apiKey: Your own API key, provided by Google
 	*/
 	public init(apiKey: String) {
 		super.init()
 		PXGoogleDirections.apiKey = apiKey
 	}
-	
+
 	/**
 	Creates a new instance of `PXGoogleDirections` with the specified API key, origin and destination.
-	
+
 	- parameter apiKey: Your own API key, provided by Google
 	- parameter from: The address or textual latitude/longitude value from which directions should be calculated
 	- parameter to: The address or textual latitude/longitude value of the destination of the directions request
@@ -227,12 +227,12 @@ public class PXGoogleDirections: NSObject {
 		self.from = from
 		self.to = to
 	}
-	
+
 	// MARK: Public functions
-	
+
 	/**
 	Performs a Google Directions API request with the specified parameters and calls the block when finished.
-	
+
 	- parameter completion: The completion block called when the request is done, or in case of any error
 	*/
 	public func calculateDirections(completion: PXGoogleDirectionsRequestCompletionBlock)
@@ -309,7 +309,7 @@ public class PXGoogleDirections: NSObject {
 													}
 												}
 												// Waypoint order
-												if let wpOrder = r["waypoint_oder"] as? [Int] {
+												if let wpOrder = r["waypoint_order"] as? [Int] {
 													for wp in wpOrder {
 														currentRoute.waypointsOrder.append(wp)
 													}
@@ -419,7 +419,7 @@ public class PXGoogleDirections: NSObject {
 
 	/**
 	Tries to open the selected directions request in the Google Maps app.
-	
+
 	- parameter center: the map viewport center point
 	- parameter mapMode: the kind of map shown (if not specified, the current application settings will be used)
 	- parameter view: turns specific views on/off, multiple values can be set using a comma-separator (if the parameter is specified with no value, then it will clear all views)
@@ -462,13 +462,13 @@ public class PXGoogleDirections: NSObject {
 		}
 		return false
 	}
-	
+
 	// MARK: Private functions
-	
+
 	private func prepareError(code: PXGoogleDirectionsError) -> NSError {
 		return NSError(domain: PXGoogleDirections.errorDomain, code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: code.description])
 	}
-	
+
 	private func handleSteps(jsonData: [String: AnyObject]) -> [PXGoogleDirectionsRouteLegStep] {
 		var results = [PXGoogleDirectionsRouteLegStep]()
 		if let steps = jsonData["steps"] as? [[String: AnyObject]] {
@@ -580,7 +580,7 @@ public class PXGoogleDirections: NSObject {
 		}
 		return results
 	}
-	
+
 	internal class func handleGoogleMapsURL(center center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
 		var params = [String]()
 		if let loc = center {
@@ -600,7 +600,7 @@ public class PXGoogleDirections: NSObject {
 		}
 		return params
 	}
-	
+
 	internal class func handleAppleMapsURL(center center: CLLocationCoordinate2D?, mapMode: PXGoogleMapsMode?, view: Set<PXGoogleMapsView>?, zoom: UInt?) -> [String] {
 		var params = [String]()
 		if let loc = center {
@@ -626,7 +626,7 @@ public class PXGoogleDirections: NSObject {
 		}
 		return params
 	}
-	
+
 	internal class func buildGoogleMapsURL(var params params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
 		if PXGoogleDirections.canOpenInGoogleMaps {
 			var scheme = "comgooglemaps"
