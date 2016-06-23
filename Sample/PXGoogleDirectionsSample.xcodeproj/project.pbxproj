@@ -192,12 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A12EFA11AAC65710070BA73 /* Build configuration list for PBXNativeTarget "PXGoogleDirectionsSample" */;
 			buildPhases = (
-				2993869EDE9EDB14F9F4AFE4 /* 📦 Check Pods Manifest.lock */,
+				2993869EDE9EDB14F9F4AFE4 /* [CP] Check Pods Manifest.lock */,
 				7A12EF7E1AAC65710070BA73 /* Sources */,
 				7A12EF7F1AAC65710070BA73 /* Frameworks */,
 				7A12EF801AAC65710070BA73 /* Resources */,
-				7EC7EFC8C2EE5BF130AC3C2A /* 📦 Embed Pods Frameworks */,
-				E05481DBC90E221591503D21 /* 📦 Copy Pods Resources */,
+				7EC7EFC8C2EE5BF130AC3C2A /* [CP] Embed Pods Frameworks */,
+				E05481DBC90E221591503D21 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,14 +258,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2993869EDE9EDB14F9F4AFE4 /* 📦 Check Pods Manifest.lock */ = {
+		2993869EDE9EDB14F9F4AFE4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,14 +273,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7EC7EFC8C2EE5BF130AC3C2A /* 📦 Embed Pods Frameworks */ = {
+		7EC7EFC8C2EE5BF130AC3C2A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,14 +288,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E05481DBC90E221591503D21 /* 📦 Copy Pods Resources */ = {
+		E05481DBC90E221591503D21 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

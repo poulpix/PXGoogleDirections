@@ -69,7 +69,7 @@ public class PXGoogleDirectionsRoute: NSObject {
 	- parameter approximate: `true` if the route should be drawn using rough directions, `false` otherwise ; `false` by default but has a performance impact
 	- parameter strokeColor: The optional route stroke color
 	- parameter strokeWidth: The optional route stroke width
-	- returns: The resulting `GMSPolyline` object that was drawn to the map
+	- returns: The resulting `GMSPolyline` objects that were drawn to the map
 	*/
 	public func drawOnMap(map: GMSMapView, approximate: Bool = false, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> [GMSPolyline] {
 		var polylines = [GMSPolyline]()

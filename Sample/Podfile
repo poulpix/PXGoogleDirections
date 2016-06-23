@@ -4,5 +4,5 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'PXGoogleDirectionsSample' do
-  pod 'PXGoogleDirections'
+  pod 'PXGoogleDirections', :git => 'https://github.com/poulpix/PXGoogleDirections.git', :commit => 'e6ea681876a72374d16951bb0cce35bb04c6eeca'
 end
