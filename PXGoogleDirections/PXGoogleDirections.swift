@@ -627,16 +627,16 @@ public class PXGoogleDirections: NSObject {
 		return params
 	}
 
-	internal class func buildGoogleMapsURL(var params params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
+	internal class func buildGoogleMapsURL(params params: [String], callbackURL: NSURL?, callbackName: String?) -> NSURL? {
+		var p = params
 		if PXGoogleDirections.canOpenInGoogleMaps {
 			var scheme = "comgooglemaps"
 			if let cbURL = callbackURL, cbn = callbackName {
 				scheme = "comgooglemaps-x-callback"
-				params.append("x-success=\(cbURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
-				params.append("x-source=\(cbn.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+				p.append("x-success=\(cbURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+				p.append("x-source=\(cbn.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
 			}
-			let p = (params.count > 0) ? "?" + params.joinWithSeparator("&") : ""
-			return NSURL(string: "\(scheme)://\(p)")!
+			return NSURL(string: "\(scheme)://\((p.count > 0) ? "?" + p.joinWithSeparator("&") : "")")!
 		} else {
 			return nil
 		}

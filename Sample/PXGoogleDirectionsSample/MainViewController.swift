@@ -56,8 +56,8 @@ class MainViewController: UIViewController {
 		keyboardDoneButtonView.translucent = true
 		keyboardDoneButtonView.tintColor = nil
 		keyboardDoneButtonView.sizeToFit()
-		let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: Selector("doneButtonTouched:"))
-		let clearButton = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: Selector("clearButtonTouched:"))
+		let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(MainViewController.doneButtonTouched(_:)))
+		let clearButton = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(MainViewController.clearButtonTouched(_:)))
 		keyboardDoneButtonView.setItems([doneButton, clearButton], animated: false)
 		startArriveDateField.inputAccessoryView = keyboardDoneButtonView
 	}

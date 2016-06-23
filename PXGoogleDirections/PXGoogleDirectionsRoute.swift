@@ -66,20 +66,31 @@ public class PXGoogleDirectionsRoute: NSObject {
 	Draws the route on the specified Google Maps map view.
 	
 	- parameter map: A `GMSMapView` object on which the route should be drawn
+	- parameter approximate: `true` if the route should be drawn using rough directions, `false` otherwise ; `false` by default but has a performance impact
 	- parameter strokeColor: The optional route stroke color
 	- parameter strokeWidth: The optional route stroke width
 	- returns: The resulting `GMSPolyline` object that was drawn to the map
 	*/
-	public func drawOnMap(map: GMSMapView, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> GMSPolyline? {
-		guard let path = path else {
-			return nil
+	public func drawOnMap(map: GMSMapView, approximate: Bool = false, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> [GMSPolyline] {
+		var polylines = [GMSPolyline]()
+		if approximate {
+			let polyline = GMSPolyline(path: path)
+			polyline.strokeColor = strokeColor
+			polyline.strokeWidth = CGFloat(strokeWidth)
+			polyline.map = map
+			polylines.append(polyline)
+		} else {
+			for l in legs {
+				for s in l.steps {
+					let polyline = GMSPolyline(path: s.path)
+					polyline.strokeColor = strokeColor
+					polyline.strokeWidth = CGFloat(strokeWidth)
+					polyline.map = map
+					polylines.append(polyline)
+				}
+			}
 		}
-	
-		let polyline = GMSPolyline(path: path)
-		polyline.strokeColor = strokeColor
-		polyline.strokeWidth = CGFloat(strokeWidth)
-		polyline.map = map
-		return polyline
+		return polylines
 	}
 	
 	/**

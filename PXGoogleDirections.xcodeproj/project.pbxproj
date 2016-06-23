@@ -42,9 +42,12 @@
 		7ACC22D91AAC5E7A00598142 /* PXTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC22C71AAC5E7A00598142 /* PXTime.swift */; };
 		7ACC22DA1AAC5E7A00598142 /* PXUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC22C81AAC5E7A00598142 /* PXUtils.swift */; };
 		7F0ADC536D6FE01A744A4E69 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B683EB59F9DDD3EA79A643 /* Pods.framework */; };
+		85C4D69131D2469298353926 /* Pods_PXGoogleDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFC96502810B3F2E7A79A07 /* Pods_PXGoogleDirections.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		036D2F97502E8789D8940738 /* Pods-PXGoogleDirections.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirections.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirections/Pods-PXGoogleDirections.debug.xcconfig"; sourceTree = "<group>"; };
+		3EA174E0BF815FA9C8190EB6 /* Pods-PXGoogleDirections.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirections.release.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirections/Pods-PXGoogleDirections.release.xcconfig"; sourceTree = "<group>"; };
 		59B683EB59F9DDD3EA79A643 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C7AB8F38C95682255A5286 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A18671C1BA3358A0056BEB3 /* GoogleMaps.podspec.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GoogleMaps.podspec.json; sourceTree = SOURCE_ROOT; };
@@ -86,6 +89,7 @@
 		7ACC22C71AAC5E7A00598142 /* PXTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXTime.swift; sourceTree = "<group>"; };
 		7ACC22C81AAC5E7A00598142 /* PXUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXUtils.swift; sourceTree = "<group>"; };
 		7ACC22DB1AAC5ED900598142 /* PXGoogleDirections.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PXGoogleDirections.podspec; sourceTree = SOURCE_ROOT; };
+		CFFC96502810B3F2E7A79A07 /* Pods_PXGoogleDirections.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PXGoogleDirections.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF27D3D493675EF3313D6E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,7 @@
 				7ACC229B1AAC5D3700598142 /* QuartzCore.framework in Frameworks */,
 				7ACC229C1AAC5D3700598142 /* SystemConfiguration.framework in Frameworks */,
 				7F0ADC536D6FE01A744A4E69 /* Pods.framework in Frameworks */,
+				85C4D69131D2469298353926 /* Pods_PXGoogleDirections.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +140,7 @@
 				7ACC228F1AAC5D3700598142 /* QuartzCore.framework */,
 				7ACC22901AAC5D3700598142 /* SystemConfiguration.framework */,
 				59B683EB59F9DDD3EA79A643 /* Pods.framework */,
+				CFFC96502810B3F2E7A79A07 /* Pods_PXGoogleDirections.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 			children = (
 				EEF27D3D493675EF3313D6E1 /* Pods.debug.xcconfig */,
 				73C7AB8F38C95682255A5286 /* Pods.release.xcconfig */,
+				036D2F97502E8789D8940738 /* Pods-PXGoogleDirections.debug.xcconfig */,
+				3EA174E0BF815FA9C8190EB6 /* Pods-PXGoogleDirections.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -222,12 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7ACC227F1AAC5BF600598142 /* Build configuration list for PBXNativeTarget "PXGoogleDirections" */;
 			buildPhases = (
-				927B7A73CE2340F3918F26F3 /* Check Pods Manifest.lock */,
+				927B7A73CE2340F3918F26F3 /* 📦 Check Pods Manifest.lock */,
 				7ACC22641AAC5BF600598142 /* Sources */,
 				7ACC22651AAC5BF600598142 /* Frameworks */,
 				7ACC22661AAC5BF600598142 /* Headers */,
 				7ACC22671AAC5BF600598142 /* Resources */,
-				C3DB67B542DBB82BDFC7A87F /* Copy Pods Resources */,
+				C3DB67B542DBB82BDFC7A87F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,14 +291,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		927B7A73CE2340F3918F26F3 /* Check Pods Manifest.lock */ = {
+		927B7A73CE2340F3918F26F3 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,19 +306,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C3DB67B542DBB82BDFC7A87F /* Copy Pods Resources */ = {
+		C3DB67B542DBB82BDFC7A87F /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PXGoogleDirections/Pods-PXGoogleDirections-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -434,7 +442,7 @@
 		};
 		7ACC22801AAC5BF600598142 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEF27D3D493675EF3313D6E1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 036D2F97502E8789D8940738 /* Pods-PXGoogleDirections.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
@@ -494,7 +502,7 @@
 		};
 		7ACC22811AAC5BF600598142 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73C7AB8F38C95682255A5286 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3EA174E0BF815FA9C8190EB6 /* Pods-PXGoogleDirections.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;

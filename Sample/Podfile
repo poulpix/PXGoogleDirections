@@ -1,7 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
-
-pod 'PXGoogleDirections'
-
 use_frameworks!
+
+target 'PXGoogleDirectionsSample' do
+  pod 'PXGoogleDirections'
+end
