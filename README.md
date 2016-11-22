@@ -26,6 +26,13 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Available through CocoaPods
 - V1.3 is fully compatible with Swift 3 and Google Maps iOS SDK V2+
 
+## New in V1.3
+- Full Swift 3 support
+- Full Google Maps iOS SDK 2.0+ support
+- Added a `trafficModel` property on the `PXGoogleDirections` class to match Google's one in the API (recently added); it works only for driving routes, and when a departure date is specified
+- Fixed a bug where drawing a route would only draw a basic, rough representation of it taken from the route object; now there is an option for drawing a detailed route in the `drawOnMap` method of the `PXGoogleDirectionsRoute` class
+- Other small bug fixes
+
 ## Installation
 ### From Cocoapods
 To use PXGoogleDirections in your project add the following 'Podfile' to your project:
@@ -111,13 +118,6 @@ If your app *also* requires the Google Maps iOS SDK, you might run into troubles
 If you happen to face these problems, please try to do the following:
 - Add `-framework "GoogleMapsBase" -framework "GoogleMapsCore" -framework "GoogleMaps"` to the "Other Linker Flags" of your Xcode project.
 - Make sure you are linking your app with all the libraries and frameworks required by the Google Maps iOS SDK. For a full list, see here: https://github.com/CocoaPods/Specs/blob/master/Specs/a/d/d/GoogleMaps/2.1.1/GoogleMaps.podspec.json
-
-## New in V1.3
-- Full Swift 3 support
-- Full Google Maps iOS SDK 2.0+ support
-- Added a `trafficModel` property on the `PXGoogleDirections` class to match Google's one in the API (recently added); it works only for driving routes, and when a departure date is specified
-- Fixed a bug where drawing a route would only draw a basic, rough representation of it taken from the route object; now there is an option for drawing a detailed route in the `drawOnMap` method of the `PXGoogleDirectionsRoute` class
-- Other small bug fixes
 
 ## Credit
 - Some portions of code inspired by OpenInGoogleMaps-iOS (https://github.com/googlemaps/OpenInGoogleMaps-iOS) from the Google Maps team.
