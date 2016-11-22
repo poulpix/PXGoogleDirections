@@ -13,6 +13,14 @@
 
 #import <GoogleMaps/GMSCALayer.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /** kGMSLayerPanoramaHeadingKey ranges from [0, 360). */
 extern NSString *const kGMSLayerPanoramaHeadingKey;
 
@@ -35,3 +43,5 @@ extern NSString *const kGMSLayerPanoramaFOVKey;
 @property(nonatomic, assign) float cameraZoom;
 @property(nonatomic, assign) double cameraFOV;
 @end
+
+GMS_ASSUME_NONNULL_END

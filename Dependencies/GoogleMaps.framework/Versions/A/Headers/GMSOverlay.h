@@ -10,6 +10,14 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 @class GMSMapView;
 
 /**
@@ -28,14 +36,14 @@
  * will display the title on the map. The title is also the default
  * accessibility text.
  */
-@property(nonatomic, copy) NSString *title;
+@property(nonatomic, copy) NSString *GMS_NULLABLE_PTR title;
 
 /**
  * The map this overlay is on. Setting this property will add the overlay to the
  * map. Setting it to nil removes this overlay from the map. An overlay may be
  * active on at most one map at any given time.
  */
-@property(nonatomic, weak) GMSMapView *map;
+@property(nonatomic, weak) GMSMapView *GMS_NULLABLE_PTR map;
 
 /**
  * If this overlay should cause tap notifications. Some overlays, such as
@@ -54,3 +62,5 @@
 @property(nonatomic, assign) int zIndex;
 
 @end
+
+GMS_ASSUME_NONNULL_END

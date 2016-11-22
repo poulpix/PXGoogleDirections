@@ -8,6 +8,14 @@
 //  Service: https://developers.google.com/maps/terms
 //
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /** Links from a GMSPanorama to neighboring panoramas. */
 @interface GMSPanoramaLink : NSObject
 
@@ -21,3 +29,5 @@
 @property(nonatomic, copy) NSString *panoramaID;
 
 @end
+
+GMS_ASSUME_NONNULL_END

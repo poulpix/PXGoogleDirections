@@ -54,7 +54,7 @@
  *
  * When the GMSMapView is contained by a UIScrollView (or other scrollable area),
  * this means that gestures on the map will not be additional consumed as scroll
- * gestures.  However, disabling this (set to NO) may be userful to support
+ * gestures.  However, disabling this (set to NO) may be useful to support
  * complex view hierarchies or requirements.
  */
 @property(nonatomic, assign) BOOL consumesGesturesInView;
@@ -80,7 +80,7 @@
 /**
  * Enables (default) or disables the indoor floor picker. If enabled, it is only
  * visible when the view is focused on a building with indoor floor data.
- * If disabled, the selected floor can still be controlled programatically via
+ * If disabled, the selected floor can still be controlled programmatically via
  * the indoorDisplay mapView property.
  */
 @property(nonatomic, assign) BOOL indoorPicker;

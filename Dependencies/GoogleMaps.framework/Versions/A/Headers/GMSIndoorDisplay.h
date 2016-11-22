@@ -10,11 +10,19 @@
 
 #import <Foundation/Foundation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
 @class GMSIndoorBuilding;
 @class GMSIndoorLevel;
 
+GMS_ASSUME_NONNULL_BEGIN
+
 /** Delegate for events on GMSIndoorDisplay. */
-@protocol GMSIndoorDisplayDelegate <NSObject>
+@protocol GMSIndoorDisplayDelegate<NSObject>
 @optional
 
 /**
@@ -22,13 +30,13 @@
  * already been updated for the new building, but didChangeActiveLevel: will
  * be raised after this method.
  */
-- (void)didChangeActiveBuilding:(GMSIndoorBuilding *)building;
+- (void)didChangeActiveBuilding:(GMSIndoorBuilding *GMS_NULLABLE_PTR)building;
 
 /**
  * Raised when the activeLevel has changed.  This event is raised for all
  * changes, including explicit setting of the property.
  */
-- (void)didChangeActiveLevel:(GMSIndoorLevel *)level;
+- (void)didChangeActiveLevel:(GMSIndoorLevel *GMS_NULLABLE_PTR)level;
 
 @end
 
@@ -40,13 +48,13 @@
 @interface GMSIndoorDisplay : NSObject
 
 /** GMSIndoorDisplay delegate */
-@property(nonatomic, weak) id<GMSIndoorDisplayDelegate> delegate;
+@property(nonatomic, weak) id<GMSIndoorDisplayDelegate> GMS_NULLABLE_PTR delegate;
 
 /**
  * Provides the currently focused building, will be nil if there is no
  * building with indoor data currently under focus.
  */
-@property(nonatomic, strong, readonly) GMSIndoorBuilding *activeBuilding;
+@property(nonatomic, strong, readonly) GMSIndoorBuilding *GMS_NULLABLE_PTR activeBuilding;
 
 /**
  * Provides and controls the active level for activeBuilding.  Will be updated
@@ -56,6 +64,8 @@
  * Will always be nil if activeBuilding is nil.
  * Any attempt to set it to an invalid value will be ignored.
  */
-@property(nonatomic, strong) GMSIndoorLevel *activeLevel;
+@property(nonatomic, strong) GMSIndoorLevel *GMS_NULLABLE_PTR activeLevel;
 
 @end
+
+GMS_ASSUME_NONNULL_END

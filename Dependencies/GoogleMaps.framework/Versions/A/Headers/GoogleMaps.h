@@ -11,14 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GMSAddress.h>
-#import <GoogleMaps/GMSAutocompleteFilter.h>
-#import <GoogleMaps/GMSAutocompleteMatchFragment.h>
-#import <GoogleMaps/GMSAutocompletePrediction.h>
 #import <GoogleMaps/GMSCALayer.h>
 #import <GoogleMaps/GMSCameraPosition.h>
 #import <GoogleMaps/GMSCameraUpdate.h>
 #import <GoogleMaps/GMSCircle.h>
-#import <GoogleMaps/GMSCoordinateBounds.h>
+#import <GoogleMaps/GMSCoordinateBounds+GoogleMaps.h>
+#import <GoogleMaps/GMSDeprecationMacros.h>
 #import <GoogleMaps/GMSGeocoder.h>
 #import <GoogleMaps/GMSGeometryUtils.h>
 #import <GoogleMaps/GMSGroundOverlay.h>
@@ -26,6 +24,7 @@
 #import <GoogleMaps/GMSIndoorDisplay.h>
 #import <GoogleMaps/GMSIndoorLevel.h>
 #import <GoogleMaps/GMSMapLayer.h>
+#import <GoogleMaps/GMSMapStyle.h>
 #import <GoogleMaps/GMSMapView+Animation.h>
 #import <GoogleMaps/GMSMapView.h>
 #import <GoogleMaps/GMSMarker.h>
@@ -41,14 +40,6 @@
 #import <GoogleMaps/GMSPanoramaService.h>
 #import <GoogleMaps/GMSPanoramaView.h>
 #import <GoogleMaps/GMSPath.h>
-#import <GoogleMaps/GMSPlace.h>
-#import <GoogleMaps/GMSPlaceLikelihood.h>
-#import <GoogleMaps/GMSPlaceLikelihoodList.h>
-#import <GoogleMaps/GMSPlacePicker.h>
-#import <GoogleMaps/GMSPlacePickerConfig.h>
-#import <GoogleMaps/GMSPlaceTypes.h>
-#import <GoogleMaps/GMSPlacesClient.h>
-#import <GoogleMaps/GMSPlacesMacros.h>
 #import <GoogleMaps/GMSPolygon.h>
 #import <GoogleMaps/GMSPolyline.h>
 #import <GoogleMaps/GMSProjection.h>
@@ -57,4 +48,3 @@
 #import <GoogleMaps/GMSTileLayer.h>
 #import <GoogleMaps/GMSUISettings.h>
 #import <GoogleMaps/GMSURLTileLayer.h>
-#import <GoogleMaps/GMSUserAddedPlace.h>

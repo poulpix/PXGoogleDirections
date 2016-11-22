@@ -8,6 +8,14 @@
 //  Service: https://developers.google.com/maps/terms
 //
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /** Service class for the Google Maps SDK for iOS. */
 @interface GMSServices : NSObject
 
@@ -30,8 +38,8 @@
 /**
  * Provides your API key to the Google Maps SDK for iOS.  This key is generated
  * for your application via the Google APIs Console, and is paired with your
- * application's bundle ID to identify it.  This should be called exactly once
- * by your application, e.g., in application: didFinishLaunchingWithOptions:.
+ * application's bundle ID to identify it.  This must be called exactly once
+ * by your application before any iOS Maps SDK object is initialized.
  *
  * @return YES if the APIKey was successfully provided
  */
@@ -49,3 +57,5 @@
 + (NSString *)SDKVersion;
 
 @end
+
+GMS_ASSUME_NONNULL_END

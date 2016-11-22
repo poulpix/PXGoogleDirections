@@ -10,6 +10,11 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
 #import <GoogleMaps/GMSOrientation.h>
 #import <GoogleMaps/GMSPanoramaLayer.h>
 
@@ -19,8 +24,10 @@
 @class GMSPanoramaCameraUpdate;
 @class GMSPanoramaView;
 
+GMS_ASSUME_NONNULL_BEGIN
+
 /** Delegate for events on GMSPanoramaView. */
-@protocol GMSPanoramaViewDelegate <NSObject>
+@protocol GMSPanoramaViewDelegate<NSObject>
 @optional
 
 /**
@@ -38,7 +45,7 @@
  * This is invoked every time the |view|.panorama property changes.
  */
 - (void)panoramaView:(GMSPanoramaView *)view
-    didMoveToPanorama:(GMSPanorama *)panorama;
+    didMoveToPanorama:(GMSPanorama *GMS_NULLABLE_PTR)panorama;
 
 /**
  * Called when the panorama change was caused by invoking
@@ -84,6 +91,18 @@
 - (BOOL)panoramaView:(GMSPanoramaView *)panoramaView
         didTapMarker:(GMSMarker *)marker;
 
+/**
+ * Called when the panorama tiles for the current view have just been requested
+ * and are beginning to load.
+ */
+- (void)panoramaViewDidStartRendering:(GMSPanoramaView *)panoramaView;
+
+/**
+ * Called when the panorama tiles have been loaded (or permanently failed to load)
+ * and rendered on screen.
+ */
+- (void)panoramaViewDidFinishRendering:(GMSPanoramaView *)panoramaView;
+
 @end
 
 /**
@@ -107,10 +126,10 @@
  *
  * Can be set to nil to clear the view.
  */
-@property(nonatomic, strong) GMSPanorama *panorama;
+@property(nonatomic, strong) GMSPanorama *GMS_NULLABLE_PTR panorama;
 
 /** GMSPanoramaView delegate. */
-@property(nonatomic, weak) IBOutlet id<GMSPanoramaViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<GMSPanoramaViewDelegate> GMS_NULLABLE_PTR delegate;
 
 /**
  * Sets the preference for whether all gestures should be enabled (default) or
@@ -244,5 +263,6 @@
                    nearCoordinate:(CLLocationCoordinate2D)coordinate
                            radius:(NSUInteger)radius;
 
-
 @end
+
+GMS_ASSUME_NONNULL_END

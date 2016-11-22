@@ -10,11 +10,19 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * GMSPath encapsulates an immutable array of CLLocationCooordinate2D. All the coordinates of a
  * GMSPath must be valid. The mutable counterpart is GMSMutablePath.
  */
-@interface GMSPath : NSObject <NSCopying, NSMutableCopying>
+@interface GMSPath : NSObject<NSCopying, NSMutableCopying>
 
 /** Convenience constructor for an empty path. */
 + (instancetype)path;
@@ -32,7 +40,7 @@
  * Initializes a newly allocated path from |encodedPath|. This format is described at:
  * https://developers.google.com/maps/documentation/utilities/polylinealgorithm
  */
-+ (instancetype)pathFromEncodedPath:(NSString *)encodedPath;
++ (GMS_NULLABLE_INSTANCETYPE)pathFromEncodedPath:(NSString *)encodedPath;
 
 /** Returns an encoded string of the path in the format described above. */
 - (NSString *)encodedPath;
@@ -45,7 +53,6 @@
                            longitude:(CLLocationDegrees)deltaLongitude;
 
 @end
-
 
 /**
  * kGMSEquatorProjectedMeter may be useful when specifying lengths for segment in "projected" units.
@@ -86,7 +93,6 @@ typedef enum {
   kGMSLengthProjected
 } GMSLengthKind;
 
-
 @interface GMSPath (GMSPathLength)
 
 /**
@@ -101,3 +107,5 @@ typedef enum {
 - (CLLocationDistance)lengthOfKind:(GMSLengthKind)kind;
 
 @end
+
+GMS_ASSUME_NONNULL_END

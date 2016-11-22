@@ -10,6 +10,14 @@
 
 #import <GoogleMaps/GMSMapView.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * GMSMapView (Animation) offers several animation helper methods.
  *
@@ -55,3 +63,5 @@
 - (void)animateWithCameraUpdate:(GMSCameraUpdate *)cameraUpdate;
 
 @end
+
+GMS_ASSUME_NONNULL_END
