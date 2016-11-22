@@ -18,40 +18,40 @@ class WaypointViewController: UIViewController {
 	@IBOutlet weak var longitudeField: UITextField!
 	var delegate: MainViewControllerDelegate!
 	
-	@IBAction func cancelButtonTouched(sender: UIButton) {
-		dismissViewControllerAnimated(true, completion: nil)
+	@IBAction func cancelButtonTouched(_ sender: UIButton) {
+		dismiss(animated: true, completion: nil)
 	}
 	
-	@IBAction func locationTypeChanged(sender: UISegmentedControl) {
+	@IBAction func locationTypeChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 		case 0:
-			namedLocationView.hidden = false
-			coordinateLocationView.hidden = true
+			namedLocationView.isHidden = false
+			coordinateLocationView.isHidden = true
 		case 1:
-			namedLocationView.hidden = true
-			coordinateLocationView.hidden = false
+			namedLocationView.isHidden = true
+			coordinateLocationView.isHidden = false
 		default:
 			break
 		}
 	}
 	
-	@IBAction func addWaypointButtonTouched(sender: UIButton) {
+	@IBAction func addWaypointButtonTouched(_ sender: UIButton) {
 		var waypoint: PXLocation?
-		if !namedLocationView.hidden {
+		if !namedLocationView.isHidden {
 			if namedLocationField.text!.characters.count > 0 {
-				waypoint = PXLocation.NamedLocation(namedLocationField.text!)
+				waypoint = PXLocation.namedLocation(namedLocationField.text!)
 			}
 		}
-		if !coordinateLocationView.hidden {
+		if !coordinateLocationView.isHidden {
 			if latitudeField.text!.characters.count > 0 && longitudeField.text!.characters.count > 0 {
 				let lat = NSString(string: latitudeField.text!).doubleValue
 				let lng = NSString(string: longitudeField.text!).doubleValue
-				waypoint = PXLocation.CoordinateLocation(CLLocationCoordinate2DMake(lat, lng))
+				waypoint = PXLocation.coordinateLocation(CLLocationCoordinate2DMake(lat, lng))
 			}
 		}
 		if let wp = waypoint {
 			delegate.didAddWaypoint(wp)
-			dismissViewControllerAnimated(true, completion: nil)
+			dismiss(animated: true, completion: nil)
 		}
 	}
 }

@@ -12,7 +12,7 @@ import PXGoogleDirections
 import GoogleMaps
 
 protocol MainViewControllerDelegate {
-	func didAddWaypoint(waypoint: PXLocation)
+	func didAddWaypoint(_ waypoint: PXLocation)
 }
 
 class MainViewController: UIViewController {
@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var advancedView: UIView!
 	@IBOutlet weak var unitField: UISegmentedControl!
 	@IBOutlet weak var transitRoutingField: UISegmentedControl!
+	@IBOutlet weak var trafficModelField: UISegmentedControl!
 	@IBOutlet weak var alternativeSwitch: UISwitch!
 	@IBOutlet weak var busSwitch: UISwitch!
 	@IBOutlet weak var subwaySwitch: UISwitch!
@@ -37,7 +38,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var waypointsLabel: UILabel!
 	@IBOutlet weak var optimizeWaypointsSwitch: UISwitch!
 	@IBOutlet weak var languageField: UISegmentedControl!
-	var startArriveDate: NSDate?
+	var startArriveDate: Date?
 	var waypoints: [PXLocation] = [PXLocation]()
 	
 	override func viewDidLoad() {
@@ -47,59 +48,63 @@ class MainViewController: UIViewController {
 		updateWaypointsField()
 		let datePicker = UIDatePicker()
 		datePicker.sizeToFit()
-		datePicker.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-		datePicker.datePickerMode = .DateAndTime
+		datePicker.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		datePicker.datePickerMode = .dateAndTime
 		datePicker.minuteInterval = 5
 		startArriveDateField.inputView = datePicker
 		let keyboardDoneButtonView = UIToolbar()
-		keyboardDoneButtonView.barStyle = .Black
-		keyboardDoneButtonView.translucent = true
+		keyboardDoneButtonView.barStyle = .black
+		keyboardDoneButtonView.isTranslucent = true
 		keyboardDoneButtonView.tintColor = nil
 		keyboardDoneButtonView.sizeToFit()
-		let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(MainViewController.doneButtonTouched(_:)))
-		let clearButton = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(MainViewController.clearButtonTouched(_:)))
+		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(MainViewController.doneButtonTouched(_:)))
+		let clearButton = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(MainViewController.clearButtonTouched(_:)))
 		keyboardDoneButtonView.setItems([doneButton, clearButton], animated: false)
 		startArriveDateField.inputAccessoryView = keyboardDoneButtonView
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}
 	
-	private var directionsAPI: PXGoogleDirections {
-		return (UIApplication.sharedApplication().delegate as! AppDelegate).directionsAPI
+	fileprivate var directionsAPI: PXGoogleDirections {
+		return (UIApplication.shared.delegate as! AppDelegate).directionsAPI
 	}
 	
-	private func modeFromField() -> PXGoogleDirectionsMode {
+	fileprivate func modeFromField() -> PXGoogleDirectionsMode {
 		return PXGoogleDirectionsMode(rawValue: modeField.selectedSegmentIndex)!
 	}
 	
-	private func unitFromField() -> PXGoogleDirectionsUnit {
+	fileprivate func unitFromField() -> PXGoogleDirectionsUnit {
 		return PXGoogleDirectionsUnit(rawValue: unitField.selectedSegmentIndex)!
 	}
 	
-	private func transitRoutingPreferenceFromField() -> PXGoogleDirectionsTransitRoutingPreference? {
+	fileprivate func transitRoutingPreferenceFromField() -> PXGoogleDirectionsTransitRoutingPreference? {
 		return PXGoogleDirectionsTransitRoutingPreference(rawValue: transitRoutingField.selectedSegmentIndex)
 	}
 	
-	private func languageFromField() -> String {
-		return languageField.titleForSegmentAtIndex(languageField.selectedSegmentIndex)!
+	fileprivate func trafficModelFromField() -> PXGoogleDirectionsTrafficModel? {
+		return PXGoogleDirectionsTrafficModel(rawValue: trafficModelField.selectedSegmentIndex)
+	}
+	
+	fileprivate func languageFromField() -> String {
+		return languageField.titleForSegment(at: languageField.selectedSegmentIndex)!
 		// There are quite a few other languages available, see here for more information: https://developers.google.com/maps/faq#languagesupport
 	}
 	
-	private func updateStartArriveDateField(newDate: NSDate?) {
+	fileprivate func updateStartArriveDateField(_ newDate: Date?) {
 		startArriveDate = newDate
 		if let saDate = startArriveDate {
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateStyle = .MediumStyle
-			dateFormatter.timeStyle = .ShortStyle
-			startArriveDateField.text = dateFormatter.stringFromDate(saDate)
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateStyle = .medium
+			dateFormatter.timeStyle = .short
+			startArriveDateField.text = dateFormatter.string(from: saDate)
 		} else {
 			startArriveDateField.text = ""
 		}
 	}
 	
-	private func updateWaypointsField() {
+	fileprivate func updateWaypointsField() {
 		switch (waypoints).count {
 		case 0:
 			waypointsLabel.text = "No waypoints"
@@ -110,79 +115,80 @@ class MainViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func advancedOptionsChanged(sender: UISwitch) {
-		UIView.animateWithDuration(0.5, animations: {
-			self.advancedView.alpha =  (self.advancedSwitch.on ? 1.0 : 0.0)
+	@IBAction func advancedOptionsChanged(_ sender: UISwitch) {
+		UIView.animate(withDuration: 0.5, animations: {
+			self.advancedView.alpha =  (self.advancedSwitch.isOn ? 1.0 : 0.0)
 		})
 	}
 	
-	@IBAction func selectDateButtonTouched(sender: UIButton) {
-		startArriveDateField.enabled = true
+	@IBAction func selectDateButtonTouched(_ sender: UIButton) {
+		startArriveDateField.isEnabled = true
 		startArriveDateField.becomeFirstResponder()
 	}
 	
-	func doneButtonTouched(sender: UIBarButtonItem) {
+	func doneButtonTouched(_ sender: UIBarButtonItem) {
 		updateStartArriveDateField((startArriveDateField.inputView as! UIDatePicker).date)
 		startArriveDateField.resignFirstResponder()
-		startArriveDateField.enabled = false
+		startArriveDateField.isEnabled = false
 	}
 	
-	func clearButtonTouched(sender: UIBarButtonItem) {
+	func clearButtonTouched(_ sender: UIBarButtonItem) {
 		updateStartArriveDateField(nil)
 		startArriveDateField.resignFirstResponder()
-		startArriveDateField.enabled = false
+		startArriveDateField.isEnabled = false
 	}
 	
-	@IBAction func addWaypointButtonTouched(sender: UIButton) {
-		if let wpvc = self.storyboard?.instantiateViewControllerWithIdentifier("Waypoint") as? WaypointViewController {
+	@IBAction func addWaypointButtonTouched(_ sender: UIButton) {
+		if let wpvc = self.storyboard?.instantiateViewController(withIdentifier: "Waypoint") as? WaypointViewController {
 			wpvc.delegate = self
-			self.presentViewController(wpvc, animated: true, completion: nil)
+			self.present(wpvc, animated: true, completion: nil)
 		}
 	}
 	
-	@IBAction func clearWaypointsButtonTouched(sender: UIButton) {
-		waypoints.removeAll(keepCapacity: false)
+	@IBAction func clearWaypointsButtonTouched(_ sender: UIButton) {
+		waypoints.removeAll(keepingCapacity: false)
 		updateWaypointsField()
 	}
 	
-	@IBAction func goButtonTouched(sender: UIButton) {
+	@IBAction func goButtonTouched(_ sender: UIButton) {
 		directionsAPI.delegate = self
-		directionsAPI.from = PXLocation.NamedLocation(originField.text!)
-		directionsAPI.to = PXLocation.NamedLocation(destinationField.text!)
+		directionsAPI.from = PXLocation.namedLocation(originField.text!)
+		directionsAPI.to = PXLocation.namedLocation(destinationField.text!)
 		directionsAPI.mode = modeFromField()
-		if advancedSwitch.on {
+		if advancedSwitch.isOn {
 			directionsAPI.transitRoutingPreference = transitRoutingPreferenceFromField()
+			directionsAPI.trafficModel = trafficModelFromField()
 			directionsAPI.units = unitFromField()
-			directionsAPI.alternatives = alternativeSwitch.on
+			directionsAPI.alternatives = alternativeSwitch.isOn
 			directionsAPI.transitModes = Set()
-			if busSwitch.on {
-				directionsAPI.transitModes.insert(.Bus)
+			if busSwitch.isOn {
+				directionsAPI.transitModes.insert(.bus)
 			}
-			if subwaySwitch.on {
-				directionsAPI.transitModes.insert(.Subway)
+			if subwaySwitch.isOn {
+				directionsAPI.transitModes.insert(.subway)
 			}
-			if trainSwitch.on {
-				directionsAPI.transitModes.insert(.Train)
+			if trainSwitch.isOn {
+				directionsAPI.transitModes.insert(.train)
 			}
-			if tramSwitch.on {
-				directionsAPI.transitModes.insert(.Tram)
+			if tramSwitch.isOn {
+				directionsAPI.transitModes.insert(.tram)
 			}
-			if railSwitch.on {
-				directionsAPI.transitModes.insert(.Rail)
+			if railSwitch.isOn {
+				directionsAPI.transitModes.insert(.rail)
 			}
 			directionsAPI.featuresToAvoid = Set()
-			if avoidTollsSwitch.on {
-				directionsAPI.featuresToAvoid.insert(.Tolls)
+			if avoidTollsSwitch.isOn {
+				directionsAPI.featuresToAvoid.insert(.tolls)
 			}
-			if avoidHighwaysSwitch.on {
-				directionsAPI.featuresToAvoid.insert(.Highways)
+			if avoidHighwaysSwitch.isOn {
+				directionsAPI.featuresToAvoid.insert(.highways)
 			}
-			if avoidFerriesSwitch.on {
-				directionsAPI.featuresToAvoid.insert(.Ferries)
+			if avoidFerriesSwitch.isOn {
+				directionsAPI.featuresToAvoid.insert(.ferries)
 			}
 			switch startArriveField.selectedSegmentIndex {
 			case 0:
-				directionsAPI.departureTime = .Now
+				directionsAPI.departureTime = .now
 				directionsAPI.arrivalTime = nil
 			case 1:
 				if let saDate = startArriveDate {
@@ -202,10 +208,11 @@ class MainViewController: UIViewController {
 				break
 			}
 			directionsAPI.waypoints = waypoints
-			directionsAPI.optimizeWaypoints = optimizeWaypointsSwitch.on
+			directionsAPI.optimizeWaypoints = optimizeWaypointsSwitch.isOn
 			directionsAPI.language = languageFromField()
 		} else {
 			directionsAPI.transitRoutingPreference = nil
+			directionsAPI.trafficModel = nil
 			directionsAPI.units = nil
 			directionsAPI.alternatives = nil
 			directionsAPI.transitModes = Set()
@@ -218,17 +225,17 @@ class MainViewController: UIViewController {
 		}
 		// directionsAPI.region = "fr" // Feature not demonstrated in this sample app
 		directionsAPI.calculateDirections { (response) -> Void in
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+			DispatchQueue.main.async(execute: { () -> Void in
 				switch response {
-				case let .Error(_, error):
-					let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-					alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-					self.presentViewController(alert, animated: true, completion: nil)
-				case let .Success(request, routes):
-					if let rvc = self.storyboard?.instantiateViewControllerWithIdentifier("Results") as? ResultsViewController {
+				case let .error(_, error):
+					let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+					alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+					self.present(alert, animated: true, completion: nil)
+				case let .success(request, routes):
+					if let rvc = self.storyboard?.instantiateViewController(withIdentifier: "Results") as? ResultsViewController {
 						rvc.request = request
 						rvc.results = routes
-						self.presentViewController(rvc, animated: true, completion: nil)
+						self.present(rvc, animated: true, completion: nil)
 					}
 				}
 			})
@@ -237,27 +244,27 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: PXGoogleDirectionsDelegate {
-	func googleDirectionsWillSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) -> Bool {
+	func googleDirectionsWillSendRequestToAPI(_ googleDirections: PXGoogleDirections, withURL requestURL: URL) -> Bool {
 		NSLog("googleDirectionsWillSendRequestToAPI:withURL:")
 		return true
 	}
 	
-	func googleDirectionsDidSendRequestToAPI(googleDirections: PXGoogleDirections, withURL requestURL: NSURL) {
+	func googleDirectionsDidSendRequestToAPI(_ googleDirections: PXGoogleDirections, withURL requestURL: URL) {
 		NSLog("googleDirectionsDidSendRequestToAPI:withURL:")
-		NSLog("\(requestURL.absoluteString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)")
+		NSLog("\(requestURL.absoluteString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
 	}
 	
-	func googleDirections(googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: NSData) {
+	func googleDirections(_ googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: Data) {
 		NSLog("googleDirections:didReceiveRawDataFromAPI:")
-		NSLog(NSString(data: data, encoding: NSUTF8StringEncoding) as! String)
+		NSLog(NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String)
 	}
 	
-	func googleDirectionsRequestDidFail(googleDirections: PXGoogleDirections, withError error: NSError) {
+	func googleDirectionsRequestDidFail(_ googleDirections: PXGoogleDirections, withError error: NSError) {
 		NSLog("googleDirectionsRequestDidFail:withError:")
 		NSLog("\(error)")
 	}
 	
-	func googleDirections(googleDirections: PXGoogleDirections, didReceiveResponseFromAPI apiResponse: [PXGoogleDirectionsRoute]) {
+	func googleDirections(_ googleDirections: PXGoogleDirections, didReceiveResponseFromAPI apiResponse: [PXGoogleDirectionsRoute]) {
 		NSLog("googleDirections:didReceiveResponseFromAPI:")
 		NSLog("Got \(apiResponse.count) routes")
 		for i in 0 ..< apiResponse.count {
@@ -267,7 +274,7 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 }
 
 extension MainViewController: MainViewControllerDelegate {
-	func didAddWaypoint(waypoint: PXLocation) {
+	func didAddWaypoint(_ waypoint: PXLocation) {
 		waypoints.append(waypoint)
 		updateWaypointsField()
 	}
