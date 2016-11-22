@@ -13,13 +13,13 @@ public struct PXGoogleDirectionsTime {
 	/// The time specified as a string (displayed in the time zone of the transit stop)
 	public var description: String?
 	/// The time zone of this station
-	public var timeZone: NSTimeZone?
+	public var timeZone: TimeZone?
 	/// The time specified as a timestamp
-	public var timestamp: NSTimeInterval?
+	public var timestamp: TimeInterval?
 	/// The time as a regular `NSDate` object
-	public var date: NSDate? {
+	public var date: Date? {
 		if let ts = timestamp {
-			return NSDate(timeIntervalSince1970: ts)
+			return Date(timeIntervalSince1970: ts)
 		} else {
 			return nil
 		}

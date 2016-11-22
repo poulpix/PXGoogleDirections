@@ -11,7 +11,7 @@ import Foundation
 /// The total duration of a route leg
 public struct PXGoogleDirectionsDuration {
 	/// The duration in seconds
-	public var duration: NSTimeInterval?
+	public var duration: TimeInterval?
 	/// A human-readable representation of the duration
 	public var description: String?
 }
