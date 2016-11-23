@@ -4,9 +4,19 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![Cocoapods](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)
 [![Cocoapods](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)
 [![Cocoapods](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)
+![Swift](https://img.shields.io/badge/%20in-swift%203-orange.svg)
+
+[![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/PXGoogleDirections.svg?style=plastic)]()
+[![CocoaPods](https://img.shields.io/cocoapods/at/PXGoogleDirections.svg?style=plastic)]()
+[![CocoaPods](https://img.shields.io/cocoapods/aw/PXGoogleDirections.svg?style=plastic)]()
+
+[![GitHub stars](https://img.shields.io/github/stars/poulpix/PXGoogleDirections.svg?style=social&label=Star&style=plastic)]()
+[![GitHub forks](https://img.shields.io/github/forks/poulpix/PXGoogleDirections.svg?style=social&label=Fork&style=plastic)]()
+[![GitHub watchers](https://img.shields.io/github/watchers/poulpix/PXGoogleDirections.svg?style=social&label=Watch&style=plastic)]()
+[![Twitter Follow](https://img.shields.io/twitter/follow/_RomainL.svg?style=social&label=Follow&style=plastic)]()
 
 ## Features
-- Supports all features from the Google Directions API as of March 2015 (see here for a full list: https://developers.google.com/maps/documentation/directions)
+- Supports all features from the Google Directions API as of November 2016 (see here for a full list: https://developers.google.com/maps/documentation/directions)
 - Supports "open in Google Maps app", both for specific locations and directions request
   * also supports the callback feature to get the user back to your app when he's done in Google Maps
   * in case the Google Maps app is not installed, also supports fallback to the built-in Apple Maps app
@@ -14,6 +24,14 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
 - Available through CocoaPods
+- V1.3 is fully compatible with Swift 3 and Google Maps iOS SDK V2+
+
+## New in V1.3
+- Full Swift 3 support
+- Full Google Maps iOS SDK 2.0+ support
+- Added a `trafficModel` property on the `PXGoogleDirections` class to match Google's one in the API (recently added); it works only for driving routes, and when a departure date is specified
+- Fixed a bug where drawing a route would only draw a basic, rough representation of it taken from the route object; now there is an option for drawing a detailed route in the `drawOnMap` method of the `PXGoogleDirectionsRoute` class
+- Other small bug fixes
 
 ## Installation
 ### From Cocoapods
@@ -22,7 +40,7 @@ To use PXGoogleDirections in your project add the following 'Podfile' to your pr
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '8.0'
+platform :ios, '8.1'
 
 pod 'PXGoogleDirections'
 
@@ -48,13 +66,6 @@ import PXGoogleDirections
 - Add the whole `PXGoogleDirections` project to your own Xcode project
 - Add a dependency between the two projects and build
 
-## In case of problems
-If your app also requires the Google Maps iOS SDK, you might run into troubles because of conflicts with the bundled Google Maps iOS SDK in the Cocoapod.
-If you happen to face these problems, please try to do the following:
-- Add `-framework "GoogleMaps"` to the "Other Linker Flags" of your Xcode project.
-- Make sure you are linking your app with all the libraries and frameworks required by the Google Maps iOS SDK. For a full list, see here: https://github.com/CocoaPods/Specs/blob/master/Specs/GoogleMaps/1.12.3/GoogleMaps.podspec.json
-- Also make sure that your app contains the `GoogleMaps.bundle` in the "Copy Bundle Resources" phase of the build process. If it doesn't, you can manually add it to Xcode by browsing to the following directory in the Finder: `/Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle`. Drop it in the "Frameworks" group of your project and uncheck the "Copy" checkbox.
-
 ## Usage
 Quick-start in two lines of Swift code:
 
@@ -68,10 +79,10 @@ let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here
 ```swift
 directionsAPI.calculateDirections({ response in
  switch response {
-  case let .Error(_, error):
+  case let .error(_, error):
    // Oops, something bad happened, see the error object for more information
    break
-  case let .Success(request, routes):
+  case let .success(request, routes):
    // Do your work with the routes object array here
    break
  }
@@ -81,14 +92,32 @@ directionsAPI.calculateDirections({ response in
 See "Documentation" below for more information on the available properties and response data.
 
 ## Requirements
-- Runs on iOS 8 at least, or above.
-- Compatible with Swift 1.2 / Xcode 6.3 and later.
+- Runs on iOS 8.1 at least, or above.
+- Compatible with Swift 3 / Xcode 8 and later.
+  - Please use v1.2.3 if you need compatibility with a previous version of Swift.
 - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
 ## Documentation
-A sample project is available in the "Sample" subfolder of this repository to help getting you started with the SDK.
+The SDK provides an integrated documentation within Xcode, with full autocomplete support.
 
-<img src="https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/Mockup1.png" width="400px"/><img src="https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/Mockup2.png" width="400px"/>
+To help getting you started, a sample project is also available in the "Sample" subfolder of this repository.
+
+It is designed to demo the main features of both the API and the SDK.
+
+<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/Mockup1.png" width="400px"/><img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/Mockup2.png" width="400px"/>
+
+## In case of problems
+Since V1.3, PXGoogleDirections uses Google's latest branch of Google Maps iOS SDK, which has now been split into smaller, more modular frameworks. PXGoogleDirections has a dependency with three of them:
+- `GoogleMapsCore`
+- `GoogleMapsBase`
+- `GoogleMaps`
+The Google Places iOS SDK is not required.
+
+If your app *also* requires the Google Maps iOS SDK, you might run into troubles because of conflicts with the bundled Google Maps iOS SDK in the Cocoapod. Providing Cocoapods frameworks with static framework dependencies like Google Maps is a real pain and there is no simple, straightforward solution I'm aware of, unfortunately.
+
+If you happen to face these problems, please try to do the following:
+- Add `-framework "GoogleMapsBase" -framework "GoogleMapsCore" -framework "GoogleMaps"` to the "Other Linker Flags" of your Xcode project.
+- Make sure you are linking your app with all the libraries and frameworks required by the Google Maps iOS SDK. For a full list, see here: https://github.com/CocoaPods/Specs/blob/master/Specs/a/d/d/GoogleMaps/2.1.1/GoogleMaps.podspec.json
 
 ## Credit
 - Some portions of code inspired by OpenInGoogleMaps-iOS (https://github.com/googlemaps/OpenInGoogleMaps-iOS) from the Google Maps team.

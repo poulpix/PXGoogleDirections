@@ -11,25 +11,30 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+#import <GoogleMaps/GMSDeprecationMacros.h>
 #import <GoogleMaps/GMSMapLayer.h>
 #import <GoogleMaps/GMSUISettings.h>
-
-#ifndef __GMS_AVAILABLE_BUT_DEPRECATED
-#define __GMS_AVAILABLE_BUT_DEPRECATED __deprecated
-#endif
 
 @class GMSCameraPosition;
 @class GMSCameraUpdate;
 @class GMSCoordinateBounds;
 @class GMSIndoorDisplay;
 @class GMSMapLayer;
+@class GMSMapStyle;
 @class GMSMapView;
 @class GMSMarker;
 @class GMSOverlay;
 @class GMSProjection;
 
+GMS_ASSUME_NONNULL_BEGIN
+
 /** Delegate for events on GMSMapView. */
-@protocol GMSMapViewDelegate <NSObject>
+@protocol GMSMapViewDelegate<NSObject>
 
 @optional
 
@@ -48,38 +53,34 @@
  * camera positions. It is always called for the final position of an animation
  * or gesture.
  */
-- (void)mapView:(GMSMapView *)mapView
-    didChangeCameraPosition:(GMSCameraPosition *)position;
+- (void)mapView:(GMSMapView *)mapView didChangeCameraPosition:(GMSCameraPosition *)position;
 
 /**
  * Called when the map becomes idle, after any outstanding gestures or
  * animations have completed (or after the camera has been explicitly set).
  */
-- (void)mapView:(GMSMapView *)mapView
-    idleAtCameraPosition:(GMSCameraPosition *)position;
+- (void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position;
 
 /**
  * Called after a tap gesture at a particular coordinate, but only if a marker
  * was not tapped.  This is called before deselecting any currently selected
  * marker (the implicit action for tapping on the map).
  */
-- (void)mapView:(GMSMapView *)mapView
-    didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
+- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate;
 
 /**
  * Called after a long-press gesture at a particular coordinate.
  *
- * @param mapView The map view that was pressed.
- * @param coordinate The location that was pressed.
+ * @param mapView The map view that was tapped.
+ * @param coordinate The location that was tapped.
  */
-- (void)mapView:(GMSMapView *)mapView
-    didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate;
+- (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate;
 
 /**
  * Called after a marker has been tapped.
  *
- * @param mapView The map view that was pressed.
- * @param marker The marker that was pressed.
+ * @param mapView The map view that was tapped.
+ * @param marker The marker that was tapped.
  * @return YES if this delegate handled the tap event, which prevents the map
  *         from performing its default selection behavior, and NO if the map
  *         should continue with its default selection behavior.
@@ -89,17 +90,34 @@
 /**
  * Called after a marker's info window has been tapped.
  */
-- (void)mapView:(GMSMapView *)mapView
-    didTapInfoWindowOfMarker:(GMSMarker *)marker;
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker;
+
+/**
+ * Called after a marker's info window has been long pressed.
+ */
+- (void)mapView:(GMSMapView *)mapView didLongPressInfoWindowOfMarker:(GMSMarker *)marker;
 
 /**
  * Called after an overlay has been tapped.
  * This method is not called for taps on markers.
  *
- * @param mapView The map view that was pressed.
- * @param overlay The overlay that was pressed.
+ * @param mapView The map view that was tapped.
+ * @param overlay The overlay that was tapped.
  */
 - (void)mapView:(GMSMapView *)mapView didTapOverlay:(GMSOverlay *)overlay;
+
+/**
+ *  Called after a POI has been tapped.
+ *
+ * @param mapView The map view that was tapped.
+ * @param placeID The placeID of the POI that was tapped.
+ * @param name The name of the POI that was tapped.
+ * @param location The location of the POI that was tapped.
+ */
+- (void)mapView:(GMSMapView *)mapView
+    didTapPOIWithPlaceID:(NSString *)placeID
+                    name:(NSString *)name
+                location:(CLLocationCoordinate2D)location;
 
 /**
  * Called when a marker is about to become selected, and provides an optional
@@ -116,7 +134,7 @@
  *
  * @return The custom info window for the specified marker, or nil for default
  */
-- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker;
+- (UIView *GMS_NULLABLE_PTR)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker;
 
 /**
  * Called when mapView:markerInfoWindow: returns nil. If this method returns a
@@ -125,11 +143,16 @@
  *
  * @param mapView The map view that was pressed.
  * @param marker The marker that was pressed.
- * @return The custom view to disaply as contents in the info window, or null to
+ * @return The custom view to display as contents in the info window, or nil to
  * use the default content rendering instead
  */
 
-- (UIView *)mapView:(GMSMapView *)mapView markerInfoContents:(GMSMarker *)marker;
+- (UIView *GMS_NULLABLE_PTR)mapView:(GMSMapView *)mapView markerInfoContents:(GMSMarker *)marker;
+
+/**
+ * Called when the marker's info window is closed.
+ */
+- (void)mapView:(GMSMapView *)mapView didCloseInfoWindowOfMarker:(GMSMarker *)marker;
 
 /**
  * Called when dragging has been initiated on a marker.
@@ -155,6 +178,22 @@
  */
 - (BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView;
 
+/**
+ * Called when tiles have just been requested or labels have just started rendering.
+ */
+- (void)mapViewDidStartTileRendering:(GMSMapView *)mapView;
+
+/**
+ * Called when all tiles have been loaded (or failed permanently) and labels have been rendered.
+ */
+- (void)mapViewDidFinishTileRendering:(GMSMapView *)mapView;
+
+/**
+ * Called when map is stable (tiles loaded, labels rendered, camera idle) and overlay objects have
+ * been rendered.
+ */
+- (void)mapViewSnapshotReady:(GMSMapView *)mapView;
+
 @end
 
 /**
@@ -179,6 +218,26 @@ typedef enum {
 } GMSMapViewType;
 
 /**
+ * Rendering frame rates for GMSMapView.
+ */
+typedef enum {
+  /** Use the minimum frame rate to conserve battery usage. */
+  kGMSFrameRatePowerSave,
+
+  /**
+   * Use a median frame rate to provide smoother rendering and conserve processing cycles.
+   */
+  kGMSFrameRateConservative,
+
+  /**
+   * Use the maximum frame rate for a device. For low end devices this will be 30 FPS,
+   * for high end devices 60 FPS.
+   */
+  kGMSFrameRateMaximum,
+
+} GMSFrameRate;
+
+/**
  * This is the main class of the Google Maps SDK for iOS and is the entry point
  * for all methods related to the map.
  *
@@ -194,7 +253,7 @@ typedef enum {
 @interface GMSMapView : UIView
 
 /** GMSMapView delegate. */
-@property(nonatomic, weak) IBOutlet id<GMSMapViewDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<GMSMapViewDelegate> GMS_NULLABLE_PTR delegate;
 
 /**
  * Controls the camera, which defines how the map is oriented. Modification of
@@ -224,7 +283,7 @@ typedef enum {
  * drawn. If it is disabled, or it is enabled but no location data is available,
  * this will be nil.  This property is observable using KVO.
  */
-@property(nonatomic, strong, readonly) CLLocation *myLocation;
+@property(nonatomic, strong, readonly) CLLocation *GMS_NULLABLE_PTR myLocation;
 
 /**
  * The marker that is selected.  Setting this property selects a particular
@@ -232,7 +291,7 @@ typedef enum {
  * it to nil deselects the marker, hiding the info window.  This property is
  * observable using KVO.
  */
-@property(nonatomic, strong) GMSMarker *selectedMarker;
+@property(nonatomic, strong) GMSMarker *GMS_NULLABLE_PTR selectedMarker;
 
 /**
  * Controls whether the map is drawing traffic data, if available.  This is
@@ -245,6 +304,13 @@ typedef enum {
  * kGMSTypeNormal.
  */
 @property(nonatomic, assign) GMSMapViewType mapType;
+
+/**
+ * Controls the style of the map.
+ *
+ * A non-nil mapStyle will only apply if mapType is Normal.
+ */
+@property(nonatomic, strong, nullable) GMSMapStyle *mapStyle;
 
 /**
  * Minimum zoom (the farthest the camera may be zoomed out). Defaults to
@@ -289,7 +355,7 @@ typedef enum {
 
 /**
  * Controls the 'visible' region of the view.  By applying padding an area
- * arround the edge of the view can be created which will contain map data
+ * around the edge of the view can be created which will contain map data
  * but will not contain UI controls.
  *
  * If the padding is not balanced, the visual center of the view will move as
@@ -315,6 +381,12 @@ typedef enum {
  * Accessor for the custom CALayer type used for the layer.
  */
 @property(nonatomic, readonly, retain) GMSMapLayer *layer;
+
+/**
+ * Controls the rendering frame rate.
+ * Default value is kGMSFrameRateMaximum.
+ */
+@property(nonatomic, assign) GMSFrameRate preferredFrameRate;
 
 /**
  * Builds and returns a GMSMapView, with a frame and camera target.
@@ -354,16 +426,23 @@ typedef enum {
  * will have a zero bearing and tilt (i.e., facing north and looking directly at
  * the Earth). This takes the frame and padding of this GMSMapView into account.
  *
- * If the bounds is nil or invalid this method will return a nil camera.
+ * If the bounds is invalid this method will return a nil camera.
  */
-- (GMSCameraPosition *)cameraForBounds:(GMSCoordinateBounds *)bounds
-                                insets:(UIEdgeInsets)insets;
+- (GMSCameraPosition *GMS_NULLABLE_PTR)cameraForBounds:(GMSCoordinateBounds *)bounds
+                                                insets:(UIEdgeInsets)insets;
 
 /**
  * Changes the camera according to |update|.
  * The camera change is instantaneous (with no animation).
  */
 - (void)moveCamera:(GMSCameraUpdate *)update;
+
+/**
+ * Check whether the given camera positions would practically cause the camera to be rendered the
+ * same, taking into account the level of precision and transformations used internally.
+ */
+- (BOOL)areEqualForRenderingPosition:(GMSCameraPosition *)position
+                            position:(GMSCameraPosition *)otherPosition;
 
 @end
 
@@ -376,3 +455,5 @@ extern NSString *const kGMSAccessibilityCompass;
  * Accessibility identifier for the "my location" button.
  */
 extern NSString *const kGMSAccessibilityMyLocation;
+
+GMS_ASSUME_NONNULL_END

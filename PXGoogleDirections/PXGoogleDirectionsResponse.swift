@@ -11,14 +11,14 @@ import Foundation
 /// An enum describing response from the Google Directions API.
 public enum PXGoogleDirectionsResponse {
 	/// When the API request succeeds, this enum case contains all data fetched from the Google Directions API
-	case Success(PXGoogleDirections, [PXGoogleDirectionsRoute])
+	case success(PXGoogleDirections, [PXGoogleDirectionsRoute])
 	/// In case of an API request error, the additionnal parameter will contain the reason of the error
-	case Error(PXGoogleDirections, NSError)
+	case error(PXGoogleDirections, NSError)
 	
 	/// Returns `true` if this response indicates an error during the API request process, or `false` otherwise
 	public var failed: Bool {
 		switch self {
-		case .Error(_, _):
+		case .error(_, _):
 			return true
 		default:
 			return false

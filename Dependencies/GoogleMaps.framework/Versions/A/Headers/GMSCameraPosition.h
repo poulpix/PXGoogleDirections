@@ -10,10 +10,18 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
 * An immutable class that aggregates all camera position parameters.
  */
-@interface GMSCameraPosition : NSObject <NSCopying, NSMutableCopying>
+@interface GMSCameraPosition : NSObject<NSCopying, NSMutableCopying>
 
 /**
  * Location on the Earth towards which the camera points.
@@ -33,8 +41,11 @@
 @property(nonatomic, readonly) CLLocationDirection bearing;
 
 /**
- * The angle, in degrees, of the camera angle from the nadir (directly facing the Earth). 0 is
- * straight down, 90 is parallel to the ground. Note that the maximum angle allowed is 45 degrees.
+ * The angle, in degrees, of the camera from the nadir (directly facing the Earth). 0 is
+ * straight down, 90 is parallel to the ground. Note that the maximum angle allowed is dependent
+ * on the zoom. You can think of it as a series of line segments as a function of zoom, rather
+ * than a step function. For zoom 16 and above, the maximum angle is 65 degrees. For zoom 10 and
+ * below, the maximum angle is 30 degrees.
  */
 @property(nonatomic, readonly) double viewingAngle;
 
@@ -43,10 +54,11 @@
  * Building a GMSCameraPosition via this initializer (or by the following convenience constructors)
  * will implicitly clamp camera values.
  *
- * @param target location on the earth which the camera points
- * @param zoom the zoom level near the center of the screen
- * @param bearing of the camera in degrees from true north
- * @param viewingAngle in degrees, of the camera angle from the nadir
+ * @param target Location on the earth towards which the camera points.
+ * @param zoom The zoom level near the center of the screen.
+ * @param bearing Bearing of the camera in degrees clockwise from true north.
+ * @param viewingAngle The angle, in degrees, of the camera angle from the nadir (directly facing
+ *                     the Earth)
  */
 - (id)initWithTarget:(CLLocationCoordinate2D)target
                 zoom:(float)zoom
@@ -115,3 +127,5 @@ FOUNDATION_EXTERN const float kGMSMaxZoomLevel;
 
 /** The minimum zoom (farthest from the Earth's surface) permitted by the map camera. */
 FOUNDATION_EXTERN const float kGMSMinZoomLevel;
+
+GMS_ASSUME_NONNULL_END

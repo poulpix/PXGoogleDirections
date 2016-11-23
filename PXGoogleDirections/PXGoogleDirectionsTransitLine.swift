@@ -19,7 +19,7 @@ public struct PXGoogleDirectionsTransitLine {
 	/// An array of `PXGoogleDirectionsTransitAgency` objects that each provide information about the operator of the line
 	public var agencies: [PXGoogleDirectionsTransitAgency] = [PXGoogleDirectionsTransitAgency]()
 	/// The URL for this transit line as provided by the transit agency
-	public var url: NSURL?
+	public var url: URL?
 	/// The icon associated with this line
 	public var icon: UIImage?
 	/// The color of text commonly used for signage of this line

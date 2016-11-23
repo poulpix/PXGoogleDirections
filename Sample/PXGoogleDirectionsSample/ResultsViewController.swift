@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Poulpix. All rights reserved.
 //
 
-import GoogleMaps
 import UIKit
 import PXGoogleDirections
+import GoogleMaps
 
 class ResultsViewController: UIViewController {
 	@IBOutlet weak var prevButton: UIButton!
@@ -25,47 +25,47 @@ class ResultsViewController: UIViewController {
 		mapView.delegate = self
 	}
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		updateRoute()
 	}
 	
-	@IBAction func previousButtonTouched(sender: UIButton) {
+	@IBAction func previousButtonTouched(_ sender: UIButton) {
 		routeIndex -= 1
 		updateRoute()
 	}
 
-	@IBAction func nextButtonTouched(sender: UIButton) {
+	@IBAction func nextButtonTouched(_ sender: UIButton) {
 		routeIndex += 1
 		updateRoute()
 	}
 	
-	@IBAction func closeButtonTouched(sender: UIButton) {
-		dismissViewControllerAnimated(true, completion: nil)
+	@IBAction func closeButtonTouched(_ sender: UIButton) {
+		dismiss(animated: true, completion: nil)
 	}
 	
-	@IBAction func openInGoogleMapsButtonTouched(sender: UIButton) {
-		if !request.openInGoogleMaps(center: nil, mapMode: .StreetView, view: Set(arrayLiteral: PXGoogleMapsView.Satellite, PXGoogleMapsView.Traffic, PXGoogleMapsView.Transit), zoom: 15, callbackURL: NSURL(string: "pxsample://"), callbackName: "PXSample") {
-			let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Could not launch the Google Maps app. Maybe this app is not installed on this device?", preferredStyle: UIAlertControllerStyle.Alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-			self.presentViewController(alert, animated: true, completion: nil)
+	@IBAction func openInGoogleMapsButtonTouched(_ sender: UIButton) {
+		if !request.openInGoogleMaps(center: nil, mapMode: .streetView, view: Set(arrayLiteral: PXGoogleMapsView.satellite, PXGoogleMapsView.traffic, PXGoogleMapsView.transit), zoom: 15, callbackURL: URL(string: "pxsample://"), callbackName: "PXSample") {
+			let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Could not launch the Google Maps app. Maybe this app is not installed on this device?", preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
 		}
 	}
 	
 	func updateRoute() {
-		prevButton.enabled = (routeIndex > 0)
-		nextButton.enabled = (routeIndex < (results).count - 1)
+		prevButton.isEnabled = (routeIndex > 0)
+		nextButton.isEnabled = (routeIndex < (results).count - 1)
 		routesLabel.text = "\(routeIndex + 1) of \((results).count)"
 		mapView.clear()
 		for i in 0 ..< results.count {
 			if i != routeIndex {
-				results[i].drawOnMap(mapView, approximate: false, strokeColor: UIColor.lightGrayColor(), strokeWidth: 3.0)
+				results[i].drawOnMap(mapView, approximate: false, strokeColor: UIColor.lightGray, strokeWidth: 3.0)
 			}
 		}
-		mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(results[routeIndex].bounds, withPadding: 40.0))
-		results[routeIndex].drawOnMap(mapView, approximate: false, strokeColor: UIColor.purpleColor(), strokeWidth: 4.0)
-		results[routeIndex].drawOriginMarkerOnMap(mapView, title: "Origin", color: UIColor.greenColor(), opacity: 1.0, flat: true)
-		results[routeIndex].drawDestinationMarkerOnMap(mapView, title: "Destination", color: UIColor.redColor(), opacity: 1.0, flat: true)
+		mapView.animate(with: GMSCameraUpdate.fit(results[routeIndex].bounds!, withPadding: 40.0))
+		results[routeIndex].drawOnMap(mapView, approximate: false, strokeColor: UIColor.purple, strokeWidth: 4.0)
+		results[routeIndex].drawOriginMarkerOnMap(mapView, title: "Origin", color: UIColor.green, opacity: 1.0, flat: true)
+		results[routeIndex].drawDestinationMarkerOnMap(mapView, title: "Destination", color: UIColor.red, opacity: 1.0, flat: true)
 		directions.reloadData()
 	}
 }
@@ -74,44 +74,44 @@ extension ResultsViewController: GMSMapViewDelegate {
 }
 
 extension ResultsViewController: UITableViewDataSource {
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	func numberOfSections(in tableView: UITableView) -> Int {
 		return (results[routeIndex].legs).count
 	}
 	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return (results[routeIndex].legs[section].steps).count
 	}
 	
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let leg = results[routeIndex].legs[section]
-		if let dist = leg.distance?.description, dur = leg.duration?.description {
+		if let dist = leg.distance?.description, let dur = leg.duration?.description {
 			return "Step \(section + 1) (\(dist), \(dur))"
 		} else {
 			return "Step \(section + 1)"
 		}
 	}
 	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("RouteStep")
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cell = tableView.dequeueReusableCell(withIdentifier: "RouteStep")
 		if (cell == nil) {
-			cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "RouteStep")
+			cell = UITableViewCell(style: .subtitle, reuseIdentifier: "RouteStep")
 		}
 		let step = results[routeIndex].legs[indexPath.section].steps[indexPath.row]
 		if let instr = step.rawInstructions {
 			cell!.textLabel!.text = instr
 		}
-		if let dist = step.distance?.description, dur = step.duration?.description {
+		if let dist = step.distance?.description, let dur = step.duration?.description {
 			cell!.detailTextLabel?.text = "\(dist), \(dur)"
 		}
 		return cell!
 	}
 	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 		let step = results[routeIndex].legs[indexPath.section].steps[indexPath.row]
-		mapView.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(step.bounds, withPadding: 40.0))
+		mapView.animate(with: GMSCameraUpdate.fit(step.bounds!, withPadding: 40.0))
 	}
 	
-	func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+	func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
 		let step = results[routeIndex].legs[indexPath.section].steps[indexPath.row]
 		var msg: String
 		if let m = step.maneuver {
@@ -119,9 +119,9 @@ extension ResultsViewController: UITableViewDataSource {
 		} else {
 			msg = "\(step.rawInstructions!)\nFrom: (\(step.startLocation!.latitude); \(step.startLocation!.longitude))\nTo: (\(step.endLocation!.latitude); \(step.endLocation!.longitude))"
 		}
-		let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-		self.presentViewController(alert, animated: true, completion: nil)
+		let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
 }
 

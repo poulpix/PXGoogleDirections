@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import GoogleMaps
 
 /// A single leg of the journey from the origin to the destination in the calculated route.
 public struct PXGoogleDirectionsRouteLeg: PXGoogleDirectionsSteppable {
@@ -31,4 +32,22 @@ public struct PXGoogleDirectionsRouteLeg: PXGoogleDirectionsSteppable {
 	public var startAddress: String?
 	/// Human-readable address (typically a street address) reflecting the `endLocation` of this leg
 	public var endAddress: String?
+	/// Returns a detailed `GMSPath` object built from the legs and steps composing the route
+	public var detailedPath: GMSPath? {
+		let dp = GMSMutablePath()
+		for s in steps {
+			if let sl = s.startLocation {
+				dp.add(sl)
+			}
+			if let spl = s.polyline, let subpath = GMSPath(fromEncodedPath: spl) {
+				for i in 0 ..< subpath.count() {
+					dp.add(subpath.coordinate(at: i))
+				}
+			}
+			if let el = s.endLocation {
+				dp.add(el)
+			}
+		}
+		return (dp.count() > 0 ? dp : nil)
+	}
 }

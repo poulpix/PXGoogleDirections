@@ -16,12 +16,12 @@ public extension UIColor {
 		var alpha: CGFloat = 1.0
 		
 		if hexColor.hasPrefix("#") {
-			let index = hexColor.startIndex.advancedBy(1)
-			let hex = hexColor.substringFromIndex(index)
-			let scanner = NSScanner(string: hex)
+			let index = hexColor.characters.index(hexColor.startIndex, offsetBy: 1)
+			let hex = hexColor.substring(from: index)
+			let scanner = Scanner(string: hex)
 			var hexValue: CUnsignedLongLong = 0
-			if scanner.scanHexLongLong(&hexValue) {
-				switch hex.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) {
+			if scanner.scanHexInt64(&hexValue) {
+				switch hex.lengthOfBytes(using: String.Encoding.utf8) {
 				case 3:
 					red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
 					green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
@@ -45,7 +45,7 @@ public extension UIColor {
 				}
 			}
 		}
-		if let r = red, g = green, b = blue {
+		if let r = red, let g = green, let b = blue {
 			self.init(red: r, green: g, blue: b, alpha: alpha)
 		} else {
 			self.init()

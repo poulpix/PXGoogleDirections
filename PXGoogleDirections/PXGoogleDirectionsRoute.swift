@@ -35,12 +35,32 @@ public class PXGoogleDirectionsRoute: NSObject {
 			return nil
 		}
 	}
+	/// Returns a detailed `GMSPath` object built from the legs and steps composing the route
+	public var detailedPath: GMSPath? {
+		let dp = GMSMutablePath()
+		for l in legs {
+			for s in l.steps {
+				if let sl = s.startLocation {
+					dp.add(sl)
+				}
+				if let spl = s.polyline, let subpath = GMSPath(fromEncodedPath: spl) {
+					for i in 0 ..< subpath.count() {
+						dp.add(subpath.coordinate(at: i))
+					}
+				}
+				if let el = s.endLocation {
+					dp.add(el)
+				}
+			}
+		}
+		return (dp.count() > 0 ? dp : path)
+	}
 	/// Returns the route's total duration, in seconds
-	public var totalDuration: NSTimeInterval {
+	public var totalDuration: TimeInterval {
 		get {
-			var td = 0 as NSTimeInterval
+			var td = 0 as TimeInterval
 			for l in legs {
-				guard let ld = l.duration, d = ld.duration else {
+				guard let ld = l.duration, let d = ld.duration else {
 					break
 				}
 				td += d
@@ -53,7 +73,7 @@ public class PXGoogleDirectionsRoute: NSObject {
 		get {
 			var td = 0 as CLLocationDistance
 			for l in legs {
-				guard let ld = l.distance, d = ld.distance else {
+				guard let ld = l.distance, let d = ld.distance else {
 					break
 				}
 				td += d
@@ -69,28 +89,14 @@ public class PXGoogleDirectionsRoute: NSObject {
 	- parameter approximate: `true` if the route should be drawn using rough directions, `false` otherwise ; `false` by default but has a performance impact
 	- parameter strokeColor: The optional route stroke color
 	- parameter strokeWidth: The optional route stroke width
-	- returns: The resulting `GMSPolyline` objects that were drawn to the map
+	- returns: The resulting `GMSPolyline` object that was drawn to the map
 	*/
-	public func drawOnMap(map: GMSMapView, approximate: Bool = false, strokeColor: UIColor = UIColor.redColor(), strokeWidth: Float = 2.0) -> [GMSPolyline] {
-		var polylines = [GMSPolyline]()
-		if approximate {
-			let polyline = GMSPolyline(path: path)
-			polyline.strokeColor = strokeColor
-			polyline.strokeWidth = CGFloat(strokeWidth)
-			polyline.map = map
-			polylines.append(polyline)
-		} else {
-			for l in legs {
-				for s in l.steps {
-					let polyline = GMSPolyline(path: s.path)
-					polyline.strokeColor = strokeColor
-					polyline.strokeWidth = CGFloat(strokeWidth)
-					polyline.map = map
-					polylines.append(polyline)
-				}
-			}
-		}
-		return polylines
+	@discardableResult public func drawOnMap(_ map: GMSMapView, approximate: Bool = false, strokeColor: UIColor = UIColor.red, strokeWidth: Float = 2.0) -> GMSPolyline {
+		let polyline = GMSPolyline(path: (approximate ? path : detailedPath))
+		polyline.strokeColor = strokeColor
+		polyline.strokeWidth = CGFloat(strokeWidth)
+		polyline.map = map
+		return polyline
 	}
 	
 	/**
@@ -103,11 +109,11 @@ public class PXGoogleDirectionsRoute: NSObject {
 	- parameter flat: An optional indicator to flatten the marker
 	- returns: The resulting `GMSMarker` object that was drawn to the map
 	*/
-	public func drawOriginMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
+	@discardableResult public func drawOriginMarkerOnMap(_ map: GMSMapView, title: String = "", color: UIColor = UIColor.red, opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
 		var marker: GMSMarker?
 		if let p = path {
 			if p.count() > 1 {
-				marker = drawMarkerWithCoordinates(p.coordinateAtIndex(0), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
+				marker = drawMarkerWithCoordinates(p.coordinate(at: 0), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
 			}
 		}
 		return marker
@@ -123,11 +129,11 @@ public class PXGoogleDirectionsRoute: NSObject {
 	- parameter flat: An optional indicator to flatten the marker
 	- returns: The resulting `GMSMarker` object that was drawn to the map
 	*/
-	public func drawDestinationMarkerOnMap(map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
+	@discardableResult public func drawDestinationMarkerOnMap(_ map: GMSMapView, title: String = "", color: UIColor = UIColor.red, opacity: Float = 1.0, flat: Bool = false) -> GMSMarker? {
 		var marker: GMSMarker?
 		if let p = path {
 			if p.count() > 1 {
-				marker = drawMarkerWithCoordinates(p.coordinateAtIndex(p.count() - 1), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
+				marker = drawMarkerWithCoordinates(p.coordinate(at: p.count() - 1), onMap: map, title: title, color: color, opacity: opacity, flat: flat)
 			}
 		}
 		return marker
@@ -135,12 +141,12 @@ public class PXGoogleDirectionsRoute: NSObject {
 	
 	// MARK: Private functions
 
-	private func drawMarkerWithCoordinates(coordinates: CLLocationCoordinate2D, onMap map: GMSMapView, title: String = "", color: UIColor = UIColor.redColor(), opacity: Float = 1.0, flat: Bool = false) -> GMSMarker {
+	fileprivate func drawMarkerWithCoordinates(_ coordinates: CLLocationCoordinate2D, onMap map: GMSMapView, title: String = "", color: UIColor = UIColor.red, opacity: Float = 1.0, flat: Bool = false) -> GMSMarker {
 		let marker = GMSMarker(position: coordinates)
 		marker.title = title
-		marker.icon = GMSMarker.markerImageWithColor(color)
+		marker.icon = GMSMarker.markerImage(with: color)
 		marker.opacity = opacity
-		marker.flat = flat
+		marker.isFlat = flat
 		marker.map = map
 		return marker
 	}

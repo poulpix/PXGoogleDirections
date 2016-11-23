@@ -52,8 +52,8 @@ public class PXGoogleDirectionsRouteLegStep: NSObject, PXGoogleDirectionsSteppab
 	public var rawInstructions: String? {
 		var result = htmlInstructions
 		if result != nil {
-			while let r = result!.rangeOfString("<[^>]+>", options: .RegularExpressionSearch) {
-				result = result!.stringByReplacingCharactersInRange(r, withString: "")
+			while let r = result!.range(of: "<[^>]+>", options: .regularExpression) {
+				result = result!.replacingCharacters(in: r, with: "")
 			}
 		}
 		return result

@@ -10,7 +10,15 @@
 
 #import <GoogleMaps/GMSOverlay.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
 @class GMSCoordinateBounds;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * GMSGroundOverlay specifies the available options for a ground overlay that
@@ -37,7 +45,13 @@
  * Icon to render within |bounds| on the Earth. If this is nil, the overlay will
  * not be visible (unlike GMSMarker which has a default image).
  */
-@property(nonatomic, strong) UIImage *icon;
+@property(nonatomic, strong) UIImage *GMS_NULLABLE_PTR icon;
+
+/**
+ * Sets the opacity of the ground overlay, between 0 (completely transparent)
+ * and 1 (default) inclusive.
+ */
+@property(nonatomic, assign) float opacity;
 
 /**
  * Bearing of this ground overlay, in degrees. The default value, zero, points
@@ -49,21 +63,21 @@
  * The 2D bounds on the Earth in which |icon| is drawn. Changing this value
  * will adjust |position| accordingly.
  */
-@property(nonatomic, strong) GMSCoordinateBounds *bounds;
+@property(nonatomic, strong) GMSCoordinateBounds *GMS_NULLABLE_PTR bounds;
 
 /**
  * Convenience constructor for GMSGroundOverlay for a particular |bounds| and
  * |icon|. Will set |position| accordingly.
  */
-+ (instancetype)groundOverlayWithBounds:(GMSCoordinateBounds *)bounds
-                                   icon:(UIImage *)icon;
++ (instancetype)groundOverlayWithBounds:(GMSCoordinateBounds *GMS_NULLABLE_PTR)bounds
+                                   icon:(UIImage *GMS_NULLABLE_PTR)icon;
 
 /**
  * Constructs a GMSGroundOverlay that renders the given |icon| at |position|,
  * as if the image's actual size matches camera pixels at |zoomLevel|.
  */
 + (instancetype)groundOverlayWithPosition:(CLLocationCoordinate2D)position
-                                     icon:(UIImage *)icon
+                                     icon:(UIImage *GMS_NULLABLE_PTR)icon
                                 zoomLevel:(CGFloat)zoomLevel;
 
 @end
@@ -73,3 +87,5 @@
  * point of the icon.
  */
 FOUNDATION_EXTERN const CGPoint kGMSGroundOverlayDefaultAnchor;
+
+GMS_ASSUME_NONNULL_END

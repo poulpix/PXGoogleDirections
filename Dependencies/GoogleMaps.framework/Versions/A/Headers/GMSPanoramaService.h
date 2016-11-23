@@ -10,14 +10,23 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
 @class GMSPanorama;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * Callback for when a panorama metadata becomes available.
  * If an error occured, |panorama| is nil and |error| is not nil.
  * Otherwise, |panorama| is not nil and |error| is nil.
  */
-typedef void (^GMSPanoramaCallback)(GMSPanorama *panorama, NSError *error);
+typedef void (^GMSPanoramaCallback)(GMSPanorama *GMS_NULLABLE_PTR panorama,
+                                    NSError *GMS_NULLABLE_PTR error);
 
 /**
  * GMSPanoramaService can be used to request panorama metadata even when a
@@ -46,7 +55,8 @@ typedef void (^GMSPanoramaCallback)(GMSPanorama *panorama, NSError *error);
  * |callback| will be called with the result. Only panoramaIDs obtained
  * from the Google Maps SDK for iOS are supported.
  */
-- (void)requestPanoramaWithID:(NSString *)panoramaID
-                     callback:(GMSPanoramaCallback)callback;
+- (void)requestPanoramaWithID:(NSString *)panoramaID callback:(GMSPanoramaCallback)callback;
 
 @end
+
+GMS_ASSUME_NONNULL_END

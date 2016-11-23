@@ -10,9 +10,17 @@
 
 #import <GoogleMaps/GMSOverlay.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
 @class GMSMarkerLayer;
 @class GMSPanoramaView;
 @class UIImage;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * Animation types for GMSMarker.
@@ -37,7 +45,7 @@ typedef enum {
 @property(nonatomic, assign) CLLocationCoordinate2D position;
 
 /** Snippet text, shown beneath the title in the info window when selected. */
-@property(nonatomic, copy) NSString *snippet;
+@property(nonatomic, copy) NSString *GMS_NULLABLE_PTR snippet;
 
 /**
  * Marker icon to render. If left nil, uses a default SDK place marker.
@@ -49,7 +57,38 @@ typedef enum {
  * also redefines how anchors are specified.  For an animated image the
  * value for the animation is used, not the individual frames.
  */
-@property(nonatomic, strong) UIImage *icon;
+@property(nonatomic, strong) UIImage *GMS_NULLABLE_PTR icon;
+
+/**
+ * Marker view to render. If left nil, falls back to the |icon| property instead.
+ *
+ * Supports animation of all animatable properties of UIView, except |frame| and |center|. Changing
+ * these properties or their corresponding CALayer version, including |position|, is not supported.
+ *
+ * Note that the view behaves as if |clipsToBounds| is set to YES, regardless of its actual
+ * value.
+ */
+@property(nonatomic, strong) UIView *GMS_NULLABLE_PTR iconView;
+
+/**
+ * Controls whether the icon for this marker should be redrawn every frame.
+ *
+ * Note that when this changes from NO to YES, the icon is guaranteed to be redrawn next frame.
+ *
+ * Defaults to YES.
+ * Has no effect if |iconView| is nil.
+ */
+@property(nonatomic, assign) BOOL tracksViewChanges;
+
+/**
+ * Controls whether the info window for this marker should be redrawn every frame.
+ *
+ * Note that when this changes from NO to YES, the info window is guaranteed to be redrawn next
+ * frame.
+ *
+ * Defaults to NO.
+ */
+@property(nonatomic, assign) BOOL tracksInfoWindowChanges;
 
 /**
  * The ground anchor specifies the point in the icon image that is anchored to
@@ -112,7 +151,7 @@ typedef enum {
  * objects, otherwise a loop may be created (preventing ARC from releasing
  * objects).
  */
-@property(nonatomic, strong) id userData;
+@property(nonatomic, strong) id GMS_NULLABLE_PTR userData;
 
 /**
  * Provides the Core Animation layer for this GMSMarker.
@@ -128,13 +167,13 @@ typedef enum {
  * is attached to.
  * A marker can be shown on both a panorama and a map at the same time.
  */
-@property(nonatomic, weak) GMSPanoramaView *panoramaView;
+@property(nonatomic, weak) GMSPanoramaView *GMS_NULLABLE_PTR panoramaView;
 
 /** Convenience constructor for a default marker. */
 + (instancetype)markerWithPosition:(CLLocationCoordinate2D)position;
 
 /** Creates a tinted version of the default marker image for use as an icon. */
-+ (UIImage *)markerImageWithColor:(UIColor *)color;
++ (UIImage *)markerImageWithColor:(UIColor *GMS_NULLABLE_PTR)color;
 
 @end
 
@@ -149,3 +188,5 @@ FOUNDATION_EXTERN const CGPoint kGMSMarkerDefaultGroundAnchor;
  * point of the marker icon.
  */
 FOUNDATION_EXTERN const CGPoint kGMSMarkerDefaultInfoWindowAnchor;
+
+GMS_ASSUME_NONNULL_END

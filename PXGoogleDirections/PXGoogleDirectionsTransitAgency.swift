@@ -13,7 +13,7 @@ public struct PXGoogleDirectionsTransitAgency {
 	/// The name of the transit agency
 	public var name: String?
 	/// The URL for the transit agency
-	public var url: NSURL?
+	public var url: URL?
 	/// The phone number of the transit agency
 	public var phone: String?
 }

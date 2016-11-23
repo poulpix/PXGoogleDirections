@@ -11,6 +11,14 @@
 
 #import <Foundation/Foundation.h>
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * Describes a single level in a building.
  * Multiple buildings can share a level - in this case the level instances will
@@ -19,9 +27,11 @@
 @interface GMSIndoorLevel : NSObject
 
 /** Localized display name for the level, e.g. "Ground floor". */
-@property(nonatomic, copy, readonly) NSString *name;
+@property(nonatomic, copy, readonly) NSString *GMS_NULLABLE_PTR name;
 
 /** Localized short display name for the level, e.g. "1". */
-@property(nonatomic, copy, readonly) NSString *shortName;
+@property(nonatomic, copy, readonly) NSString *GMS_NULLABLE_PTR shortName;
 
 @end
+
+GMS_ASSUME_NONNULL_END

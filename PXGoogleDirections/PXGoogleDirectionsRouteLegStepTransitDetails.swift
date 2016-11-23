@@ -21,7 +21,7 @@ public struct PXGoogleDirectionsRouteLegStepTransitDetails {
 	/// Direction in which to travel on this line, as it is marked on the vehicle or at the departure stop (will often be the terminus station)
 	public var headsign: String?
 	/// Expected number of seconds between departures from the same stop at this time (with a headway value of 600, a ten minute wait would be expected for someone missing his bus)
-	public var headway: NSTimeInterval?
+	public var headway: TimeInterval?
 	/// Number of stops in this step, counting the arrival stop, but not the departure stop (leaving from stop A, passing through stops B and C, and arriving at stop D, `nbStops` will return 3)
 	public var nbStops: UInt?
 	/// Information about the transit line used in this step

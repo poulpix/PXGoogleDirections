@@ -8,6 +8,14 @@
 //  Service: https://developers.google.com/maps/terms
 //
 
+#if __has_feature(modules)
+@import GoogleMapsBase;
+#else
+#import <GoogleMapsBase/GoogleMapsBase.h>
+#endif
+
+GMS_ASSUME_NONNULL_BEGIN
+
 @interface GMSPanoramaCameraUpdate : NSObject
 
 /** Returns an update that increments the camera heading with |deltaHeading|. */
@@ -23,3 +31,5 @@
 + (GMSPanoramaCameraUpdate *)setZoom:(CGFloat)zoom;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 /** Returns a GMSOrientation with the given |heading| and |pitch|. */
-inline GMSOrientation GMSOrientationMake(CLLocationDirection heading, double pitch) {
+inline static GMSOrientation GMSOrientationMake(CLLocationDirection heading, double pitch) {
   GMSOrientation orientation = {heading, pitch};
   return orientation;
 }
