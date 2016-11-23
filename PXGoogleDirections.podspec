@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
     s.homepage              = "https://github.com/poulpix/PXGoogleDirections"
     s.summary               = 'Google Directions API SDK for iOS, entirely written in Swift'
-    s.screenshots           = [ 'https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/SampleScreen1.png', 'https://github.com/poulpix/PXGoogleDirections/blob/master/Sample/SampleScreen2.png' ]
+    s.screenshots           = [ 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/SampleScreen1.png', 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/SampleScreen2.png' ]
 
     s.author                = { 'Romain L' => 'dev.romain@me.com' }
     s.license               = { :type => 'BSD', :file => 'LICENSE' }
