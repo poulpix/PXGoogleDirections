@@ -111,7 +111,8 @@ Since V1.3, PXGoogleDirections uses Google's latest branch of Google Maps iOS SD
 - `GoogleMapsCore`
 - `GoogleMapsBase`
 - `GoogleMaps`
-The Google Places iOS SDK is not required.
+
+> The Google Places iOS SDK is not required.
 
 If your app *also* requires the Google Maps iOS SDK, you might run into troubles because of conflicts with the bundled Google Maps iOS SDK in the Cocoapod. Providing Cocoapods frameworks with static framework dependencies like Google Maps is a real pain and there is no simple, straightforward solution I'm aware of, unfortunately.
 
