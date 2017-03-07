@@ -453,7 +453,7 @@ public class PXGoogleDirections: NSObject {
 				}
 				// Build the Google Maps URL and open it
 				if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
-					UIApplication.shared.openURL(url)
+					UIApplication.shared.open(url, options: [:], completionHandler: nil)
 					return true
 				} else {
 					// Apply fallback strategy
@@ -462,7 +462,7 @@ public class PXGoogleDirections: NSObject {
 						params.append("saddr=\(f.description.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
 						params.append("daddr=\(t.description.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
 						let p = (params.count > 0) ? "?" + params.joined(separator: "&") : ""
-						UIApplication.shared.openURL(URL(string: "https://maps.apple.com/\(p)")!)
+						UIApplication.shared.open(URL(string: "https://maps.apple.com/\(p)")!, options: [:], completionHandler: nil)
 						return true
 					}
 				}

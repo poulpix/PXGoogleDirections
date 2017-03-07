@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 /// Specifies a location, either by coordinates or by name
 public enum PXLocation {
@@ -59,14 +60,14 @@ public enum PXLocation {
 		let params = PXGoogleDirections.handleGoogleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 		// Build the Google Maps URL and open it
 		if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
-			UIApplication.shared.openURL(url)
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 			return true
 		} else {
 			// Apply fallback strategy
 			if fallbackToAppleMaps {
 				let params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 				let p = (params.count > 0) ? "?" + params.joined(separator: "&") : ""
-				UIApplication.shared.openURL(URL(string: "https://maps.apple.com/\(p)")!)
+				UIApplication.shared.open(URL(string: "https://maps.apple.com/\(p)")!, options: [:], completionHandler: nil)
 				return true
 			}
 		}
@@ -92,7 +93,7 @@ public enum PXLocation {
 		params.append("q=\(query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
 		// Build the Google Maps URL and open it
 		if let url = PXGoogleDirections.buildGoogleMapsURL(params: params, callbackURL: callbackURL, callbackName: callbackName) {
-			UIApplication.shared.openURL(url)
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 			return true
 		} else {
 			// Apply fallback strategy
@@ -100,7 +101,7 @@ public enum PXLocation {
 				var params = PXGoogleDirections.handleAppleMapsURL(center: centerCoordinate, mapMode: mapMode, view: view, zoom: zoom)
 				params.append("q=\(query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)")
 				let p = (params.count > 0) ? "?" + params.joined(separator: "&") : ""
-				UIApplication.shared.openURL(URL(string: "https://maps.apple.com/\(p)")!)
+				UIApplication.shared.open(URL(string: "https://maps.apple.com/\(p)")!, options: [:], completionHandler: nil)
 				return true
 			}
 		}

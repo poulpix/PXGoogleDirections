@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Vontains information about the transit line used in a route step
 public struct PXGoogleDirectionsTransitLine {
