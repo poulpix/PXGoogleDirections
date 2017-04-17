@@ -50,10 +50,9 @@ To use PXGoogleDirections in your project add the following Podfile to your proj
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.1'
+use_frameworks!
 
 pod 'PXGoogleDirections'
-
-use_frameworks!
 ```
 
 Then run the following command from the Terminal:
