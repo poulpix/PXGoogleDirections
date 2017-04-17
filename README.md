@@ -24,7 +24,10 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
 - Available through CocoaPods
-- V1.3 is fully compatible with Swift 3 and Google Maps iOS SDK V2+
+
+## New in V1.4
+- Compatibility with Swift 3.1
+- Improvements to projects mixing this pod with Google Maps and/or Google Places pods
 
 ## New in V1.3
 - Full Swift 3 support
