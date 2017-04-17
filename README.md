@@ -127,10 +127,9 @@ Here is the only workaround known to date:
 1. Remove PXGoogleDirections from your Podfile and issue a `pod update`.
 2. Add all the Google dependencies to your Podfile (e.g.: `pod GoogleMaps`, `pod GooglePlaces`) and issue a `pod update`.
 3. Open a Terminal in your folder's root folder, and reference PXGoogleDirections as a git submodule, like this:
-
-   ```
+```
 git submodule add https://github.com/poulpix/PXGoogleDirections.git Frameworks/External/PXGoogleDirections
-   ```
+```
    This will download all of the PXGoogleDirections project in a subfolder of your own project (`Frameworks/External/PXGoogleDirections`). Of course you can change this path if you like.
 
 4. Update your Podfile to give instructions on how to build both your project and the PXGoogleDirections submodule:
