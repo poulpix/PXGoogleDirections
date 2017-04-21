@@ -30,3 +30,4 @@ Pods/
 #
 # Omit private information, like API keys in the sample project
 Sample/Private/*.*
+.DS_Store
