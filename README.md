@@ -117,7 +117,7 @@ To help getting you started, a sample project is also available in the "Sample" 
 
 It is designed to demo the main features of both the API and the SDK.
 
-<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/Mockup1.png" width="400px"/><img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/Mockup2.png" width="400px"/>
+<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Mockup1.png" width="400px"/><img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Mockup2.png" width="400px"/>
 
 ## 😱 Compatibility with Google pods
 Since V1.3, PXGoogleDirections uses Google's latest branch of Google Maps iOS SDK, which has now been split into smaller, more modular frameworks. PXGoogleDirections has a dependency with three of them:
