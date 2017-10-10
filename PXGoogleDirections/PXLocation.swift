@@ -35,9 +35,9 @@ public enum PXLocation {
 	public func isSpecified() -> Bool {
 		switch self {
 		case let .specificLocation(address, city, country):
-			return (address ?? "").characters.count > 0 || (city ?? "").characters.count > 0 || (country ?? "").characters.count > 0
+			return (address ?? "").count > 0 || (city ?? "").count > 0 || (country ?? "").count > 0
 		case let .namedLocation(address):
-			return address.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).characters.count > 0
+			return address.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 0
 		default:
 			return true
 		}

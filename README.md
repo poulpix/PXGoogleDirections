@@ -1,14 +1,17 @@
 # PXGoogleDirections
 Google Directions API SDK for iOS, entirely written in Swift.
 
-[![Cocoapods](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)
-[![Cocoapods](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)
-[![Cocoapods](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)
-![Swift](https://img.shields.io/badge/%20in-swift%203-orange.svg)
+[![Cocoapods](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)
+[![Cocoapods](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)
+![Swift](https://img.shields.io/badge/%20in-swift%204-orange.svg?style=plastic)
 
+[![Cocoapods](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/PXGoogleDirections.svg?style=plastic)]()
+[![CocoaPods](https://img.shields.io/cocoapods/dt/PXGoogleDirections.svg?style=plastic)]()
 [![CocoaPods](https://img.shields.io/cocoapods/at/PXGoogleDirections.svg?style=plastic)]()
 [![CocoaPods](https://img.shields.io/cocoapods/aw/PXGoogleDirections.svg?style=plastic)]()
+
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=plastic)](https://github.com/Carthage/Carthage)
 
 [![GitHub stars](https://img.shields.io/github/stars/poulpix/PXGoogleDirections.svg?style=social&label=Star&style=plastic)]()
 [![GitHub forks](https://img.shields.io/github/forks/poulpix/PXGoogleDirections.svg?style=social&label=Fork&style=plastic)]()
@@ -23,10 +26,10 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Available both with modern, Swift-style completion blocks, or Objective-C-style delegation patterns
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
-- Available through CocoaPods
+- Available through CocoaPods and Carthage
 
 ## 🆕 New in V1.4
-- Compatibility with Swift 3.1
+- Compatibility with Swift 4
 - Improvements to projects mixing this pod with Google Maps and/or Google Places pods
 
 ## 🆕 New in V1.3
@@ -38,7 +41,8 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 ## ⚠️ Requirements
 - Runs on iOS 8.1 and later.
-- Compatible with Swift 3 / Xcode 8 and later.
+- Compatible with Swift 4 / Xcode 9 and later.
+  - Please use v1.3 if you are on Swift 3 and/or Xcode 8.
   - Please use v1.2.3 if you need compatibility with a previous version of Swift.
 - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
@@ -71,6 +75,10 @@ ___
 > **Important**: If your project needs both PXGoogleDirections and Google Maps and/or Google Places iOS SDK, you **_will_** run into problems. Please see the "Compatibility with Google pods" paragraph below, and do not hesitate to contact me and describe your issue if you require assistance!
 
 ___
+
+### From Carthage
+
+// TODO
 
 ### From source
 - Clone the repository

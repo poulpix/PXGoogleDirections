@@ -126,13 +126,13 @@ class MainViewController: UIViewController {
 		startArriveDateField.becomeFirstResponder()
 	}
 	
-	func doneButtonTouched(_ sender: UIBarButtonItem) {
+	@objc func doneButtonTouched(_ sender: UIBarButtonItem) {
 		updateStartArriveDateField((startArriveDateField.inputView as! UIDatePicker).date)
 		startArriveDateField.resignFirstResponder()
 		startArriveDateField.isEnabled = false
 	}
 	
-	func clearButtonTouched(_ sender: UIBarButtonItem) {
+	@objc func clearButtonTouched(_ sender: UIBarButtonItem) {
 		updateStartArriveDateField(nil)
 		startArriveDateField.resignFirstResponder()
 		startArriveDateField.isEnabled = false
@@ -256,7 +256,7 @@ extension MainViewController: PXGoogleDirectionsDelegate {
 	
 	func googleDirections(_ googleDirections: PXGoogleDirections, didReceiveRawDataFromAPI data: Data) {
 		NSLog("googleDirections:didReceiveRawDataFromAPI:")
-		NSLog(NSString(data: data, encoding: String.Encoding.utf8.rawValue) as! String)
+		NSLog(String(data: data, encoding: .utf8)!)
 	}
 	
 	func googleDirectionsRequestDidFail(_ googleDirections: PXGoogleDirections, withError error: NSError) {

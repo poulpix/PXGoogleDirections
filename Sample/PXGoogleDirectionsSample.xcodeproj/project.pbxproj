@@ -14,7 +14,7 @@
 		7AC37A3D1DDC397200E03E4E /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A3A1DDC397200E03E4E /* GoogleMapsCore.framework */; };
 		7AC68B621D300D0400B81C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC68B611D300D0400B81C70 /* AppDelegate.swift */; };
 		7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AC68B651D300D0400B81C70 /* Main.storyboard */; };
-		7AC68B691D300D0400B81C70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AC68B681D300D0400B81C70 /* Assets.xcassets */; };
+		7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AC68B681D300D0400B81C70 /* Images.xcassets */; };
 		7ACF3E991D427CCF00830BD6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF3E981D427CCF00830BD6 /* CoreText.framework */; };
 		7ACF3E9B1D427CD400830BD6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF3E9A1D427CD400830BD6 /* CoreGraphics.framework */; };
 		7ACF3EAA1D427D1F00830BD6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACF3E9C1D427D1F00830BD6 /* Accelerate.framework */; };
@@ -35,6 +35,7 @@
 		7ACF3EBC1D427D7300830BD6 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF3EB91D427D7300830BD6 /* ResultsViewController.swift */; };
 		7ACF3EBD1D427D7300830BD6 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF3EBA1D427D7300830BD6 /* WaypointViewController.swift */; };
 		7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ACF3EBE1D427DA100830BD6 /* LaunchScreen.xib */; };
+		7AD02E1B1F8C00C700F2E183 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +47,7 @@
 		7AC68B5E1D300D0300B81C70 /* PXGoogleDirectionsSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PXGoogleDirectionsSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AC68B611D300D0400B81C70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AC68B661D300D0400B81C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7AC68B681D300D0400B81C70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7AC68B681D300D0400B81C70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7AC68B6D1D300D0400B81C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7ACF3E981D427CCF00830BD6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7ACF3E9A1D427CD400830BD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,6 +69,7 @@
 		7ACF3EB91D427D7300830BD6 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7ACF3EBA1D427D7300830BD6 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		7ACF3EBF1D427DA100830BD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		B83B08D12A009BB6BA8E12AD /* Pods-PXGoogleDirectionsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirectionsSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample.release.xcconfig"; sourceTree = "<group>"; };
 		F97416A2E425D03A322EC705 /* Pods-PXGoogleDirectionsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirectionsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,7 @@
 		7AC68B551D300D0300B81C70 = {
 			isa = PBXGroup;
 			children = (
+				7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */,
 				7AC68B601D300D0400B81C70 /* PXGoogleDirectionsSample */,
 				7AC68B5F1D300D0300B81C70 /* Products */,
 				ED35EE3D383D3489F3198806 /* Pods */,
@@ -131,7 +134,7 @@
 				7ACF3EBA1D427D7300830BD6 /* WaypointViewController.swift */,
 				7ACF3EBE1D427DA100830BD6 /* LaunchScreen.xib */,
 				7AC68B651D300D0400B81C70 /* Main.storyboard */,
-				7AC68B681D300D0400B81C70 /* Assets.xcassets */,
+				7AC68B681D300D0400B81C70 /* Images.xcassets */,
 				7AC68B6D1D300D0400B81C70 /* Info.plist */,
 			);
 			path = PXGoogleDirectionsSample;
@@ -203,12 +206,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = RLT;
 				TargetAttributes = {
 					7AC68B5D1D300D0300B81C70 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0810;
+						DevelopmentTeam = H4ZDL2CC7Y;
+						LastSwiftMigration = 0910;
 					};
 				};
 			};
@@ -235,8 +239,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD02E1B1F8C00C700F2E183 /* GoogleMaps.bundle in Resources */,
 				7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */,
-				7AC68B691D300D0400B81C70 /* Assets.xcassets in Resources */,
+				7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */,
 				7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,9 +255,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PXGoogleDirections/PXGoogleDirections.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PXGoogleDirections.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -265,13 +273,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PXGoogleDirectionsSample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DB3204A5C84EC3A7A17CAFE8 /* [CP] Copy Pods Resources */ = {
@@ -335,14 +346,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -383,14 +400,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -422,7 +445,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H4ZDL2CC7Y;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -434,7 +457,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Poulpix.PXGoogleDirectionsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -444,7 +468,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H4ZDL2CC7Y;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,7 +480,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Poulpix.PXGoogleDirectionsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

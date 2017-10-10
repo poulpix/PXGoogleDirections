@@ -38,12 +38,12 @@ class WaypointViewController: UIViewController {
 	@IBAction func addWaypointButtonTouched(_ sender: UIButton) {
 		var waypoint: PXLocation?
 		if !namedLocationView.isHidden {
-			if namedLocationField.text!.characters.count > 0 {
+			if namedLocationField.text!.count > 0 {
 				waypoint = PXLocation.namedLocation(namedLocationField.text!)
 			}
 		}
 		if !coordinateLocationView.isHidden {
-			if latitudeField.text!.characters.count > 0 && longitudeField.text!.characters.count > 0 {
+			if latitudeField.text!.count > 0 && longitudeField.text!.count > 0 {
 				let lat = NSString(string: latitudeField.text!).doubleValue
 				let lng = NSString(string: longitudeField.text!).doubleValue
 				waypoint = PXLocation.coordinateLocation(CLLocationCoordinate2DMake(lat, lng))
