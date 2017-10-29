@@ -19,7 +19,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![Twitter Follow](https://img.shields.io/twitter/follow/_RomainL.svg?style=social&label=Follow&style=plastic)]()
 
 ## 🗺 Features
-- Supports all features from the Google Directions API as of November 2016 (see here for a full list: https://developers.google.com/maps/documentation/directions)
+- Supports all features from the Google Directions API as of November 2017 (see here for a full list: https://developers.google.com/maps/documentation/directions)
 - Supports "open in Google Maps app", both for specific locations and directions request
   * also supports the callback feature to get the user back to your app when he's done in Google Maps
   * in case the Google Maps app is not installed, also supports fallback to the built-in Apple Maps app
@@ -30,7 +30,8 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 ## 🆕 New in V1.4
 - Compatibility with Swift 4
-- Improvements to projects mixing this pod with Google Maps and/or Google Places pods
+- Availability through Carthage
+- Slight improvements to projects mixing this pod with Google Maps and/or Google Places pods (but mixing Google Maps iOS SDK with other Pods is still terrible...)
 
 ## 🆕 New in V1.3
 - Full Swift 3 support
@@ -47,8 +48,41 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - The SDK depends on the official Google Maps SDK for iOS (more information here: [Google Maps iOS SDK](https://developers.google.com/maps/documentation/ios/))
 
 ## 💻 Installation
+### From Carthage
+To use PXGoogleDirections in your project add the following line to your `Cartfile`:
+
+```
+github "Poulpix/PXGoogleDirections"
+```
+
+___
+> Alternatively, if you wish to target a specific version of the library, simply append it at the end of the line in the `Carttfile`, e.g.: `github "Poulpix/PXGoogleDirections" ~> 1.4`.
+
+___
+
+Then run the following command from the Terminal:
+
+```bash
+carthage update
+```
+
+Finally, back to Xcode, drag & drop the generated framework in the "Embedded Binaries" section of your target's General tab. The framework should be located in the `Carthage/Build/iOS` subfolder of your Xcode project.
+
+<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/CarthageXcode.png" width="800px"/>
+
+Now, from your code, you should be able to simply import the module like this:
+
+```swift
+import PXGoogleDirections
+```
+
+___
+> **Important**: Carthage is only supported starting from version 1.4 of this library. Previous versions of this library will not work.
+
+___
+
 ### From Cocoapods
-To use PXGoogleDirections in your project add the following Podfile to your project:
+To use PXGoogleDirections in your project add the following `Podfile` to your project:
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
@@ -76,11 +110,11 @@ ___
 
 ___
 
-### From Carthage
-
-// TODO
-
 ### From source
+Building from raw source code is the preferred method if you wish to avoid known issues with the Google Maps iOS SDK conflicts with the library. However, you'll be lacking the automation and version updates the Cocoapods and Carthage frameworks provide.
+
+To build from source, follow these simple steps:
+
 - Clone the repository
 - Add the whole `PXGoogleDirections` project to your own Xcode project
 - Add a dependency between the two projects and build
@@ -172,6 +206,14 @@ git submodule add https://github.com/poulpix/PXGoogleDirections.git Frameworks/E
   * your project's root directory,
   * the PXGoogleDirections submodule's root directory (e.g. `Frameworks/External/PXGoogleDirections`).
 6. Open Xcode with your project.xcworkspace and build the PXGoogleDirections target, then your app's target. Everything should build properly.
+
+## 💣 Known issues
+Depending on your setup, you might see one or several of these known issues:
+
+- Lots of messages like these at runtime (usually application startup): `Class GMSxxx_whatever is implemented in both (name of your app) and (reference to PXGoogleDirections framework). One of the two will be used. Which one is undefined.`
+  This is because with Carthage or Cocoapods you usually have two versions of the Google Maps iOS SDK : the one that has been linked with the PXGoogleDirections library, and the one you will be forced to link against in your own application if you wish to use it explicitly. From what I've seen, there is no real impact to these warnings as long as both versions are equivalent. They only pollute your output console at runtime.
+- Messages like these at runtime (usually when showing a Google Maps view): `Main Thread Checker: UI API called on a background thread: -[UIApplication setNetworkActivityIndicatorVisible:]`
+  This behavior is new to Xcode 9, and it seems like the culprit is the Google Maps iOS SDK itself, not the sample app provided with the library. These messages are not really harmful, but they are not sane either. If you find a solution, please PM me!
 
 ## 🙏🏻 Credit
 - Some portions of code inspired by [OpenInGoogleMaps-iOS](https://github.com/googlemaps/OpenInGoogleMaps-iOS), from the Google Maps team.
