@@ -68,7 +68,7 @@ carthage update
 
 Finally, back to Xcode, drag & drop the generated framework in the "Embedded Binaries" section of your target's General tab. The framework should be located in the `Carthage/Build/iOS` subfolder of your Xcode project.
 
-<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/CarthageXcode.png" width="800px"/>
+![Dropping a Carthage-generated framework in Xcode](CarthageXcode.png)
 
 Now, from your code, you should be able to simply import the module like this:
 
@@ -151,7 +151,7 @@ To help getting you started, a sample project is also available in the "Sample" 
 
 It is designed to demo the main features of both the API and the SDK.
 
-<img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Mockup1.png" width="400px"/><img src="https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Mockup2.png" width="400px"/>
+![Sample app screenshot 1](Mockup1.png) ![Sample app screenshot 2](Mockup2.png)
 
 ## 😱 Compatibility with Google pods
 Since V1.3, PXGoogleDirections uses Google's latest branch of Google Maps iOS SDK, which has now been split into smaller, more modular frameworks. PXGoogleDirections has a dependency with three of them:
