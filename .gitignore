@@ -1,3 +1,6 @@
+# macOS
+.DS_Store
+
 # Xcode
 #
 build/
@@ -9,7 +12,6 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
 *.xccheckout
 *.moved-aside
 DerivedData
@@ -29,5 +31,5 @@ Pods/
 # Sample
 #
 # Omit private information, like API keys in the sample project
-Sample/Private/*.*
-.DS_Store
+Sample-Carthage/Private/*.*
+Sample-Cocoapods/Private/*.*
