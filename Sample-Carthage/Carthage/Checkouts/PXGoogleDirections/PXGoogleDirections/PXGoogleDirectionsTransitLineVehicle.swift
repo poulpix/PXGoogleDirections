@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 /// A type of vehicle used on a specific line
 public struct PXGoogleDirectionsTransitLineVehicle {

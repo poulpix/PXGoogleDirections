@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60F60723972D55A758157C1A /* Pods_PXGoogleDirectionsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */; };
+		7A9B1ACF1FA64A940037B481 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A9B1ACE1FA64A940037B481 /* GoogleMaps.bundle */; };
 		7AC08E901D300D6700F06B44 /* GoogleAPIKeyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */; };
 		7AC37A3B1DDC397200E03E4E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A381DDC397200E03E4E /* GoogleMaps.framework */; };
 		7AC37A3C1DDC397200E03E4E /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A391DDC397200E03E4E /* GoogleMapsBase.framework */; };
@@ -35,11 +36,11 @@
 		7ACF3EBC1D427D7300830BD6 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF3EB91D427D7300830BD6 /* ResultsViewController.swift */; };
 		7ACF3EBD1D427D7300830BD6 /* WaypointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF3EBA1D427D7300830BD6 /* WaypointViewController.swift */; };
 		7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ACF3EBE1D427DA100830BD6 /* LaunchScreen.xib */; };
-		7AD02E1B1F8C00C700F2E183 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PXGoogleDirectionsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A9B1ACE1FA64A940037B481 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../../Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAPIKeyProvider.swift; path = Private/GoogleAPIKeyProvider.swift; sourceTree = SOURCE_ROOT; };
 		7AC37A381DDC397200E03E4E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7AC37A391DDC397200E03E4E /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		7ACF3EB91D427D7300830BD6 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		7ACF3EBA1D427D7300830BD6 /* WaypointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewController.swift; sourceTree = "<group>"; };
 		7ACF3EBF1D427DA100830BD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		B83B08D12A009BB6BA8E12AD /* Pods-PXGoogleDirectionsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirectionsSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample.release.xcconfig"; sourceTree = "<group>"; };
 		F97416A2E425D03A322EC705 /* Pods-PXGoogleDirectionsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PXGoogleDirectionsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,7 +108,6 @@
 		7AC68B551D300D0300B81C70 = {
 			isa = PBXGroup;
 			children = (
-				7AD02E1A1F8C00C600F2E183 /* GoogleMaps.bundle */,
 				7AC68B601D300D0400B81C70 /* PXGoogleDirectionsSample */,
 				7AC68B5F1D300D0300B81C70 /* Products */,
 				ED35EE3D383D3489F3198806 /* Pods */,
@@ -136,6 +135,7 @@
 				7AC68B651D300D0400B81C70 /* Main.storyboard */,
 				7AC68B681D300D0400B81C70 /* Images.xcassets */,
 				7AC68B6D1D300D0400B81C70 /* Info.plist */,
+				7A9B1ACE1FA64A940037B481 /* GoogleMaps.bundle */,
 			);
 			path = PXGoogleDirectionsSample;
 			sourceTree = "<group>";
@@ -239,10 +239,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AD02E1B1F8C00C700F2E183 /* GoogleMaps.bundle in Resources */,
 				7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */,
 				7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */,
 				7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */,
+				7A9B1ACF1FA64A940037B481 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +450,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Pods/PXGoogleDirections/Dependencies",
+					"$(PROJECT_DIR)/../Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -473,7 +473,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Pods/PXGoogleDirections/Dependencies",
+					"$(PROJECT_DIR)/../Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 public extension UIColor {
 	public convenience init?(hexColor: String) {
@@ -17,8 +16,8 @@ public extension UIColor {
 		var alpha: CGFloat = 1.0
 		
 		if hexColor.hasPrefix("#") {
-			let index = hexColor.characters.index(hexColor.startIndex, offsetBy: 1)
-			let hex = hexColor.substring(from: index)
+			let index = hexColor.index(hexColor.startIndex, offsetBy: 1)
+			let hex = String(hexColor.suffix(from: index))
 			let scanner = Scanner(string: hex)
 			var hexValue: CUnsignedLongLong = 0
 			if scanner.scanHexInt64(&hexValue) {
