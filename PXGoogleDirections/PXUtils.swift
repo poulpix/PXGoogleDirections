@@ -16,13 +16,8 @@ public extension UIColor {
 		var alpha: CGFloat = 1.0
 		
 		if hexColor.hasPrefix("#") {
-<<<<<<< HEAD
 			let index = hexColor.index(hexColor.startIndex, offsetBy: 1)
 			let hex = String(hexColor.suffix(from: index))
-=======
-			let index = hexColor.characters.index(hexColor.startIndex, offsetBy: 1)
-            let hex = String(hexColor[index...])
->>>>>>> pr/38
 			let scanner = Scanner(string: hex)
 			var hexValue: CUnsignedLongLong = 0
 			if scanner.scanHexInt64(&hexValue) {

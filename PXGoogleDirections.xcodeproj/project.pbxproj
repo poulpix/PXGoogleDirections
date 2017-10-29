@@ -176,21 +176,13 @@
 		7A0985441D2D71120095737F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-<<<<<<< HEAD
 				LastUpgradeCheck = 0910;
-=======
-				LastUpgradeCheck = 0900;
->>>>>>> pr/38
 				ORGANIZATIONNAME = RLT;
 				TargetAttributes = {
 					7A09854C1D2D71120095737F = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = H4ZDL2CC7Y;
-<<<<<<< HEAD
 						LastSwiftMigration = 0910;
-=======
-						LastSwiftMigration = 0900;
->>>>>>> pr/38
 					};
 				};
 			};
@@ -416,11 +408,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-<<<<<<< HEAD
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-=======
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
->>>>>>> pr/38
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -441,11 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Poulpix.PXGoogleDirections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-<<<<<<< HEAD
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-=======
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
->>>>>>> pr/38
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
