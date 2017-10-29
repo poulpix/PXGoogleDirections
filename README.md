@@ -70,12 +70,6 @@ Finally, back to Xcode, drag & drop the generated framework in the "Embedded Bin
 
 ![Dropping a Carthage-generated framework in Xcode](CarthageXcode.png)
 
-Now, from your code, you should be able to simply import the module like this:
-
-```swift
-import PXGoogleDirections
-```
-
 ___
 > **Important**: Carthage is only supported starting from version 1.4 of this library. Previous versions of this library will not work.
 
@@ -99,12 +93,6 @@ Then run the following command from the Terminal:
 pod install
 ```
 
-Now, from your code, you should be able to simply import the module like this:
-
-```swift
-import PXGoogleDirections
-```
-
 ___
 > **Important**: If your project needs both PXGoogleDirections and Google Maps and/or Google Places iOS SDK, you **_will_** run into problems. Please see the "Compatibility with Google pods" paragraph below, and do not hesitate to contact me and describe your issue if you require assistance!
 
@@ -122,13 +110,19 @@ To build from source, follow these simple steps:
 ## ⌨️ Usage
 Quick-start in two lines of Swift code:
 
-1) Create an API object:
+1) Reference the library like this:
+
+```swift
+import PXGoogleDirections
+```
+
+2) Create an API object:
 ```swift
 let directionsAPI = PXGoogleDirections(apiKey: "<insert your Google API key here>",
     from: PXLocation.coordinateLocation(CLLocationCoordinate2DMake(37.331690, -122.030762)),
     to: PXLocation.specificLocation("Googleplex", "Mountain View", "United States"))
 ```
-2) Run the Directions request:
+3) Run the Directions request:
 ```swift
 directionsAPI.calculateDirections({ response in
  switch response {
