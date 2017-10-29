@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
     #s.dependency            'GoogleMaps', '~> 2.0'
     s.resource              = 'Dependencies/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle'
     s.vendored_frameworks   = "Dependencies/GoogleMaps.framework", "Dependencies/GoogleMapsBase.framework", "Dependencies/GoogleMapsCore.framework"
-    s.xcconfig              = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/PXGoogleDirections/Dependencies' }
+    #s.xcconfig              = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/PXGoogleDirections/Dependencies' }
 end
