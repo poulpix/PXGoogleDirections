@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
     s.name                  = 'PXGoogleDirections'
-    s.version               = '1.5'
+    s.version               = '1.5.1'
 
     s.homepage              = "https://github.com/poulpix/PXGoogleDirections"
     s.summary               = 'Google Directions API SDK for iOS, entirely written in Swift'
-    s.screenshots           = [ 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/SampleScreen1.png', 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/Sample/SampleScreen2.png' ]
+    s.screenshots           = [ 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/SampleScreen1.png', 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/SampleScreen2.png' ]
 
     s.author                = { 'Romain L' => 'dev.romain@me.com' }
     s.license               = { :type => 'BSD', :file => 'LICENSE' }
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
     s.source_files          = 'PXGoogleDirections/*.{h,swift}'
     s.module_name           = 'PXGoogleDirections'
-    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.5" }
+    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.5.1" }
     s.requires_arc          = true
     s.libraries             = "c++", "icucore", "z"
     s.frameworks            = "Accelerate", "AVFoundation", "CoreBluetooth", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "Security", "SystemConfiguration", "CoreGraphics", "GoogleMapsCore", "GoogleMapsBase", "GoogleMaps"

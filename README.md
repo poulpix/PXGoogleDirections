@@ -28,7 +28,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - JSON is used behind the scenes to help reduce the size of the responses
 - Available through CocoaPods and Carthage
 
-## 🆕 New in V1.5
+## 🆕 New in V1.5.1
 - Updated to Google Maps iOS SDK 2.5
 - The PXGoogleDirections Pod is now released as a static library (requires Cocoapods 1.4.0) 
 - Other bug fixes
