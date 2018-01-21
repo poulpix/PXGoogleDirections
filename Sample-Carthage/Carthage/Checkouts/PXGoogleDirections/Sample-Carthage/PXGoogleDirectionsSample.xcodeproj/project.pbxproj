@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A5EC9D21FA638C500E8F650 /* PXGoogleDirections.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D11FA638C500E8F650 /* PXGoogleDirections.framework */; };
+		7A04A5241FA63D4200932CCF /* PXGoogleDirections.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D11FA638C500E8F650 /* PXGoogleDirections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A04A5271FA63E1900932CCF /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A04A5261FA63E1900932CCF /* GoogleMaps.bundle */; };
 		7A5EC9D61FA639B800E8F650 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D31FA639B800E8F650 /* GoogleMaps.framework */; };
 		7A5EC9D71FA639B800E8F650 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D41FA639B800E8F650 /* GoogleMapsBase.framework */; };
 		7A5EC9D81FA639B800E8F650 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D51FA639B800E8F650 /* GoogleMapsCore.framework */; };
@@ -37,7 +38,22 @@
 		7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ACF3EBE1D427DA100830BD6 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7A04A5251FA63D4200932CCF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7A04A5241FA63D4200932CCF /* PXGoogleDirections.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7A04A5261FA63E1900932CCF /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		7A5EC9D11FA638C500E8F650 /* PXGoogleDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PXGoogleDirections.framework; path = Carthage/Build/iOS/PXGoogleDirections.framework; sourceTree = "<group>"; };
 		7A5EC9D31FA639B800E8F650 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7A5EC9D41FA639B800E8F650 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = ../Dependencies/GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -75,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A5EC9D21FA638C500E8F650 /* PXGoogleDirections.framework in Frameworks */,
 				7ACF3EAA1D427D1F00830BD6 /* Accelerate.framework in Frameworks */,
 				7ACF3EAB1D427D1F00830BD6 /* AVFoundation.framework in Frameworks */,
 				7ACF3EAC1D427D1F00830BD6 /* CoreBluetooth.framework in Frameworks */,
@@ -130,6 +145,7 @@
 				7AC68B651D300D0400B81C70 /* Main.storyboard */,
 				7AC68B681D300D0400B81C70 /* Images.xcassets */,
 				7AC68B6D1D300D0400B81C70 /* Info.plist */,
+				7A04A5261FA63E1900932CCF /* GoogleMaps.bundle */,
 			);
 			path = PXGoogleDirectionsSample;
 			sourceTree = "<group>";
@@ -171,6 +187,7 @@
 				7AC68B5A1D300D0300B81C70 /* Sources */,
 				7AC68B5B1D300D0300B81C70 /* Frameworks */,
 				7AC68B5C1D300D0300B81C70 /* Resources */,
+				7A04A5251FA63D4200932CCF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,6 +241,7 @@
 				7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */,
 				7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */,
 				7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */,
+				7A04A5271FA63E1900932CCF /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
