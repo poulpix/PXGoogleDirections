@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60F60723972D55A758157C1A /* Pods_PXGoogleDirectionsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */; };
+		7A08A1852014AD86004E12A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A08A1842014AD86004E12A9 /* UIKit.framework */; };
 		7A9B1ACF1FA64A940037B481 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A9B1ACE1FA64A940037B481 /* GoogleMaps.bundle */; };
 		7AC08E901D300D6700F06B44 /* GoogleAPIKeyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */; };
 		7AC37A3B1DDC397200E03E4E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A381DDC397200E03E4E /* GoogleMaps.framework */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PXGoogleDirectionsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A08A1842014AD86004E12A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7A9B1ACE1FA64A940037B481 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../../Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAPIKeyProvider.swift; path = Private/GoogleAPIKeyProvider.swift; sourceTree = SOURCE_ROOT; };
 		7AC37A381DDC397200E03E4E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A08A1852014AD86004E12A9 /* UIKit.framework in Frameworks */,
 				7AC37A3B1DDC397200E03E4E /* GoogleMaps.framework in Frameworks */,
 				7AC37A3C1DDC397200E03E4E /* GoogleMapsBase.framework in Frameworks */,
 				7AC37A3D1DDC397200E03E4E /* GoogleMapsCore.framework in Frameworks */,
@@ -143,6 +146,7 @@
 		E606A026ADB2A38A37373483 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A08A1842014AD86004E12A9 /* UIKit.framework */,
 				7AC37A381DDC397200E03E4E /* GoogleMaps.framework */,
 				7AC37A391DDC397200E03E4E /* GoogleMapsBase.framework */,
 				7AC37A3A1DDC397200E03E4E /* GoogleMapsCore.framework */,
@@ -382,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -430,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -453,7 +457,6 @@
 					"$(PROJECT_DIR)/../Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Poulpix.PXGoogleDirectionsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -476,7 +479,6 @@
 					"$(PROJECT_DIR)/../Dependencies",
 				);
 				INFOPLIST_FILE = PXGoogleDirectionsSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Poulpix.PXGoogleDirectionsSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";

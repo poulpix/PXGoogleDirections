@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension UIColor {
 	public convenience init?(hexColor: String) {
