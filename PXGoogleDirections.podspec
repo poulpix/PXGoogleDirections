@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
     s.license               = { :type => 'BSD', :file => 'LICENSE' }
     s.social_media_url      = "https://twitter.com/_RomainL"
 
-    s.platforms             = { :ios => '8.1' }
-    s.ios.deployment_target = '8.1'
+    s.platforms             = { :ios => '9.3' }
+    s.ios.deployment_target = '9.3'
     s.swift_version         = '4.0'
 
     s.source_files          = 'PXGoogleDirections/*.{h,swift}'
