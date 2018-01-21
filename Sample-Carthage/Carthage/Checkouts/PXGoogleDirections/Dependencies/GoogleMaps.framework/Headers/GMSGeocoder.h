@@ -17,14 +17,19 @@ NS_ASSUME_NONNULL_BEGIN;
 @class GMSReverseGeocodeResponse;
 
 /**
+ * \defgroup GeocoderErrorCode GMSGeocoderErrorCode
+ * @{
+ */
+
+/**
  * GMSGeocoder error codes, embedded in NSError.
- *
- * @related GMSGeocoder
  */
 typedef NS_ENUM(NSInteger, GMSGeocoderErrorCode) {
   kGMSGeocoderErrorInvalidCoordinate = 1,
   kGMSGeocoderErrorInternal,
 };
+
+/**@}*/
 
 /**
  * Handler that reports a reverse geocoding response, or error.

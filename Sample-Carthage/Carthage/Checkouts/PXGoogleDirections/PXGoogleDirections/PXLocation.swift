@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 /// Specifies a location, either by coordinates or by name
 public enum PXLocation {
