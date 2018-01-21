@@ -14,5 +14,4 @@ framework module GoogleMapsCore {
   link framework "OpenGLES"
   link framework "QuartzCore"
   link framework "Security"
-  link framework "SystemConfiguration"
-}
+  link framework "SystemConfiguration"}

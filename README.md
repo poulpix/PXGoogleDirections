@@ -19,7 +19,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![Twitter Follow](https://img.shields.io/twitter/follow/_RomainL.svg?style=social&label=Follow&style=plastic)]()
 
 ## 🗺 Features
-- Supports all features from the Google Directions API as of November 2017 (see here for a full list: https://developers.google.com/maps/documentation/directions)
+- Supports all features from the Google Directions API as of January 2018 (see here for a full list: https://developers.google.com/maps/documentation/directions)
 - Supports "open in Google Maps app", both for specific locations and directions request
   * also supports the callback feature to get the user back to your app when he's done in Google Maps
   * in case the Google Maps app is not installed, also supports fallback to the built-in Apple Maps app
@@ -27,6 +27,11 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Queries are made over HTTPS
 - JSON is used behind the scenes to help reduce the size of the responses
 - Available through CocoaPods and Carthage
+
+## 🆕 New in V1.5
+- Updated to Google Maps iOS SDK 2.5
+- The PXGoogleDirections Pod is now released as a static library (requires Cocoapods 1.4.0) 
+- Other bug fixes
 
 ## 🆕 New in V1.4
 - Compatibility with Swift 4
@@ -41,7 +46,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Other small bug fixes
 
 ## ⚠️ Requirements
-- Runs on iOS 8.1 and later.
+- Runs on iOS 9.3 and later.
 - Compatible with Swift 4 / Xcode 9 and later.
   - Please use v1.3 if you are on Swift 3 and/or Xcode 8.
   - Please use v1.2.3 if you need compatibility with a previous version of Swift.
@@ -56,7 +61,7 @@ github "Poulpix/PXGoogleDirections"
 ```
 
 ___
-> Alternatively, if you wish to target a specific version of the library, simply append it at the end of the line in the `Carttfile`, e.g.: `github "Poulpix/PXGoogleDirections" ~> 1.4`.
+> Alternatively, if you wish to target a specific version of the library, simply append it at the end of the line in the `Carttfile`, e.g.: `github "Poulpix/PXGoogleDirections" ~> 1.5`.
 
 ___
 
@@ -81,7 +86,7 @@ To use PXGoogleDirections in your project add the following `Podfile` to your pr
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '8.1'
+platform :ios, '9.3'
 use_frameworks!
 
 pod 'PXGoogleDirections'
@@ -191,7 +196,7 @@ git submodule add https://github.com/poulpix/PXGoogleDirections.git Frameworks/E
    # This tells Cocoapods how to build the subproject
    target 'PXGoogleDirections' do
       project 'Frameworks/External/PXGoogleDirections/PXGoogleDirections.xcodeproj'
-      platform :ios, '8.1'
+      platform :ios, '9.3'
    
       pod 'GoogleMaps'
    end

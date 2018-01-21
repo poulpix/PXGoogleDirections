@@ -5,5 +5,4 @@ framework module GoogleMapsBase {
   link "z"
   link framework "CoreLocation"
   link framework "CoreTelephony"
-  link framework "Security"
-}
+  link framework "Security"}

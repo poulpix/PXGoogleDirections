@@ -247,15 +247,19 @@ public class PXGoogleDirections: NSObject {
 	{
 		// Try to create a request URL using the supplied parameters
 		if let requestURL = directionsAPIRequestURL {
-			// Show network activity indicator
-			UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            // Show network activity indicator
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            }
 			// Notify delegeate (if any)
 			let runQuery = (delegate == nil ? true : (delegate!.googleDirectionsWillSendRequestToAPI?(self, withURL: requestURL) ?? true))
 			// Handle the case where the delegate might have askeed to cancel the request
 			if runQuery {
 				URLSession.shared.dataTask(with: requestURL, completionHandler: { (data, response, error) -> Void in
 					// Hide network activity indicator
-					UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    }
 					// Notify delegate
 					self.delegate?.googleDirections?(self, didReceiveRawDataFromAPI: data!)
 					// Check for any error (from an NSURLSession point of view)
