@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN;
 
-/**
+/*
  * The following layer properties and constants describe the camera properties that may be animated
  * on the custom model layer of a GMSMapView with Core Animation. For simple camera control and
  * animation, please see the helper methods in GMSMapView+Animation.h, and the camera object
