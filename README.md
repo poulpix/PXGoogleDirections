@@ -28,6 +28,11 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - JSON is used behind the scenes to help reduce the size of the responses
 - Available through CocoaPods and Carthage
 
+## 🆕 New in V1.6
+- Compatibility with Google Places
+- Compatibility with Swift 4.2
+- Availability through Swift Package Manager
+
 ## 🆕 New in V1.5.1
 - Updated to Google Maps iOS SDK 2.5
 - The PXGoogleDirections Pod is now released as a static library (requires Cocoapods 1.4.0) 
@@ -111,6 +116,9 @@ To build from source, follow these simple steps:
 - Clone the repository
 - Add the whole `PXGoogleDirections` project to your own Xcode project
 - Add a dependency between the two projects and build
+- Do not forget to add the output of the `PXGoogleDirections` project (`PXGoogleDirections.framework`) to the "Embedded Binaries" section of your Xcode project's main target
+
+![Adding the PXGoogleDirections framework as an embedded binary in Xcode](EmbeddedBinariesXcode.png)
 
 ## ⌨️ Usage
 Quick-start in two lines of Swift code:
@@ -175,6 +183,15 @@ Here is the only workaround known to date:
 git submodule add https://github.com/poulpix/PXGoogleDirections.git Frameworks/External/PXGoogleDirections
 ```
    This will download all of the PXGoogleDirections project in a subfolder of your own project (`Frameworks/External/PXGoogleDirections`). Of course you can change this path if you like.
+   
+___
+> **Important**: You may also request a specific version of the framework by adding the `-b <branch>` switch to the `git submodule` command, like this:
+> 
+> `git submodule add -b <branch> https://github.com/poulpix/PXGoogleDirections.git Frameworks/External/PXGoogleDirections`
+> 
+> To find out the appropriate branch name, check out all the available branches on [Github](https://github.com/poulpix/PXGoogleDirections/branches/all)
+
+___
 
 4. Update your Podfile to give instructions on how to build both your project and the PXGoogleDirections submodule:
 
