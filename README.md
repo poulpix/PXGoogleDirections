@@ -140,6 +140,10 @@ directionsAPI.calculateDirections({ response in
  }
 })
 ```
+___
+> **Important**: You normally don't need to call `GMSServices.provideAPIKey()` yourself: it will be called by PXGoogleDirections when initializing the SDK.
+
+___
 
 See "Documentation" below for more information on the available properties and response data.
 
