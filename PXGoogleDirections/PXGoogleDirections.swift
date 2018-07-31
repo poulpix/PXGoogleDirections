@@ -67,7 +67,7 @@ public class PXGoogleDirections: NSObject {
 	fileprivate static var _apiKey = ""
 	fileprivate static var apiKey: String {
 		get {
-		return _apiKey
+			return _apiKey
 		}
 		set {
 			_apiKey = newValue

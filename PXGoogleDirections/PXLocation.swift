@@ -18,6 +18,8 @@ public enum PXLocation {
 	case specificLocation(String?, String?, String?)
 	/// Specifies a location by a single string address
 	case namedLocation(String)
+	/// Specifies a location by a Google Place ID
+	case googlePlaceId(String)
 	
 	fileprivate var centerCoordinate: CLLocationCoordinate2D? {
 		switch self {
@@ -130,6 +132,8 @@ extension PXLocation: CustomStringConvertible {
 			return locationFullName
 		case let .namedLocation(address):
 			return address
+		case let .googlePlaceId(placeId):
+			return "place_id:\(placeId)"
 		}
 	}
 }

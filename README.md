@@ -29,8 +29,9 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Available through CocoaPods and Carthage
 
 ## 🆕 New in V1.6
-- Compatibility with Google Places
+- Compatibility with Google Places IDs (usage: `PXLocation.googlePlaceId("gplaceid")`)
 - Compatibility with Swift 4.2
+- Updated to Google Maps iOS SDK 2.7
 - Availability through Swift Package Manager
 
 ## 🆕 New in V1.5.1
