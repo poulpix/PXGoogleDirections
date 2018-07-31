@@ -10,6 +10,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "GMSPanoramaSource.h"
+
 @class GMSPanorama;
 
 NS_ASSUME_NONNULL_BEGIN;
@@ -45,6 +47,27 @@ typedef void (^GMSPanoramaCallback)(GMSPanorama *_Nullable panorama, NSError *_N
  */
 - (void)requestPanoramaNearCoordinate:(CLLocationCoordinate2D)coordinate
                                radius:(NSUInteger)radius
+                             callback:(GMSPanoramaCallback)callback;
+
+/**
+ * Similar to requestPanoramaNearCoordinate:callback: but allows specifying the panorama source type
+ * near the given |coordinate|.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)requestPanoramaNearCoordinate:(CLLocationCoordinate2D)coordinate
+                               source:(GMSPanoramaSource)source
+                             callback:(GMSPanoramaCallback)callback;
+
+/**
+ * Similar to requestPanoramaNearCoordinate:callback: but allows specifying a search radius (meters)
+ * and the panorama source type near the given |coordinate|.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)requestPanoramaNearCoordinate:(CLLocationCoordinate2D)coordinate
+                               radius:(NSUInteger)radius
+                               source:(GMSPanoramaSource)source
                              callback:(GMSPanoramaCallback)callback;
 
 /**
