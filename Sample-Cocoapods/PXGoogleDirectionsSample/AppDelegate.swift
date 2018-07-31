@@ -18,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 15.0)!], for: UIControlState())
-		// TODO: For you fellow developer: replace `getGoogleAPI{Client|Server}Key()` in the two lines below with a string containing your own Google Maps API keys!
-		GMSServices.provideAPIKey(getGoogleAPIClientKey()) // A valid iOS client-side API key tied to your application's bundle identifier is required here
+		// TODO: For you fellow developer: replace `getGoogleAPI{Client|Server}Key()` in the line below with a string containing your own Google Maps API key!
 		directionsAPI = PXGoogleDirections(apiKey: getGoogleAPIServerKey()) // A valid server-side API key is required here
 		
 		return true
