@@ -40,5 +40,4 @@ Sample-Carthage/Carthage/Build
 # Sample
 #
 # Omit private information, like API keys in the sample project
-Sample-Carthage/Private/*.*
-Sample-Cocoapods/Private/*.*
+Samples/Shared/Private/*.*
