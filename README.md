@@ -13,7 +13,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![CocoaPods](https://img.shields.io/cocoapods/aw/PXGoogleDirections.svg?style=plastic)]()
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=plastic)](https://github.com/Carthage/Carthage)
-[![Swift Package Manager compabible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg?style=plastic)](https://swift.org/package-manager/)
+[![Swift Package Manager incompabible](https://img.shields.io/badge/Swift%20Package%20Manager-incompatible-red.svg?style=plastic)](https://swift.org/package-manager/)
 
 [![GitHub stars](https://img.shields.io/github/stars/poulpix/PXGoogleDirections.svg?style=social&label=Star&style=plastic)]()
 [![GitHub forks](https://img.shields.io/github/forks/poulpix/PXGoogleDirections.svg?style=social&label=Fork&style=plastic)]()
@@ -21,7 +21,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![Twitter Follow](https://img.shields.io/twitter/follow/_RomainL.svg?style=social&label=Follow&style=plastic)]()
 
 ## 🗺 Features
-- Supports all features from the Google Directions API as of January 2018 (see here for a full list: https://developers.google.com/maps/documentation/directions)
+- Supports all features from the Google Directions API as of August 2018 (see here for a full list: https://developers.google.com/maps/documentation/directions)
 - Supports "open in Google Maps app", both for specific locations and directions request
   * also supports the callback feature to get the user back to your app when he's done in Google Maps
   * in case the Google Maps app is not installed, also supports fallback to the built-in Apple Maps app
@@ -34,7 +34,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 - Compatibility with Google Places IDs (usage: `PXLocation.googlePlaceId("gplaceid")`, or `PXLocation.googlePlaceId(gmsPlace.placeID)` if you're already using Google's Places SDK for iOS)
 - Compatibility with Swift 4.2
 - Updated to Google Maps iOS SDK 2.7
-- Availability through Swift Package Manager
+- ~~Availability through Swift Package Manager~~ (cancelled for V1.6)
 
 ## 🆕 New in V1.5.1
 - Updated to Google Maps iOS SDK 2.5
@@ -235,8 +235,11 @@ Depending on your setup, you might see one or several of these known issues:
 
 - Lots of messages like these at runtime (usually application startup): `Class GMSxxx_whatever is implemented in both (name of your app) and (reference to PXGoogleDirections framework). One of the two will be used. Which one is undefined.`
   This is because with Carthage or Cocoapods you usually have two versions of the Google Maps iOS SDK : the one that has been linked with the PXGoogleDirections library, and the one you will be forced to link against in your own application if you wish to use it explicitly. From what I've seen, there is no real impact to these warnings as long as both versions are equivalent. They only pollute your output console at runtime.
+  
 - Messages like these at runtime (usually when showing a Google Maps view): `Main Thread Checker: UI API called on a background thread: -[UIApplication setNetworkActivityIndicatorVisible:]`
   This behavior is new to Xcode 9, and it seems like the culprit is the Google Maps iOS SDK itself, not the sample app provided with the library. These messages are not really harmful, but they are not sane either. If you find a solution, please PM me!
+  
+- The framework is not yet ready for Swift Package Manager since it requires static linking to Google Maps iOS SDKs and inclusion of a Google Maps resources bundle; both of those tasks can't be done with Swift Package Manager at this time.
 
 ## 🙏🏻 Credit
 - Some portions of code inspired by [OpenInGoogleMaps-iOS](https://github.com/googlemaps/OpenInGoogleMaps-iOS), from the Google Maps team.
