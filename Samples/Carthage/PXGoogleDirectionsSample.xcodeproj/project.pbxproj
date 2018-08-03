@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A04A5241FA63D4200932CCF /* PXGoogleDirections.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D11FA638C500E8F650 /* PXGoogleDirections.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7A56C1892113385700087A31 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A56C1882113385400087A31 /* GoogleMaps.bundle */; };
+		7A2850D621149E3F000ED239 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A2850D521149E3D000ED239 /* GoogleMaps.bundle */; };
 		7A5EC9D61FA639B800E8F650 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D31FA639B800E8F650 /* GoogleMaps.framework */; };
 		7A5EC9D71FA639B800E8F650 /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D41FA639B800E8F650 /* GoogleMapsBase.framework */; };
 		7A5EC9D81FA639B800E8F650 /* GoogleMapsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5EC9D51FA639B800E8F650 /* GoogleMapsCore.framework */; };
@@ -53,7 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7A56C1882113385400087A31 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = PXGoogleDirectionsSample.xcodeproj/../../../Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = SOURCE_ROOT; };
+		7A2850D521149E3D000ED239 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../Shared/PXGoogleDirectionsSample/GoogleMaps.bundle; sourceTree = SOURCE_ROOT; };
 		7A5EC9D11FA638C500E8F650 /* PXGoogleDirections.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PXGoogleDirections.framework; path = Carthage/Build/iOS/PXGoogleDirections.framework; sourceTree = "<group>"; };
 		7A5EC9D31FA639B800E8F650 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = ../Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7A5EC9D41FA639B800E8F650 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = ../Dependencies/GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				7AC68B651D300D0400B81C70 /* Main.storyboard */,
 				7AC68B681D300D0400B81C70 /* Images.xcassets */,
 				7AC68B6D1D300D0400B81C70 /* Info.plist */,
-				7A56C1882113385400087A31 /* GoogleMaps.bundle */,
+				7A2850D521149E3D000ED239 /* GoogleMaps.bundle */,
 			);
 			name = PXGoogleDirectionsSample;
 			path = ../Shared/PXGoogleDirectionsSample;
@@ -242,7 +242,7 @@
 				7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */,
 				7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */,
 				7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */,
-				7A56C1892113385700087A31 /* GoogleMaps.bundle in Resources */,
+				7A2850D621149E3F000ED239 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +401,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Dependencies",
+					"$(PROJECT_DIR)/../../Dependencies",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../Shared/PXGoogleDirectionsSample/Info.plist";
@@ -424,7 +424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Dependencies",
+					"$(PROJECT_DIR)/../../Dependencies",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../Shared/PXGoogleDirectionsSample/Info.plist";

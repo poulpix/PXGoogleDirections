@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../../Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle">
+      location = "group:/Users/Romain/OneDrive/Projets/PXGoogleDirections/Samples/Shared/PXGoogleDirectionsSample/GoogleMaps.bundle">
    </FileRef>
    <FileRef
       location = "self:">
