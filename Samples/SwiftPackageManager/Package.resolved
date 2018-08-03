@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "PXGoogleDirections",
+        "repositoryURL": "/Users/Romain/OneDrive/Projets/PXGoogleDirections",
+        "state": {
+          "branch": null,
+          "revision": "0692119e97e1584a0d2d7567217ff71bba1f2c13",
+          "version": "1.6.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
