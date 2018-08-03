@@ -35,7 +35,7 @@ Pods/
 .build/
 
 # Carthage
-Sample-Carthage/Carthage/Build
+Samples/Carthage/Carthage
 
 # Sample
 #

@@ -1,25 +1,28 @@
 Pod::Spec.new do |s|
     s.name                  = 'PXGoogleDirections'
-    s.version               = '1.0.0'
+    s.version               = '1.6'
 
     s.homepage              = "https://github.com/poulpix/PXGoogleDirections"
     s.summary               = 'Google Directions API SDK for iOS, entirely written in Swift'
-    #s.screenshot            = ""
+    s.screenshots           = [ 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/SampleScreen1.png', 'https://raw.githubusercontent.com/poulpix/PXGoogleDirections/master/SampleScreen2.png' ]
 
     s.author                = { 'Romain L' => 'dev.romain@me.com' }
     s.license               = { :type => 'BSD', :file => 'LICENSE' }
     s.social_media_url      = "https://twitter.com/_RomainL"
 
-    s.platforms             = { :ios => '8.0' }
-    s.ios.deployment_target = '8.0'
+    s.platforms             = { :ios => '9.3' }
+    s.ios.deployment_target = '9.3'
+    s.swift_version         = '4.2'
 
     s.source_files          = 'PXGoogleDirections/*.{h,swift}'
     s.module_name           = 'PXGoogleDirections'
-    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.0.0" }
+    s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.6" }
     s.requires_arc          = true
     s.libraries             = "c++", "icucore", "z"
-    s.frameworks            = "AVFoundation", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "SystemConfiguration", "GoogleMaps"
-    s.vendored_frameworks   = "Dependencies/GoogleMaps.framework"
-    #s.xcconfig              = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/Google-Maps-iOS-SDK' }
-    #s.dependency              'Google-Maps-iOS-SDK'
+    s.frameworks            = "Accelerate", "AVFoundation", "CoreBluetooth", "CoreData", "CoreLocation", "CoreText", "Foundation", "GLKit", "ImageIO", "OpenGLES", "QuartzCore", "Security", "SystemConfiguration", "CoreGraphics", "GoogleMapsCore", "GoogleMapsBase", "GoogleMaps"
+    #s.dependency            'GoogleMaps', '~> 2.7'
+    s.resource              = 'Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle'
+    s.vendored_frameworks   = "Dependencies/GoogleMaps.framework", "Dependencies/GoogleMapsBase.framework", "Dependencies/GoogleMapsCore.framework"
+    s.static_framework      = true
+    #s.xcconfig              = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/PXGoogleDirections/Dependencies' }
 end
