@@ -3,8 +3,9 @@ Google Directions API SDK for iOS, entirely written in Swift.
 
 [![Cocoapods](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/p/PXGoogleDirections.svg)
 [![Cocoapods](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/l/PXGoogleDirections.svg)
-![Swift](https://img.shields.io/badge/%20in-swift%204-orange.svg?style=plastic)
+![Swift](https://img.shields.io/badge/%20in-swift%204.2-orange.svg?style=plastic)
 
+[![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=plastic)](https://cocoapods.org)
 [![Cocoapods](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg?style=plastic)](https://img.shields.io/cocoapods/v/PXGoogleDirections.svg)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/PXGoogleDirections.svg?style=plastic)]()
 [![CocoaPods](https://img.shields.io/cocoapods/dt/PXGoogleDirections.svg?style=plastic)]()
@@ -12,6 +13,7 @@ Google Directions API SDK for iOS, entirely written in Swift.
 [![CocoaPods](https://img.shields.io/cocoapods/aw/PXGoogleDirections.svg?style=plastic)]()
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=plastic)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager compabible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg?style=plastic)](https://swift.org/package-manager/)
 
 [![GitHub stars](https://img.shields.io/github/stars/poulpix/PXGoogleDirections.svg?style=social&label=Star&style=plastic)]()
 [![GitHub forks](https://img.shields.io/github/forks/poulpix/PXGoogleDirections.svg?style=social&label=Fork&style=plastic)]()
