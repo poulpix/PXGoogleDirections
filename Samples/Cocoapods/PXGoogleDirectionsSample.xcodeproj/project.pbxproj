@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		60F60723972D55A758157C1A /* Pods_PXGoogleDirectionsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */; };
 		7A08A1852014AD86004E12A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A08A1842014AD86004E12A9 /* UIKit.framework */; };
+		7AB09FCB211488F5004FA55C /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AB09FCA211488F5004FA55C /* GoogleMaps.bundle */; };
 		7AC08E901D300D6700F06B44 /* GoogleAPIKeyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */; };
 		7AC37A3B1DDC397200E03E4E /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A381DDC397200E03E4E /* GoogleMaps.framework */; };
 		7AC37A3C1DDC397200E03E4E /* GoogleMapsBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC37A391DDC397200E03E4E /* GoogleMapsBase.framework */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		3225BF5079705D45C0D54DDE /* Pods_PXGoogleDirectionsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PXGoogleDirectionsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A08A1842014AD86004E12A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7AB09FCA211488F5004FA55C /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		7AC08E8F1D300D6700F06B44 /* GoogleAPIKeyProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleAPIKeyProvider.swift; path = ../Shared/Private/GoogleAPIKeyProvider.swift; sourceTree = SOURCE_ROOT; };
 		7AC37A381DDC397200E03E4E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMaps.framework; sourceTree = "<group>"; };
 		7AC37A391DDC397200E03E4E /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Pods/PXGoogleDirections/Dependencies/GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				7AC68B651D300D0400B81C70 /* Main.storyboard */,
 				7AC68B681D300D0400B81C70 /* Images.xcassets */,
 				7AC68B6D1D300D0400B81C70 /* Info.plist */,
+				7AB09FCA211488F5004FA55C /* GoogleMaps.bundle */,
 			);
 			name = PXGoogleDirectionsSample;
 			path = ../Shared/PXGoogleDirectionsSample;
@@ -189,7 +192,6 @@
 				7AC68B5A1D300D0300B81C70 /* Sources */,
 				7AC68B5B1D300D0300B81C70 /* Frameworks */,
 				7AC68B5C1D300D0300B81C70 /* Resources */,
-				8E1C7FFD75948DAF2E9B6EAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,6 +245,7 @@
 				7ACF3EC01D427DA100830BD6 /* LaunchScreen.xib in Resources */,
 				7AC68B691D300D0400B81C70 /* Images.xcassets in Resources */,
 				7AC68B671D300D0400B81C70 /* Main.storyboard in Resources */,
+				7AB09FCB211488F5004FA55C /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,24 +268,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E1C7FFD75948DAF2E9B6EAC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample-resources.sh",
-				"${PODS_ROOT}/../../../Dependencies/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PXGoogleDirectionsSample/Pods-PXGoogleDirectionsSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -439,7 +424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Dependencies",
+					"$(PROJECT_DIR)/../../Dependencies",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../Shared/PXGoogleDirectionsSample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -461,7 +446,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Dependencies",
+					"$(PROJECT_DIR)/../../Dependencies",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/../Shared/PXGoogleDirectionsSample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

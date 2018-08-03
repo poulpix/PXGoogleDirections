@@ -228,7 +228,7 @@ class MainViewController: UIViewController {
 			DispatchQueue.main.async(execute: { () -> Void in
 				switch response {
 				case let .error(_, error):
-					let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.alert)
+					let alert = UIAlertController(title: "PXGoogleDirectionsSample", message: "Error: \(error.localizedDescription)", preferredStyle: UIAlertController.Style.alert)
 					alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 					self.present(alert, animated: true, completion: nil)
 				case let .success(request, routes):
