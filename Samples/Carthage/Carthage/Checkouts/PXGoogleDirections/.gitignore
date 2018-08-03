@@ -1,5 +1,7 @@
+# macOS
+.DS_Store
+
 # Xcode
-#
 build/
 *.pbxuser
 !default.pbxuser
@@ -10,12 +12,15 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
+*.xcuserstate
 *.xccheckout
 *.moved-aside
+*.xcscmblueprint
 DerivedData
+
+# Obj-C/Swift specific
 *.hmap
 *.ipa
-*.xcuserstate
 
 # CocoaPods
 #
@@ -26,7 +31,13 @@ DerivedData
 Pods/
 *.lock
 
+# Swift Package Manager
+.build/
+
+# Carthage
+Sample-Carthage/Carthage/Build
+
 # Sample
 #
 # Omit private information, like API keys in the sample project
-Sample/Private/*.*
+Samples/Shared/Private/*.*

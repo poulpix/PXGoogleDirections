@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '9.3'
     s.swift_version         = '4.2'
 
-    s.source_files          = 'PXGoogleDirections/*.{h,swift}'
+    s.source_files          = 'Sources/PXGoogleDirections/*.{h,swift}'
     s.module_name           = 'PXGoogleDirections'
     s.source                = { :git => "https://github.com/poulpix/PXGoogleDirections.git", :tag => "1.6" }
     s.requires_arc          = true
